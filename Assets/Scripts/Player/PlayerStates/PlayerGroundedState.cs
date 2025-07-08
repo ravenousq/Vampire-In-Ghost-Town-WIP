@@ -63,7 +63,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.airborne);
         }
 
-        if(yInput == 1 && player.ladderToClimb && !player.isBusy)
+        if(Mathf.Abs(yInput) == 1 && player.ladderToClimb && !player.isBusy && !(player.IsGroundDetected() && !player.IsLadderDetected() && yInput == -1))
             stateMachine.ChangeState(player.climb);
 
         if(CanExecuteEnemy() && SkillManager.instance.isSkillUnlocked("Sweet Vendetta") && Input.GetKeyDown(KeyCode.Mouse0) && player.stateMachine.current != player.execute)

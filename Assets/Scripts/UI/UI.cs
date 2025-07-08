@@ -10,10 +10,7 @@ public class UI : MonoBehaviour
     private void Awake()
     {
         if (!instance)
-        {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
             Destroy(gameObject);
 

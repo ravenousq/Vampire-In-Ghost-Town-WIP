@@ -29,7 +29,7 @@ public class PlayerAirborneState : PlayerState
     {
         base.Update();
         
-        CheckForEdge();
+        //CheckForEdge();
 
         if (edge != Vector2.zero & !player.isBusy && Vector2.Distance(player.edgeCheck.position, edge) < .5f)
             stateMachine.ChangeState(player.edge);

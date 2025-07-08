@@ -1,29 +1,29 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class IllusoryWall : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    private Tilemap tr;
 
-    private void Awake() 
+    private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        tr = GetComponent<Tilemap>();
     }
 
     [SerializeField] private int requiredFacingDir;
     [SerializeField] private float fadeSpeed;
-    private Player player;
     [SerializeField] private BoxCollider2D wall;
+    private Player player;
 
     private void Update() 
     {
         if(player && player.attack.shotTriggered && player.facingDir == requiredFacingDir && Time.timeScale != 0 && player.IsGroundDetected())
             wall.enabled = false;
-        
 
         if(!wall.enabled)
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, Mathf.MoveTowards(sr.color.a, 0, fadeSpeed * Time.deltaTime));
+            tr.color = new Color(tr.color.r, tr.color.g, tr.color.b, Mathf.MoveTowards(tr.color.a, 0, fadeSpeed * Time.deltaTime));
         
-        if(sr.color.a == 0)
+        if(tr.color.a == 0)
             Destroy(gameObject);
     }
 

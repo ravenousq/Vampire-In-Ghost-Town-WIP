@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Rotten Plank
-  icon: {fileID: 21300000, guid: 7e13109e4482ebb41b6f02370afc8461, type: 3}
+  price: 0
+  icon: {fileID: 1345699985, guid: 0b98719d6352b9e4198ccae20cd128e6, type: 3}
   itemDescription: 'Those unworthy of being born anew must be crucified. Bloodied
     nails embedded in this piece of wood indicate its purpose was to ascend the broken,
     but just maybe it bore witness to absolution.
@@ -22,5 +23,6 @@ MonoBehaviour:
 
     Slightly decreases incoming
     damage.'
+  noteContent: 
   equipEffects:
   - {fileID: 11400000, guid: e30ea3532aa946b44a5e09f1da294041, type: 2}

@@ -352,6 +352,16 @@ public class Player : Entity
             }
         }
     }
+    
+    public bool IsLadderDetected()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundCheckDistance, LayerMask.GetMask("Ladder"));
+
+        if(colliders.Length > 0)
+            return true;
+
+        return false;
+    }
 
     public bool CloseToEdge()
     {
@@ -360,7 +370,7 @@ public class Player : Entity
 
         edgeCheck += new Vector2(cd.size.x / 2 * edgeToCheck, 0);
 
-        if(Physics2D.OverlapCircle(edgeCheck, .3f, whatIsGround))
+        if (Physics2D.OverlapCircle(edgeCheck, .3f, whatIsGround))
             return false;
 
         return true;
