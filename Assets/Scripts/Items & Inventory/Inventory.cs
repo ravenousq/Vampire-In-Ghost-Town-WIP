@@ -194,15 +194,17 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
-        if(keyItemsDictionary.TryGetValue(item as KeyItemData, out InventoryItem keyItemValue))
+        if (keyItemsDictionary.TryGetValue(item as KeyItemData, out InventoryItem keyItemValue))
         {
-            if(keyItemValue.stackSize <= 1)
+            if (keyItemValue.stackSize <= 1)
             {
                 keyItems.Remove(keyItemValue);
                 keyItemsDictionary.Remove(item as KeyItemData);
             }
             else
                 keyItemValue.RemoveStack();
+
+            return;
         }
 
         if(charmsDictionary.TryGetValue(item as CharmData, out InventoryItem charmValue))

@@ -169,7 +169,7 @@ public class DialogueManager : MonoBehaviour
         if (!canSkip)
             return;
 
-        Debug.Log("Skipped");
+        //Debug.Log("Skipped");
         CancelInvoke();
         canScroll = false;
         canSkip = false;

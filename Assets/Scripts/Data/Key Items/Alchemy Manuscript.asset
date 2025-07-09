@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1f6e7c5a6e74d49841296e803c1229, type: 3}
+  m_Name: Alchemy Manuscript
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Alchemy Manuscript
+  price: 2500
+  icon: {fileID: -8412689590225003355, guid: 43a0a17551b31544d82a1a2cf84bfd0a, type: 3}
+  itemDescription: 'Obsolete vademecum scripted with Latin recipes. Lexicon used
+    seems quite peculiar, as if concealing some impossible to decipher message.
+
+
+    Blesses
+    with knowledge that improves ones alchemical abilities. Allows to brew new concoctions
+    at The Campfire.'
+  noteContent: 
+  pickUpEffects: []

@@ -37,7 +37,13 @@ public class UI : MonoBehaviour
     [Space]
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private SoulsUI inGameSoulsUI;
+
+    [Space]
+    public ConfirmationDialogue confirmationDialogue;
     
+    [Space]
+    public ConcoctionUI concoctionUI;
+
     [Header("Debug")]
     [SerializeField] private NPC amelia;
     private int selectedIndex;
@@ -53,22 +59,23 @@ public class UI : MonoBehaviour
         }
         gameMenu.SetActive(false);
         campfireUI.gameObject.SetActive(false);
+        confirmationDialogue.gameObject.SetActive(false);
     }
 
-    private void Update() 
+    private void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.P) && !npcShop.gameObject.activeSelf)
         {
-            gameMenu.SetActive(!gameMenu.activeSelf);    
-            
-            if(gameMenu.activeSelf)
+            gameMenu.SetActive(!gameMenu.activeSelf);
+
+            if (gameMenu.activeSelf)
                 DefaultMenu();
         }
 
-        if(gameMenu.activeSelf)
+        if (gameMenu.activeSelf)
             NavigateTabs();
-        
+
     }
 
     public void SwitchShop(NPC npc, int index)
@@ -82,9 +89,9 @@ public class UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(selectedIndex == 4)
+            if (selectedIndex == 4)
                 notesTab.Reset();
-            else if(selectedIndex == 2)
+            else if (selectedIndex == 2)
                 charmsTab.TabSwitch();
 
             menuButtons[selectedIndex].Select(false);
@@ -93,7 +100,7 @@ public class UI : MonoBehaviour
             if (selectedIndex < 0)
                 selectedIndex = menuButtons.Length - 1;
 
-            if(selectedIndex  == 3)
+            if (selectedIndex == 3)
                 blessingsTab.TabSwitch();
 
             menuButtons[selectedIndex].Select(true);
@@ -101,17 +108,17 @@ public class UI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(selectedIndex == 4)
+            if (selectedIndex == 4)
                 notesTab.Reset();
-            else if(selectedIndex == 2)
+            else if (selectedIndex == 2)
                 charmsTab.TabSwitch();
-            else if(selectedIndex + 1 == 3)
+            else if (selectedIndex + 1 == 3)
                 blessingsTab.TabSwitch();
 
             menuButtons[selectedIndex].Select(false);
             selectedIndex = (selectedIndex + 1) % menuButtons.Length;
 
-            if(selectedIndex  == 3)
+            if (selectedIndex == 3)
                 blessingsTab.TabSwitch();
 
             menuButtons[selectedIndex].Select(true);
@@ -138,7 +145,7 @@ public class UI : MonoBehaviour
 
     public void EnableUI(bool enable)
     {
-        if(!enable)
+        if (!enable)
         {
             Time.timeScale = 0;
 
@@ -158,4 +165,9 @@ public class UI : MonoBehaviour
     public void ModifySouls(int souls) => GetComponentInChildren<SoulsUI>(true).ModifySouls(souls);
     public void UpdateInGameSouls() => inGameSoulsUI.UpdateSouls();
     public void UpdateSkillsSouls() => blessingsTab.UpdateSouls();
+    public void SetUpConfirmationDialogue(string information,  GameObject wakeUp, string confirmationText, string cancelText = "")
+    {
+        confirmationDialogue.SetUp(information, wakeUp, confirmationText, cancelText);
+        confirmationDialogue.gameObject.SetActive(true);
+    }
 }

@@ -10,15 +10,15 @@ public class ConcoctionController : SkillController
     protected override void Start()
     {
         base.Start();
-        
+
         currentConcoctionStacks = maxConcoctionStacks;
     }
 
     public override bool CanUseSkill()
     {
-        if(base.CanUseSkill())
+        if (base.CanUseSkill())
         {
-            if(currentConcoctionStacks > 0)
+            if (currentConcoctionStacks > 0)
             {
                 currentConcoctionStacks--;
                 return true;
@@ -30,4 +30,11 @@ public class ConcoctionController : SkillController
 
     public int GetHeal() => Mathf.RoundToInt(player.stats.health.GetValue() * percentage);
     public void ModifyPercentage(float percentage) => this.percentage += percentage;
+    public void AddStack()
+    {
+        maxConcoctionStacks++;
+        currentConcoctionStacks = maxConcoctionStacks;
+        UI.instance.concoctionUI.UpdateConcoctionStacks();
+    }
+
 }
