@@ -1,5 +1,6 @@
-using UnityEngine.UI
-;using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
 
 public class BlessingsUI : MonoBehaviour
 {
@@ -8,14 +9,32 @@ public class BlessingsUI : MonoBehaviour
     [SerializeField] private Image skillImage;
     [SerializeField] private SkillButtonUI defaultIndex;
     [SerializeField] private SkillDisplay skillDisplay;
-    [SerializeField] private SoulsUI soulsUI;
-    
+    [SerializeField] private GameObject informationText;
+
+    [Header("Campfire")]
+    [SerializeField] private GameObject darkImage;
+    [SerializeField] private GameObject[] dividers;
+    [SerializeField] private float dividerScale = .65f;
+    [SerializeField] private float topDividerOffset = 2f;
+    [SerializeField] private float bottomDividerOffset = 2f;
+    [SerializeField] private GameObject snippets;
+    [SerializeField] private GameObject quitSnippet;
+    [SerializeField] private float snippetOffset = 95f;
+    [SerializeField] private GameObject mask;
+    [SerializeField] private string campfireSnippetText;
+    [SerializeField] private GameObject fade;
+    [SerializeField] private RectTransform soulsUI;
+    [SerializeField] private float soulsUIOffset = 100f;
+    private string regularSnippetText;
+
+    private bool campfireActive = false;    
+
     private int currentIndex;
     public bool triedToPurchase { get; private set; }
 
-    private void Start() 
+    private void Start()
     {
-        skills = skillsParent.GetComponentsInChildren<SkillButtonUI>(true);    
+        skills = skillsParent.GetComponentsInChildren<SkillButtonUI>(true);
         for (int i = 0; i < skills.Length; i++)
         {
             skills[i].SetIndex(i, this);
@@ -24,25 +43,26 @@ public class BlessingsUI : MonoBehaviour
         skills[0].Select(true);
         skillDisplay.SetUp(skills[currentIndex].GetName(), skills[currentIndex].GetDescription(), skills[currentIndex].GetPrice());
         skillImage.sprite = skills[currentIndex].skillImage;
+        regularSnippetText = quitSnippet.GetComponent<TextMeshProUGUI>().text;
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
             NavigateTo(KeyCode.W);
 
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             NavigateTo(KeyCode.A);
 
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
             NavigateTo(KeyCode.S);
 
         if (Input.GetKeyDown(KeyCode.D))
             NavigateTo(KeyCode.D);
 
-        if(Input.GetKeyDown(KeyCode.C) && !triedToPurchase)
+        if (Input.GetKeyDown(KeyCode.C) && !triedToPurchase)
         {
-            if(PlayerManager.instance.CanAfford(skills[currentIndex].GetIntPrice()) && skills[currentIndex].canBePurchased)
+            if (campfireActive && PlayerManager.instance.CanAfford(skills[currentIndex].GetIntPrice()) && skills[currentIndex].canBePurchased)
                 skills[currentIndex].SetPurchase(true);
             else
             {
@@ -51,19 +71,21 @@ public class BlessingsUI : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.C))
+        if (Input.GetKeyUp(KeyCode.C))
             skills[currentIndex].SetPurchase(false);
-        
+
+        if (Input.GetKeyDown(KeyCode.X) && campfireActive)
+        {
+            SetUpCampfire();
+            UI.instance.campfireUI.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 
     public void RemoveSouls(int price)
     {
-        soulsUI.ModifySouls(-price);
-        UI.instance.UpdateInGameSouls();
+        UI.instance.ModifySouls(-price);
     }
-
-    public void UpdateSouls() => soulsUI.UpdateSouls();
-    
 
     public void UpdateAll()
     {
@@ -82,7 +104,7 @@ public class BlessingsUI : MonoBehaviour
 
     public Row GetRowByIndex(int index)
     {
-        if(index < 0 || index >= skills.Length)
+        if (index < 0 || index >= skills.Length)
             return Row.Default;
 
         return skills[index].row;
@@ -91,10 +113,10 @@ public class BlessingsUI : MonoBehaviour
     public void TabSwitch()
     {
         Start();
-        soulsUI.UpdateSouls();
+        UI.instance.ModifySouls(0);
         skills[currentIndex].Select(false);
         currentIndex = 0;
-        skills[currentIndex].Select(true);   
+        skills[currentIndex].Select(true);
         skillDisplay.SetUp(skills[currentIndex].GetName(), skills[currentIndex].GetDescription(), skills[currentIndex].GetPrice());
         skillImage.sprite = skills[currentIndex].skillImage;
     }
@@ -107,14 +129,64 @@ public class BlessingsUI : MonoBehaviour
 
         foreach (SkillButtonUI skill in skills)
         {
-            if(skill.IsSecret() && skill.GetName(false) == name)
+            if (skill.IsSecret() && skill.GetName(false) == name)
             {
                 skill.Purchase();
-                
+
                 UpdateAll();
 
                 return;
             }
+        }
+    }
+
+    public void SetUpCampfire()
+    {
+        if (!campfireActive)
+        {
+            campfireActive = true;
+            darkImage.SetActive(true);
+            foreach (GameObject divider in dividers)
+                divider.transform.localScale = Vector3.one * dividerScale;
+
+            dividers[0].transform.position = dividers[0].transform.position - new Vector3(0, topDividerOffset, 0);
+            dividers[1].transform.position = dividers[1].transform.position + new Vector3(0, bottomDividerOffset, 0);
+
+            mask.gameObject.transform.SetParent(darkImage.transform);
+
+            snippets.transform.position = new Vector3(snippets.transform.position.x, snippets.transform.position.y + snippetOffset, snippets.transform.position.z);
+
+            quitSnippet.GetComponent<TextMeshProUGUI>().text = campfireSnippetText;
+
+            fade.SetActive(true);
+            
+            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x - soulsUIOffset, soulsUI.anchoredPosition.y);
+
+            informationText.SetActive(false);
+        }
+        else
+        {
+            campfireActive = false;
+            darkImage.SetActive(false);
+            foreach (GameObject divider in dividers)
+                divider.transform.localScale = Vector3.one;
+
+            dividers[0].transform.position = dividers[0].transform.position + new Vector3(0, topDividerOffset, 0);
+            dividers[1].transform.position = dividers[1].transform.position - new Vector3(0, bottomDividerOffset, 0);
+
+            mask.gameObject.transform.SetParent(transform);
+
+            snippets.transform.position = new Vector3(snippets.transform.position.x, snippets.transform.position.y - snippetOffset, snippets.transform.position.z);
+
+            quitSnippet.GetComponent<TextMeshProUGUI>().text = regularSnippetText;
+
+            informationText.SetActive(false);
+
+            fade.SetActive(false);
+
+            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x + soulsUIOffset, soulsUI.anchoredPosition.y);
+
+            transform.SetParent(UI.instance.GetGameMenu().transform);
         }
     }
 }

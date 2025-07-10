@@ -37,12 +37,14 @@ public class UI : MonoBehaviour
     [Space]
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private SoulsUI inGameSoulsUI;
+    public bool canTurnOnGameMenu { get; private set; } = true;
 
     [Space]
     public ConfirmationDialogue confirmationDialogue;
-    
+
     [Space]
     public ConcoctionUI concoctionUI;
+
 
     [Header("Debug")]
     [SerializeField] private NPC amelia;
@@ -65,7 +67,7 @@ public class UI : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.P) && !npcShop.gameObject.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Tab) && !npcShop.gameObject.activeSelf && canTurnOnGameMenu)
         {
             gameMenu.SetActive(!gameMenu.activeSelf);
 
@@ -75,7 +77,6 @@ public class UI : MonoBehaviour
 
         if (gameMenu.activeSelf)
             NavigateTabs();
-
     }
 
     public void SwitchShop(NPC npc, int index)
@@ -162,12 +163,22 @@ public class UI : MonoBehaviour
     }
 
     public void UnlockSecretSkill(string name) => blessingsTab.UnlockSecretSkill(name);
-    public void ModifySouls(int souls) => GetComponentInChildren<SoulsUI>(true).ModifySouls(souls);
-    public void UpdateInGameSouls() => inGameSoulsUI.UpdateSouls();
-    public void UpdateSkillsSouls() => blessingsTab.UpdateSouls();
-    public void SetUpConfirmationDialogue(string information,  GameObject wakeUp, string confirmationText, string cancelText = "")
+
+
+    public void ModifySouls(int souls = 0)
+    {
+        if (souls != 0)
+            inGameSoulsUI.ModifySouls(souls);
+        else
+            inGameSoulsUI.UpdateSouls();
+    }
+
+    public void SetUpConfirmationDialogue(string information, GameObject wakeUp, string confirmationText, string cancelText = "")
     {
         confirmationDialogue.SetUp(information, wakeUp, confirmationText, cancelText);
         confirmationDialogue.gameObject.SetActive(true);
     }
+
+    public void LockGameMenu() => canTurnOnGameMenu = !canTurnOnGameMenu;
+    public GameObject GetGameMenu() => gameMenu;
 }

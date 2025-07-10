@@ -13,6 +13,7 @@ public class PlayerRestState : PlayerState
         base.Enter();
 
         skills.ChangeLockOnAllSkills(true);
+        UI.instance.LockGameMenu();
     }
 
     public override void Update()
@@ -25,7 +26,8 @@ public class PlayerRestState : PlayerState
     public override void Exit()
     {
         skills.ChangeLockOnAllSkills(true);
-
+        UI.instance.LockGameMenu();
+        
         base.Exit();
     }
 

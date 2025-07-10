@@ -7,11 +7,11 @@ public class ConfirmationDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI confirmButton;
     [SerializeField] private TextMeshProUGUI declineButton;
     [SerializeField] private Color highlightedColor;
+    [SerializeField] private Color defaultColor;
     [SerializeField] private float highlightedFontSize = 20f;
+    [SerializeField] private float defaultFontSize;
     public System.Action onConfirm;
     public System.Action onDecline;
-    private Color defaultColor;
-    private float defaultFontSize;
     private bool highlightedOption;
     private GameObject wakeUp;
 
@@ -49,7 +49,7 @@ public class ConfirmationDialogue : MonoBehaviour
         highlightedOption = cancelText == "";
         this.wakeUp = wakeUp;
 
-        if(wakeUp)
+        if(wakeUp != null)
             wakeUp.SetActive(false);
 
         informationText.text = information;

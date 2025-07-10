@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CampfireUI : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class CampfireUI : MonoBehaviour
     [SerializeField] private Color highlightedColor;
     [SerializeField] private float HighlightedFontSize;
     [SerializeField] private ItemData manuscriptItem;
+
+    [Space]
+
+    [SerializeField] private BlessingsUI blessingsTab;
     private Color defaultColor;
     private float defaultFontSize;
     private Campfire campfire;
     public int index { get; private set; }
-    private bool stoodUp = false;
+    private bool stoodUp = true;
 
     private void Awake()
     {
@@ -67,7 +72,13 @@ public class CampfireUI : MonoBehaviour
 
     private void Rest()
     {
-
+        UI.instance.SetUpConfirmationDialogue(
+            "In current version, resting will erase all progress. Continue?",
+            gameObject,
+            "Yes",
+            "No"
+        );
+        UI.instance.confirmationDialogue.onConfirm += ResetGame;
     }
 
     private void Travel()
@@ -77,7 +88,11 @@ public class CampfireUI : MonoBehaviour
 
     private void Stargaze()
     {
+        gameObject.SetActive(false);
 
+        blessingsTab.transform.SetParent(transform.parent);
+        blessingsTab.SetUpCampfire();
+        blessingsTab.gameObject.SetActive(true);
     }
 
     private void Brew()
@@ -94,26 +109,24 @@ public class CampfireUI : MonoBehaviour
         }
 
         if (Inventory.instance.HasItem(manuscriptItem))
-            {
-                UI.instance.SetUpConfirmationDialogue(
-                    "Use <color=#C07919>Alchemy Manuscript</color> and brew new concoctions?",
-                    gameObject,
-                    "Yes",
-                    "No"
-                );
+        {
+            UI.instance.SetUpConfirmationDialogue(
+                "Use <color=#C07919>Alchemy Manuscript</color> and brew new concoctions?",
+                gameObject,
+                "Yes",
+                "No"
+            );
 
-                UI.instance.confirmationDialogue.onConfirm += BrewConfirm;
-            }
-            else
-            {
-                UI.instance.SetUpConfirmationDialogue(
-                    "No <color=#C07919>Alchemy Manuscript</color> in inventory.",
-                    gameObject,
-                    "Okay"
-                );
-            }
-
-        //gameObject.SetActive(false);
+            UI.instance.confirmationDialogue.onConfirm += BrewConfirm;
+        }
+        else
+        {
+            UI.instance.SetUpConfirmationDialogue(
+                "No <color=#C07919>Alchemy Manuscript</color> in inventory.",
+                gameObject,
+                "Okay"
+            );
+        }
     }
 
     private void BrewConfirm()
@@ -126,8 +139,6 @@ public class CampfireUI : MonoBehaviour
                 gameObject,
                 "Okay"
             );
-
-        //gameObject.SetActive(false);
     }
 
     private void StandUp()
@@ -142,10 +153,13 @@ public class CampfireUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if(stoodUp)
+        if (stoodUp)
         {
             stoodUp = false;
             SwitchTo(0);
         }
     }
+    
+    private void ResetGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
 }

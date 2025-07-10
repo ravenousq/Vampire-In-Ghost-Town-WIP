@@ -22,7 +22,7 @@ public class Campfire : MonoBehaviour
     private bool menuActive;
     private void Update()
     {
-        if (player && Input.GetKeyDown(KeyCode.C) && !menuActive)
+        if (player && Input.GetKeyDown(KeyCode.C) && !menuActive && Time.timeScale != 0)
         {
             player.RestAtCampfire();
             UI.instance.campfireUI.gameObject.SetActive(true);

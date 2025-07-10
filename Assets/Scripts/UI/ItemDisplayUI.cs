@@ -62,7 +62,7 @@ public class ItemDisplayUI : MonoBehaviour
             }
         }
         
-        if((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.C)) && !confirmation)
+        if((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.C)) && !confirmation)
             Destroy(gameObject);
     }
 

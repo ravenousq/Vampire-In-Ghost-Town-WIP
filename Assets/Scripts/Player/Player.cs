@@ -165,13 +165,13 @@ public class Player : Entity
         if(Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab) && UI.instance.canTurnOnGameMenu)
         {
             Cursor.visible = !Cursor.visible;
             Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
         }
 
-        if(Input.GetKeyDown(KeyCode.P) && !UI.instance.npcShop.gameObject.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Tab) && !UI.instance.npcShop.gameObject.activeSelf && UI.instance.canTurnOnGameMenu)
             UI.instance.EnableUI(Time.timeScale == 0);
 
         if(!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)

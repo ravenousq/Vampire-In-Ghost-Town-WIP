@@ -99,7 +99,7 @@ public class CharmsUI : MonoBehaviour
 
     public void SwitchToCharm(int index)
     {
-        if(charms.Length == 0)
+        if(charms == null || charms.Length == 0)
             Awake();
 
         if(index == -1)
