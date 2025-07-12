@@ -24,7 +24,7 @@ public class BlessingsUI : MonoBehaviour
     [SerializeField] private string campfireSnippetText;
     [SerializeField] private GameObject fade;
     [SerializeField] private RectTransform soulsUI;
-    [SerializeField] private float soulsUIOffset = 100f;
+    [SerializeField] private Vector2 soulsUIOffset;
     private string regularSnippetText;
 
     private bool campfireActive = false;    
@@ -160,7 +160,8 @@ public class BlessingsUI : MonoBehaviour
 
             fade.SetActive(true);
             
-            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x - soulsUIOffset, soulsUI.anchoredPosition.y);
+            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x - soulsUIOffset.x, soulsUI.anchoredPosition.y - soulsUIOffset.y);
+            soulsUI.SetParent(transform);
 
             informationText.SetActive(false);
         }
@@ -184,7 +185,8 @@ public class BlessingsUI : MonoBehaviour
 
             fade.SetActive(false);
 
-            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x + soulsUIOffset, soulsUI.anchoredPosition.y);
+            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x + soulsUIOffset.x, soulsUI.anchoredPosition.y - soulsUIOffset.y);
+            soulsUI.SetParent(UI.instance.GetInGameUI().transform);
 
             transform.SetParent(UI.instance.GetGameMenu().transform);
         }

@@ -83,7 +83,11 @@ public class CampfireUI : MonoBehaviour
 
     private void Travel()
     {
-
+        UI.instance.SetUpConfirmationDialogue(
+            "This feature will be available once the level structure is implemented.",
+            gameObject,
+            "Okay"
+        );
     }
 
     private void Stargaze()

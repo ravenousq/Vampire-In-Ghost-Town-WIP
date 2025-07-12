@@ -20,14 +20,14 @@ public class SkillController : MonoBehaviour
 
     public virtual bool CanUseSkill()
     {
-        if(cooldownTimer <= 0 && SkillManager.instance.isSkillUnlocked(primarySkillName) && !isBlocked && Time.timeScale > 0)
+        if (cooldownTimer <= 0 && SkillManager.instance.isSkillUnlocked(primarySkillName) && !isBlocked && Time.timeScale > 0)
         {
             UseSkill();
             cooldownTimer = cooldown;
             return true;
         }
 
-        if(cooldownTimer > 0 && SkillManager.instance.debugging)
+        if (cooldownTimer > 0 && SkillManager.instance.debugging)
             Debug.Log("Skill on cooldown");
 
         if(!SkillManager.instance.isSkillUnlocked(primarySkillName) && SkillManager.instance.debugging)

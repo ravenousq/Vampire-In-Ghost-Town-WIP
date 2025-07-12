@@ -25,7 +25,7 @@ public class PlayerRestState : PlayerState
 
     public override void Exit()
     {
-        skills.ChangeLockOnAllSkills(true);
+        skills.ChangeLockOnAllSkills(false);
         UI.instance.LockGameMenu();
         
         base.Exit();

@@ -18,8 +18,8 @@ public class ShootController : SkillController
     {
         if(base.CanUseSkill())
         {
-            if(CanShoot())
-                return true;
+            if (CanShoot())
+                return true; 
         }
         return false;
     }
@@ -43,7 +43,7 @@ public class ShootController : SkillController
     {
         if(currentAmmo > 0 && !player.thirdAttack)
             return true;
-        else if(currentAmmo > 0 && player.thirdAttack)
+        else if(currentAmmo > 1 && player.thirdAttack)
             return true;
 
         return false;

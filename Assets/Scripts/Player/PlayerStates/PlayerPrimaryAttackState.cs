@@ -94,7 +94,7 @@ public class PlayerPrimaryAttackState : PlayerState
             if (hit.collider.gameObject.GetComponent<Enemy>())
             {
                 float distance = Mathf.Clamp(Vector2.Distance(new Vector2(player.transform.position.x + player.cd.size.x / 1.2f * player.facingDir, player.transform.position.y + player.cd.size.y / 5), hit.point) - 1f, .1f, skills.shoot.effectiveAttackRange);
-                float distanceModifier = Mathf.Lerp(1f, 0.3f, distance / skills.shoot.effectiveAttackRange); 
+                float distanceModifier = Mathf.Lerp(1f, 0.3f, distance / skills.shoot.effectiveAttackRange);
 
                 player.stats.DoDamage(hit.collider.gameObject.GetComponent<EnemyStats>(), Vector2.zero, 0, player.skills.shoot.poiseDamage, damageDecrease * distanceModifier);
 
@@ -103,6 +103,7 @@ public class PlayerPrimaryAttackState : PlayerState
 
                 damageDecrease *= .7f;
             }
+            else continue;
 
             if (!player.skills.isSkillUnlocked("Vokul Fen Mah"))
                 return;

@@ -181,4 +181,5 @@ public class UI : MonoBehaviour
 
     public void LockGameMenu() => canTurnOnGameMenu = !canTurnOnGameMenu;
     public GameObject GetGameMenu() => gameMenu;
+    public GameObject GetInGameUI() => InGameUI;
 }

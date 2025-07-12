@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    private float lastQuickstep;
-
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         
@@ -77,9 +75,9 @@ public class PlayerGroundedState : PlayerState
         
         if(Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
         {
-            if(skills.shoot.CanUseSkill())
+            if (skills.shoot.CanUseSkill())
                 stateMachine.ChangeState(player.attack);
-            else if(skills.shoot.CanReload() && Time.timeScale != 0)
+            else if (skills.shoot.CanReload() && Time.timeScale != 0)
                 stateMachine.ChangeState(player.reload);
         }
     }

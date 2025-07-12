@@ -6,9 +6,11 @@ using UnityEngine;
 public class SoulsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI soulsText;
+    [SerializeField] private Transform fadingTextFactory;
     [SerializeField] private FadingText textPrefab;
     [SerializeField] private float textSpeed;
     [SerializeField] private float textIdleSpeed;
+    [SerializeField] private Transform target;
     private List<FadingText> fadingTexts;
     public int souls { get; private set; }
     private int currentSouls;
@@ -45,11 +47,11 @@ public class SoulsUI : MonoBehaviour
             return;
         }
 
-        FadingText newText = Instantiate(textPrefab, transform.position - new Vector3(0, 50 + (fadingTexts.Count * 50), 0), Quaternion.identity);
-        newText.transform.SetParent(gameObject.transform);
+        FadingText newText = Instantiate(textPrefab, fadingTextFactory.transform.position - new Vector3(0, (fadingTexts.Count + 1) * 50, 0), Quaternion.identity);
+        newText.transform.SetParent(fadingTextFactory.transform);
         fadingTexts.Add(newText);
         fadingText = newText;
-        fadingText.SetUp((souls < 0 ? "" : "+") + souls.ToString(), textIdleSpeed, textSpeed, transform, soulsText.alignment);
+        fadingText.SetUp((souls < 0 ? "" : "+") + souls.ToString(), textIdleSpeed, textSpeed, target, soulsText.alignment);
     }
 
     private IEnumerator AddRoutine()

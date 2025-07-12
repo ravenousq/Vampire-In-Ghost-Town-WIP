@@ -154,7 +154,7 @@ public class Player : Entity
 
     protected override void Update()
     {
-        if(stats.HP == 0)
+        if (stats.HP == 0)
             return;
 
         stateMachine.current.Update();
