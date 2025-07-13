@@ -7,15 +7,15 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> buttons;
     [SerializeField] private Color highlightColor;
     [SerializeField] private float highlightedFontSize;
-    [SerializeField] private FadeScreen fadeScreen;
     private TextMeshProUGUI continueButton;
     private Color defaultColor;
     private float defaultFontSize;
     private int currentButtonIndex = 0;
+    private Screens screenToSwitch = Screens.NullScreen;
 
     void Start()
     {
-        fadeScreen.FadeOut(.5f);
+        MainMenu.instance.fadeScreen.FadeOut(.5f);
 
         continueButton = buttons[0];
 
@@ -45,7 +45,7 @@ public class TitleScreen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             Remote();
-            fadeScreen.FadeIn();
+            MainMenu.instance.fadeScreen.FadeIn();
         }
     }
 
@@ -74,16 +74,12 @@ public class TitleScreen : MonoBehaviour
                 Debug.Log("New Game");
                 break;
             case 2:
-                // Go to Settings
-                Debug.Log("Settings");
+                screenToSwitch = Screens.SettingsScreen;
                 break;
             case 3:
-                // Go to Credits
-                Debug.Log("Credits");
+                screenToSwitch = Screens.CreditsScreen;
                 break;
             case 4:
-                // Exit Game
-                Debug.Log("Exit");
                 Application.Quit();
                 break;
             default:
@@ -91,11 +87,14 @@ public class TitleScreen : MonoBehaviour
                 break;
         }
 
-        Invoke(nameof(ChangeScreen), 1f);
+        Invoke(nameof(ChangeScreen), 1.5f);
     }
 
     private void ChangeScreen()
     {
-        gameObject.SetActive(false);
+
+        if (screenToSwitch != Screens.NullScreen)
+            MainMenu.instance.SwitchTo(screenToSwitch);
+        
     }
 }

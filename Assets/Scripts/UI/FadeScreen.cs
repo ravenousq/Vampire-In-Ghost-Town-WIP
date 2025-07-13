@@ -7,21 +7,18 @@ public class FadeScreen : MonoBehaviour
     {
         fadeImage = GetComponent<Image>();
         fadeImage.color = new Color(0, 0, 0, 1);
-    }
 
-    [SerializeField] private float fadeInSpeed;
-    [SerializeField] private float fadeOutSpeed;
-    [SerializeField] private bool isFadingIn;
-    [SerializeField] private bool isFadingOut;
-    public float defaultFadeInSpeed { get; private set; }
-    public float defaultFadeOutSpeed { get; private set; }
-    private Image fadeImage;
-
-    void Start()
-    {
         defaultFadeInSpeed = fadeInSpeed;
         defaultFadeOutSpeed = fadeOutSpeed;
     }
+
+    [SerializeField] private float fadeInSpeed = 1;
+    [SerializeField] private float fadeOutSpeed = 1;
+    private bool isFadingIn;
+    private bool isFadingOut;
+    public float defaultFadeInSpeed { get; private set; }
+    public float defaultFadeOutSpeed { get; private set; }
+    private Image fadeImage;
 
     private void Update()
     {
