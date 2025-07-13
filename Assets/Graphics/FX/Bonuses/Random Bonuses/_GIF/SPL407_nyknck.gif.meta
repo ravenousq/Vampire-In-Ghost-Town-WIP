@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SPL407_nyknck_0: -7849568256409496844
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

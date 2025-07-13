@@ -322,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      P001_nyknck_0: 1638570053593548551
+      P001_nyknck_1: 8582892094758232409
+      P001_nyknck_2: -7432140700664573134
+      P001_nyknck_3: 767127773040511604
+      P001_nyknck_4: -3381600584621083677
+      P001_nyknck_5: 3709752167898754751
+      P001_nyknck_6: -1591782096905244998
+      P001_nyknck_7: 5484877621636173922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kawarimi_no_Jutsu_0013_0: 2655057772279311286
+      Kawarimi_no_Jutsu_0013_1: -9158465749204280113
+      Kawarimi_no_Jutsu_0013_2: 1294577687149030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

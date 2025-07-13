@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Claw04_0: -8863766148984126416
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

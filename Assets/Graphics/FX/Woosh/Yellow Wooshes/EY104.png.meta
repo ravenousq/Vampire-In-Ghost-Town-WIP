@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EY104_0: 2573313404743868078
+      EY104_1: 9125081001137342124
+      EY104_2: 9125354435171749013
+      EY104_3: 7204040010075135425
+      EY104_4: 1464407684135193707
+      EY104_5: 7517091292966807391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

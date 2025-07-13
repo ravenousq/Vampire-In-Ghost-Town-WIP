@@ -397,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FT105_0: 2273451343403856195
+      FT105_1: 2440927948454186804
+      FT105_10: -460464065409768241
+      FT105_2: 2681847654212276069
+      FT105_3: 3717401725343412739
+      FT105_4: 6085651175218650588
+      FT105_5: 4306616405537436632
+      FT105_6: 4470791657980968156
+      FT105_7: -6423819734323244866
+      FT105_8: 5437359565957668576
+      FT105_9: 2714324273432132161
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

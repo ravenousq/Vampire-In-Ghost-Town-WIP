@@ -1,30 +1,19 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TitleScreen : MonoBehaviour
+public class TitleScreen : MenuNavigation
 {
-    [SerializeField] private List<TextMeshProUGUI> buttons;
-    [SerializeField] private Color highlightColor;
-    [SerializeField] private float highlightedFontSize;
     private TextMeshProUGUI continueButton;
-    private Color defaultColor;
-    private float defaultFontSize;
-    private int currentButtonIndex = 0;
-    private Screens screenToSwitch = Screens.NullScreen;
 
-    void Start()
+    protected override void Start()
     {
-        MainMenu.instance.fadeScreen.FadeOut(.5f);
-
         continueButton = buttons[0];
 
         HideContinueButton();
 
-        defaultFontSize = buttons[currentButtonIndex].fontSize;
-        defaultColor = buttons[currentButtonIndex].color;
-
-        SwitchTo(currentButtonIndex);
+        base.Start();
     }
 
     private void HideContinueButton()
@@ -34,13 +23,9 @@ public class TitleScreen : MonoBehaviour
         continueButton.gameObject.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-            SwitchTo(currentButtonIndex == 0 ? buttons.Count - 1 : currentButtonIndex - 1);
-
-        if (Input.GetKeyDown(KeyCode.S))
-            SwitchTo((currentButtonIndex + 1) % buttons.Count);
+        base.Update();
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -49,19 +34,7 @@ public class TitleScreen : MonoBehaviour
         }
     }
 
-    private void SwitchTo(int index)
-    {
-
-        buttons[currentButtonIndex].color = defaultColor;
-        buttons[currentButtonIndex].fontSize = defaultFontSize;
-
-        currentButtonIndex = index;
-
-        buttons[currentButtonIndex].color = highlightColor;
-        buttons[currentButtonIndex].fontSize = highlightedFontSize;
-    }
-
-    private void Remote()
+    protected override void Remote()
     {
         switch (continueButton.gameObject.activeSelf ? currentButtonIndex : currentButtonIndex + 1)
         {
@@ -87,14 +60,7 @@ public class TitleScreen : MonoBehaviour
                 break;
         }
 
-        Invoke(nameof(ChangeScreen), 1.5f);
+        base.Remote();
     }
 
-    private void ChangeScreen()
-    {
-
-        if (screenToSwitch != Screens.NullScreen)
-            MainMenu.instance.SwitchTo(screenToSwitch);
-        
-    }
 }

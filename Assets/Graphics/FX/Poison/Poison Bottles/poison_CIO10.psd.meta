@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      poison_CIO10_0: 5749464910399538002
+      poison_CIO10_1: -2286431464187357430
+      poison_CIO10_2: 1647380307812161436
+      poison_CIO10_3: -1540345772493762909
+      poison_CIO10_4: 7051221542256627421
+      poison_CIO10_5: 7941389012552090768
+      poison_CIO10_6: -8968124605004990374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -185,7 +185,7 @@ public class BlessingsUI : MonoBehaviour
 
             fade.SetActive(false);
 
-            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x + soulsUIOffset.x, soulsUI.anchoredPosition.y - soulsUIOffset.y);
+            soulsUI.anchoredPosition = new Vector2(soulsUI.anchoredPosition.x + soulsUIOffset.x, soulsUI.anchoredPosition.y + soulsUIOffset.y);
             soulsUI.SetParent(UI.instance.GetInGameUI().transform);
 
             transform.SetParent(UI.instance.GetGameMenu().transform);

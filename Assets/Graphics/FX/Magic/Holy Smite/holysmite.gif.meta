@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      holysmite_0: 6067698832416953676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

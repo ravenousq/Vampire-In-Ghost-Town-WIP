@@ -7,7 +7,7 @@ public enum Screens
     SettingsScreen = 1,
     GameSettingsScreen = 2,
     VideoSettingsScreen = 3,
-    SoundSettingsScreen = 4,
+    AudioSettingsScreen = 4,
     ControlsScreen = 5,
     CreditsScreen = 6,
     NullScreen = 8
@@ -38,10 +38,10 @@ public class MainMenu : MonoBehaviour
         foreach (var screen in screens)
             screen.SetActive(false);
         
-        SwitchTo(currentScreen);
+        SwitchTo(currentScreen, .5f);
     }
 
-    public void SwitchTo(Screens screen)
+    public void SwitchTo(Screens screen, float fadeSpeed = 0)
     {
         screens[(int)currentScreen].SetActive(false);
 
@@ -49,12 +49,12 @@ public class MainMenu : MonoBehaviour
 
         screens[(int)currentScreen].SetActive(true);
 
-        menuImage.sprite = menuImages[(int)currentScreen];
+        //menuImage.sprite = menuImages[(int)currentScreen];
 
-        fadeScreen.FadeOut();
+        fadeScreen.FadeOut(fadeSpeed);
     }
 
-    public void Switchto(int screen)
+    public void Switchto(int screen, float fadeSpeed = 0)
     {
         screens[(int)currentScreen].SetActive(false);
 
@@ -62,9 +62,9 @@ public class MainMenu : MonoBehaviour
 
         screens[(int)currentScreen].SetActive(true);
 
-        menuImage.sprite = menuImages[(int)currentScreen];
+        //menuImage.sprite = menuImages[(int)currentScreen];
 
-        fadeScreen.FadeOut();
+        fadeScreen.FadeOut(fadeSpeed);
     }
 
     

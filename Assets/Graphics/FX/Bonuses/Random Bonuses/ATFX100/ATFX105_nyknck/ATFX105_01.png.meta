@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ATFX105_01_0: -1872550044181961381
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

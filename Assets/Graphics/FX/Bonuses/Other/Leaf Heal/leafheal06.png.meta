@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      leafheal06_0: 7580323583129845426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

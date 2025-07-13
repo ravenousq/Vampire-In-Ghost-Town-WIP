@@ -322,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FX3206_0: 5908865938518170943
+      FX3206_1: 360061869029951279
+      FX3206_2: -9011172398791104782
+      FX3206_3: 9100425682479645256
+      FX3206_4: -4080617146715472068
+      FX3206_5: -7672838026750975488
+      FX3206_6: 1478553544280239372
+      FX3206_7: -3574813586447586981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
