@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using TMPro;
 using UnityEngine;
 
@@ -86,7 +84,6 @@ public class GameSettings : MenuNavigation
         TextMeshProUGUI listText = list.GetComponentInChildren<TextMeshProUGUI>();
         listText.fontSize = activate ? highlightedFontSize : defaultFontSize;
         listText.color = activate ? highlightedColor : defaultColor;
-
     }
 
     private void ActivateListByIndex(int index = -1)

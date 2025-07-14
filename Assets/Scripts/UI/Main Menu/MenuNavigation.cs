@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class MenuNavigation : MonoBehaviour
 {
