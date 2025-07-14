@@ -54,6 +54,6 @@ public class MenuNavigation : MonoBehaviour
         if (screenToSwitch != Screens.NullScreen)
             MainMenu.instance.SwitchTo(screenToSwitch);
 
-        screenToSwitch = Screens.NullScreen; //possible issue here
+        screenToSwitch = Screens.NullScreen;
     }
 }

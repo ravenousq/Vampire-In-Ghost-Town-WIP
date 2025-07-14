@@ -27,6 +27,9 @@ public class TitleScreen : MenuNavigation
     {
         base.Update();
 
+        if(MainMenu.instance.fadeScreen.isFadingIn || MainMenu.instance.fadeScreen.isFadingOut)
+            return;
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             Remote();
