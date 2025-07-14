@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class MenuNavigation : MonoBehaviour
 {
     [SerializeField] protected List<TextMeshProUGUI> buttons;
-    [SerializeField] protected Color highlightColor;
+    [SerializeField] protected Color highlightedColor;
     [SerializeField] protected float highlightedFontSize;
     protected Color defaultColor;
     protected float defaultFontSize;
@@ -40,7 +40,7 @@ public class MenuNavigation : MonoBehaviour
 
         currentButtonIndex = index;
 
-        buttons[currentButtonIndex].color = highlightColor;
+        buttons[currentButtonIndex].color = highlightedColor;
         buttons[currentButtonIndex].fontSize = highlightedFontSize;
     }
 
