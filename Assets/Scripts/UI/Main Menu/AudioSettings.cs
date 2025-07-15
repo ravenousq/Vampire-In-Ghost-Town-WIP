@@ -13,8 +13,6 @@ public class AudioSettings : MenuNavigation
     {
         base.Start();
 
-        HighlightCurrentPipSlider();
-
         AdjustSettings(true);
     }
 
@@ -38,31 +36,14 @@ public class AudioSettings : MenuNavigation
             case 4:
                 screenToSwitch = Screens.SettingsScreen;
                 break;
-
         }
 
         base.Remote();
     }
 
-    protected override void OnUpPressed()
-    {
-        base.OnUpPressed();
-
-        HighlightCurrentPipSlider();
-    }
-
-    protected override void OnDownPressed()
-    {
-        base.OnDownPressed();
-
-        HighlightCurrentPipSlider();
-    }
-
     protected override void OnLeftPressed()
     {
         base.OnLeftPressed();
-
-        RemovePipFromCurrentList();
 
         AdjustSettings();
     }
@@ -70,8 +51,6 @@ public class AudioSettings : MenuNavigation
     protected override void OnRightPressed()
     {
         base.OnRightPressed();
-
-        AddPipToCurrentList();
 
         AdjustSettings();
     }
@@ -82,24 +61,24 @@ public class AudioSettings : MenuNavigation
             switch (currentButtonIndex)
             {
                 case 0:
-                    masterVolume = pipSliders[0].value;
+                    masterVolume = sliders[0].value;
                     break;
                 case 1:
-                    effectVolume = pipSliders[1].value;
+                    effectVolume = sliders[1].value;
                     break;
                 case 2:
-                    musicVolume = pipSliders[2].value;
+                    musicVolume = sliders[2].value;
                     break;
                 case 3:
-                    dialoguesVoulme = pipSliders[3].value;
+                    dialoguesVoulme = sliders[3].value;
                     break;
             }
         else
         {
-            masterVolume = pipSliders[0].value;
-            effectVolume = pipSliders[1].value;
-            musicVolume = pipSliders[2].value;
-            dialoguesVoulme = pipSliders[3].value;
+            masterVolume = sliders[0].value;
+            effectVolume = sliders[1].value;
+            musicVolume = sliders[2].value;
+            dialoguesVoulme = sliders[3].value;
         }
     }
 }

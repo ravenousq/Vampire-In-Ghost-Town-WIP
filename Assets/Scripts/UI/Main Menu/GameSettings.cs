@@ -1,13 +1,6 @@
 using System;
-using TMPro;
-using UnityEngine;
+using System.Collections.Generic;
 
-public enum Language
-{
-    English = 0,
-    Polish = 1,
-    Japanese = 2
-}
 public class GameSettings : MenuNavigation
 {
     public Language audioLanguage { get; private set; }
@@ -18,9 +11,10 @@ public class GameSettings : MenuNavigation
     {
         base.Start();
 
-        ActivateListByIndex(currentButtonIndex);
+        lists[0].SetUp(languages);
+        lists[1].SetUp(languages);
+        lists[2].SetUp(booleans);
     }
-
 
     protected override void Update()
     {
@@ -44,20 +38,6 @@ public class GameSettings : MenuNavigation
         base.Remote();
     }
 
-    protected override void OnUpPressed()
-    {
-        base.OnUpPressed();
-
-        ActivateListByIndex(currentButtonIndex);
-    }
-
-    protected override void OnDownPressed()
-    {
-        base.OnDownPressed();
-
-        ActivateListByIndex(currentButtonIndex);
-    }
-
     protected override void ChangeOption(bool increment = true)
     {
         int languageCount = Enum.GetValues(typeof(Language)).Length;
@@ -65,22 +45,13 @@ public class GameSettings : MenuNavigation
         switch (currentButtonIndex)
         {
             case 0:
-                TextMeshProUGUI audioListText = lists[currentButtonIndex].GetComponentInChildren<TextMeshProUGUI>();
-
                 audioLanguage = (Language)(((int)audioLanguage + (increment ? 1 : -1) + languageCount) % languageCount);
-                audioListText.text = audioLanguage.ToString();
                 break;
             case 1:
-                TextMeshProUGUI textListText = lists[currentButtonIndex].GetComponentInChildren<TextMeshProUGUI>();
-
                 textLanguage = (Language)(((int)textLanguage + (increment ? 1 : -1) + languageCount) % languageCount);
-                textListText.text = textLanguage.ToString();
                 break;
             case 2:
-                TextMeshProUGUI tutorialsListText = lists[currentButtonIndex].GetComponentInChildren<TextMeshProUGUI>();
-
                 showTutorials = !showTutorials;
-                tutorialsListText.text = showTutorials ? "Enabled" : "Disabled";
                 break;
             default:
                 break;
@@ -89,7 +60,7 @@ public class GameSettings : MenuNavigation
 
     protected override void OnLeftPressed()
     {
-        base.OnUpPressed();
+        base.OnLeftPressed();
 
         ChangeOption(false);
     }
