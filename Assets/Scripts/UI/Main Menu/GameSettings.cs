@@ -10,7 +10,6 @@ public enum Language
 }
 public class GameSettings : MenuNavigation
 {
-    [SerializeField] private GameObject[] lists;
     public Language audioLanguage { get; private set; }
     public Language textLanguage { get; private set; }
     public bool showTutorials { get; private set; } = true;
@@ -19,45 +18,13 @@ public class GameSettings : MenuNavigation
     {
         base.Start();
 
-        ActivateListByIndex(0);
+        ActivateListByIndex(currentButtonIndex);
     }
 
 
     protected override void Update()
     {
         base.Update();
-
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
-            switch (currentButtonIndex)
-            {
-                case 0:
-                    ActivateListByIndex(0);
-                    break;
-                case 1:
-                    ActivateListByIndex(1);
-                    break;
-                case 2:
-                    ActivateListByIndex(2);
-                    break;
-                default:
-                    ActivateListByIndex();
-                    break;
-            }
-
-        if (Input.GetKeyDown(KeyCode.A))
-            ChangeOption(false);
-
-        if (Input.GetKeyDown(KeyCode.D))
-            ChangeOption();   
-        
-        if(MainMenu.instance.fadeScreen.isFadingIn || MainMenu.instance.fadeScreen.isFadingOut)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Remote();
-            ChangeOption();
-        }
     }
 
     protected override void Remote()
@@ -66,11 +33,9 @@ public class GameSettings : MenuNavigation
         {
             case 3:
                 screenToSwitch = Screens.ControlsScreen;
-                MainMenu.instance.fadeScreen.FadeIn();
                 break;
             case 4:
                 screenToSwitch = Screens.SettingsScreen;
-                MainMenu.instance.fadeScreen.FadeIn();
                 break;
             default:
                 break;
@@ -79,20 +44,21 @@ public class GameSettings : MenuNavigation
         base.Remote();
     }
 
-    private void ActivateList(GameObject list, bool activate = true)
+    protected override void OnUpPressed()
     {
-        TextMeshProUGUI listText = list.GetComponentInChildren<TextMeshProUGUI>();
-        listText.fontSize = activate ? highlightedFontSize : defaultFontSize;
-        listText.color = activate ? highlightedColor : defaultColor;
+        base.OnUpPressed();
+
+        ActivateListByIndex(currentButtonIndex);
     }
 
-    private void ActivateListByIndex(int index = -1)
+    protected override void OnDownPressed()
     {
-        for (int i = 0; i < lists.Length; i++)
-            ActivateList(lists[i], index == i);
+        base.OnDownPressed();
+
+        ActivateListByIndex(currentButtonIndex);
     }
 
-    private void ChangeOption(bool increment = true)
+    protected override void ChangeOption(bool increment = true)
     {
         int languageCount = Enum.GetValues(typeof(Language)).Length;
 
@@ -119,5 +85,26 @@ public class GameSettings : MenuNavigation
             default:
                 break;
         }
+    }
+
+    protected override void OnLeftPressed()
+    {
+        base.OnUpPressed();
+
+        ChangeOption(false);
+    }
+
+    protected override void OnRightPressed()
+    {
+        base.OnRightPressed();
+
+        ChangeOption();
+    }
+
+    protected override void OnConfirmation()
+    {
+        base.OnConfirmation();
+
+        ChangeOption();
     }
 }

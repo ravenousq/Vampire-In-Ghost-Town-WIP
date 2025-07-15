@@ -35,6 +35,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        screens[3].GetComponent<VideoSettings>().SetResolution();
+
         foreach (var screen in screens)
             screen.SetActive(false);
         
@@ -67,5 +69,5 @@ public class MainMenu : MonoBehaviour
         fadeScreen.FadeOut(fadeSpeed);
     }
 
-    
+    public static string AddSpacesToEnumName(string enumName) => System.Text.RegularExpressions.Regex.Replace(enumName, "(\\B[A-Z])", " $1");
 }

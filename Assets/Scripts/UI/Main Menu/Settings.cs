@@ -5,15 +5,6 @@ public class Settings : MenuNavigation
     protected override void Update()
     {
         base.Update();
-
-        if(MainMenu.instance.fadeScreen.isFadingIn || MainMenu.instance.fadeScreen.isFadingOut)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Remote();
-            MainMenu.instance.fadeScreen.FadeIn();
-        }
     }
 
     protected override void Remote()
