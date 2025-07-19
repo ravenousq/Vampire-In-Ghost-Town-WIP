@@ -17,8 +17,11 @@ public class IllusoryWall : MonoBehaviour
 
     private void Update() 
     {
-        if(player && player.attack.shotTriggered && player.facingDir == requiredFacingDir && Time.timeScale != 0 && player.IsGroundDetected())
+        if (player && player.attack.shotTriggered && player.facingDir == requiredFacingDir && Time.timeScale != 0 && player.IsGroundDetected() && wall.enabled)
+        {
             wall.enabled = false;
+            AudioManager.instance.PlaySFX(13, false);
+        }
 
         if(!wall.enabled)
             tr.color = new Color(tr.color.r, tr.color.g, tr.color.b, Mathf.MoveTowards(tr.color.a, 0, fadeSpeed * Time.deltaTime));

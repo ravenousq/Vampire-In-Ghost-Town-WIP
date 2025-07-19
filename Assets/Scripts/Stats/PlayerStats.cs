@@ -46,6 +46,9 @@ public class PlayerStats : CharacterStats
     {
         base.TakeDamage(damage);
 
+        AudioManager.instance.PlaySFX(30);
+        
+
         fx.IFramesFlashing(iFrames);
     }
 

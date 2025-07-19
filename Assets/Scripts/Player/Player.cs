@@ -1,6 +1,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [SelectionBase]
@@ -160,10 +161,8 @@ public class Player : Entity
         stateMachine.current.Update();
 
         if(Input.GetKeyDown(KeyCode.I))
-            Instantiate(garry, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);        
+            Instantiate(garry, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
 
         if(Input.GetKeyDown(KeyCode.Tab) && UI.instance.canTurnOnGameMenu)
         {
@@ -216,10 +215,13 @@ public class Player : Entity
             if(SkillManager.instance.dash.CanUseSkill())
             {
                 stateMachine.ChangeState(dash);
-                if(IsGroundDetected())
+                
+                if (IsGroundDetected())
                     InstantiateFX(dashFX, groundCheck, new Vector3(0, .5f), new Vector3(0, facingDir == -1 ? 0 : 180, 0));
                 else
                     Instantiate(airDashFX, transform.position, Quaternion.identity);
+
+                AudioManager.instance.PlaySFX(11); 
                 creatingAfterImage = true;
                 InvokeRepeating(nameof(CreateAfterImage), 0, .01f);
                 if(SkillManager.instance.isSkillUnlocked("Incense & Iron"))
@@ -267,9 +269,11 @@ public class Player : Entity
             halo.GetComponent<ReapersHalo>().StopHalo();
     }
 
+    public void PlayMiss() => AudioManager.instance.PlaySFX(Random.Range(27, 29));
+
     private void CreateAfterImage()
     {
-        if(!creatingAfterImage)
+        if (!creatingAfterImage)
         {
             CancelInvoke(nameof(CreateAfterImage));
             return;
@@ -402,6 +406,7 @@ public class Player : Entity
     private void CreateWallSlideFX()
     {
         GameObject newFX = Instantiate(wallSlideFX, wallCheck.position + new Vector3(-.5f * facingDir,.2f), Quaternion.identity);
+        AudioManager.instance.PlaySFX(8);
         newFX.transform.Rotate(0, facingDir == -1 ? 0 : 180, -270);
     }
 

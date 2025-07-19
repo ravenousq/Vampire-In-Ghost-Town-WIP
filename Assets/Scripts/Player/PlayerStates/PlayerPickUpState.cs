@@ -24,6 +24,7 @@ public class PlayerPickUpState : PlayerState
 
         if(trigger && item)
         {
+            AudioManager.instance.PlaySFX(22, false);
             Inventory.instance.AddItem(item.item);
             item.DestroyMe();
             item = null;

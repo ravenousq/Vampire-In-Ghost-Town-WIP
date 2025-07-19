@@ -1,5 +1,7 @@
 
 
+using UnityEngine;
+
 public class PlayerIdleState : PlayerGroundedState
 {
     public PlayerIdleState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
@@ -17,10 +19,10 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Update()
     {
         base.Update();
+
+        if(!Input.GetKeyDown(KeyCode.Space))   
+            player.ResetVelocity();
            
-        player.ResetVelocity();
-           
-        
         if (!player.isBusy && xInput != 0 && !player.executeBuffer)
             player.stateMachine.ChangeState(player.move);
     }

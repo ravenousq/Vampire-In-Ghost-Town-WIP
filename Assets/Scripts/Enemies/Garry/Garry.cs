@@ -54,9 +54,24 @@ public class Garry : Enemy
         }
     }
 
+    public void NoZaryczNo()
+    {
+        if (Random.Range(0, 100) < 25)
+            AudioManager.instance.PlaySFX(26);
+
+        move.noZaryczNo = true;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        AudioManager.instance.PlaySFX(31);
+    }
+
     public override void BecomeAggresive()
     {
-        if(IsAlreadyAggresive() || stateMachine.current == stun)
+        if (IsAlreadyAggresive() || stateMachine.current == stun)
             return;
 
         stateMachine.ChangeState(aggro);

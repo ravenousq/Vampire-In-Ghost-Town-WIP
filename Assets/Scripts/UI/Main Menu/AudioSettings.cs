@@ -1,6 +1,6 @@
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class AudioSettings : MenuNavigation
 {
@@ -9,9 +9,15 @@ public class AudioSettings : MenuNavigation
     public int musicVolume { get; private set; }
     public int dialoguesVoulme { get; private set; }
 
+
     protected override void Start()
     {
         base.Start();
+
+        masterVolume = MainMenu.instance.GetVolume("Master");
+        effectVolume = MainMenu.instance.GetVolume("SFX");
+        musicVolume = MainMenu.instance.GetVolume("Music");
+        dialoguesVoulme = MainMenu.instance.GetVolume("Dialogues");
 
         AdjustSettings(true);
     }
@@ -62,23 +68,29 @@ public class AudioSettings : MenuNavigation
             {
                 case 0:
                     masterVolume = sliders[0].value;
+                    MainMenu.instance.SetVolume("Master", masterVolume);
                     break;
                 case 1:
                     effectVolume = sliders[1].value;
+                    MainMenu.instance.SetVolume("SFX", effectVolume);
                     break;
                 case 2:
                     musicVolume = sliders[2].value;
+                    MainMenu.instance.SetVolume("Music", musicVolume);
                     break;
                 case 3:
                     dialoguesVoulme = sliders[3].value;
+                    MainMenu.instance.SetVolume("Dialogues", dialoguesVoulme);
                     break;
             }
         else
         {
-            masterVolume = sliders[0].value;
-            effectVolume = sliders[1].value;
-            musicVolume = sliders[2].value;
-            dialoguesVoulme = sliders[3].value;
+            sliders[0].SetTo(masterVolume);
+            sliders[1].SetTo(effectVolume);
+            sliders[2].SetTo(musicVolume);
+            sliders[3].SetTo(dialoguesVoulme);
         }
     }
+
+    
 }

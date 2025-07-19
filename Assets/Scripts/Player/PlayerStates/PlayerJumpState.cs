@@ -12,6 +12,7 @@ public class PlayerJumpState : PlayerAirborneState
         base.Enter();
 
         player.InstantiateFX(player.jumpFX, player.groundCheck, new Vector3(0, .8f), new Vector3(0, player.facingDir == 1 ? 0 : 180, 0));
+        AudioManager.instance.PlaySFX(7);
 
         player.StartCoroutine(nameof(player.BusyFor), .1f);
 

@@ -48,6 +48,8 @@ public class PlayerDiveState : PlayerState
 
         if(player.IsGroundDetected())
         {
+            AudioManager.instance.PlaySFX(12, false);
+
             DamageImpact();
 
             stateMachine.ChangeState(player.impact);

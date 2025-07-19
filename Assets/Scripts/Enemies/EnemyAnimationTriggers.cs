@@ -5,9 +5,9 @@ public class EnemyAnimationTriggers : MonoBehaviour
 {
     Enemy enemy;
 
-    private void Awake() 
+    private void Awake()
     {
-        enemy = GetComponentInParent<Enemy>();    
+        enemy = GetComponentInParent<Enemy>();
     }
 
     public void DoDamage() => enemy.DoDamage();
@@ -17,4 +17,6 @@ public class EnemyAnimationTriggers : MonoBehaviour
     public void OpenParryWindow() => enemy.OpenParryWindow();
 
     public void CloseParryWindow() => enemy.CloseParryWindow();
+
+    public void PlayGarryAttack() => AudioManager.instance.PlaySFX(24);
 }

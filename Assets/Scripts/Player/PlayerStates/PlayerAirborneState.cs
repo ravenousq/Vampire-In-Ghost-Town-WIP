@@ -48,6 +48,7 @@ public class PlayerAirborneState : PlayerState
         if (player.IsGroundDetected() && !player.isBusy)
         {
             player.InstantiateFX(player.landFX, player.groundCheck, new Vector3(0, .8f), Vector3.zero);
+            AudioManager.instance.PlaySFX(8);
             stateMachine.ChangeState(player.idle);
         }
 

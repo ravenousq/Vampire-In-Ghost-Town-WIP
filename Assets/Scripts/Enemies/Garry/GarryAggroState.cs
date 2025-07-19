@@ -22,6 +22,9 @@ public class GarryAggroState : GarryGroundedState
         player = PlayerManager.instance.player;
         randomizedDistance = Random.Range(enemy.attackDistance /1.5f, enemy.attackDistance /3);
 
+        if(Random.Range(0, 100) < 10)
+            AudioManager.instance.PlaySFX(25);
+
         enemy.anim.speed = aggroMultiplayer;
         playerGone = false;
 

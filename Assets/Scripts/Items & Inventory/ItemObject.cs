@@ -5,12 +5,21 @@ using UnityEngine;
 [SelectionBase]
 public class ItemObject : MonoBehaviour
 {
+    private AudioSource au;
+
+    private void Awake()
+    {
+        au = audioPoint.GetComponent<AudioSource>();
+    }
+
     [SerializeField] public ItemData item;
     [SerializeField] private TextMeshProUGUI inputImage;
+    [SerializeField] private Transform audioPoint;
     [SerializeField] private float fadeSpeed;
+    [SerializeField] private float ambientRange = 5;
     private bool inRange;
 
-    private void Update() 
+    private void Update()
     {
         inputImage.color = new Color(
             inputImage.color.r,
@@ -22,7 +31,12 @@ public class ItemObject : MonoBehaviour
                 fadeSpeed * Time.unscaledDeltaTime
             )
         );
-        
+
+        if (Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < ambientRange)
+            au.volume = Mathf.Clamp01(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)));
+        else
+            au.volume = 0;
+
         // _Input_Action_Change_Option("itemek"_take = 1);
         // (1 = C);
         // (Player.pickupitem = true);
@@ -52,15 +66,15 @@ public class ItemObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<Player>())
+        if (other.GetComponent<Player>())
             PickUpItem();
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerExit2D(Collider2D other)
     {
         inRange = false;
 
-        if(other.GetComponent<Player>())
+        if (other.GetComponent<Player>())
             UndoItem();
     }
 
@@ -70,4 +84,10 @@ public class ItemObject : MonoBehaviour
             PlayerManager.instance.player.AssignItemToPickUp(null);
     }
     public void DestroyMe() => Destroy(gameObject);
+    
+    private void OnDrawGizmos()
+    {
+        if (audioPoint != null)
+            Gizmos.DrawWireSphere(audioPoint.position, ambientRange);
+    }
 }

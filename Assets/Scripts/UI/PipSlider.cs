@@ -1,4 +1,3 @@
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,14 +57,30 @@ public class PipSlider : MonoBehaviour
         pips[value - 1].sprite = filledPip;
     }
 
+    public void SetTo(int value)
+    {
+        if (value > MAX_PIPS || value < 0)
+            return;
+
+        this.value = value;
+
+        for (int i = 0; i < MAX_PIPS; i++)
+        {
+            if (i <= value)
+                pips[i].sprite = filledPip;
+            else
+                pips[i].sprite = emptyPip;
+        }
+    }
+
     public void Highlight(bool highlight = true)
     {
         pipsParent.GetComponent<GridLayoutGroup>().cellSize = Vector2.one * (highlight ? highlightedPipSize : defaultPipSize);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(pipsParent.GetComponent<RectTransform>());
-        
+
         arrows.GetComponent<GridLayoutGroup>().cellSize = Vector2.one * (highlight ? highlightedArrowSize : defaultArrowSize);
-        arrows.GetComponent<GridLayoutGroup>().spacing = new Vector2(highlight ? highlightedArrowDistance : defaultArrowDistance , 0);
+        arrows.GetComponent<GridLayoutGroup>().spacing = new Vector2(highlight ? highlightedArrowDistance : defaultArrowDistance, 0);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(arrows.GetComponent<RectTransform>());
     }

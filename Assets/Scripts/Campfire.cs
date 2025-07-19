@@ -1,25 +1,30 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Campfire : MonoBehaviour
 {
     public Animator anim { get; private set; }
     public CircleCollider2D cd { get; private set; }
+    public AudioSource au { get; private set; }
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         cd = GetComponent<CircleCollider2D>();
+        au = GetComponent<AudioSource>();
     }
 
     [Header("Campfire")]
     [SerializeField] private string campfireName;
+    [SerializeField] private Transform audioPoint;
 
     [Header("Input")]
     [SerializeField] private TextMeshProUGUI inputImage;
     [SerializeField] private float fadeSpeed;
     private Player player;
     private bool menuActive;
+
     private void Update()
     {
         if (player && Input.GetKeyDown(KeyCode.C) && !menuActive && Time.timeScale != 0)
@@ -29,6 +34,12 @@ public class Campfire : MonoBehaviour
             UI.instance.campfireUI.SetUpCampfire(this);
             menuActive = true;
         }
+
+        if (Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < 10)
+            au.volume = Mathf.Clamp01(Mathf.InverseLerp(10, 1, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)));
+        else
+            au.volume = 0;
+        
 
         inputImage.color = new Color(
             inputImage.color.r,

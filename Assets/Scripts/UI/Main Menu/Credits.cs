@@ -14,15 +14,12 @@ public class Credits : MenuNavigation
         base.Start();
 
         defaultScrollSpeed = scrollSpeed;
-
-        credtisText.anchoredPosition = new Vector2(0, -credtisText.rect.height / 2);
-        offScreenPosition = credtisText.rect.height / 2;
     }
 
     private void OnEnable()
     {
         switchingScreens = false;
-        credtisText.anchoredPosition = new Vector2(0, -credtisText.rect.height / 2);
+        credtisText.anchoredPosition = new Vector2(0, -credtisText.rect.height / 3 * 2);
         offScreenPosition = credtisText.rect.height / 2;
     }
 

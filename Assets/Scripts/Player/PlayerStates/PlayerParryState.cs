@@ -31,10 +31,11 @@ public class PlayerParryState : PlayerState
             foreach (var hit in hits)
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
-                if(enemy.canBeStunned && (enemy.facingDir != player.facingDir || SkillManager.instance.isSkillUnlocked("Anima Mundi")))
+                if (enemy.canBeStunned && (enemy.facingDir != player.facingDir || SkillManager.instance.isSkillUnlocked("Anima Mundi")))
                 {
                     enemy.stats.LosePoise(player.skills.parry.parryPoiseDamage);
                     enemy.Parried();
+                    AudioManager.instance.PlaySFX(23);
                 }
             }
         }

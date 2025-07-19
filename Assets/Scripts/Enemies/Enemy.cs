@@ -234,6 +234,7 @@ public class Enemy : Entity
     private void BloodFX()
     {
         float yOffset = cd.size.y/3;
+        AudioManager.instance.PlaySFX(Random.Range(19, 21));
         Instantiate(bloodFX, new Vector3(
         transform.position.x - (player.transform.position.x > transform.position.x ? cd.size.x/8 : -cd.size.x/8),
         transform.position.y + Random.Range(-yOffset, yOffset)),

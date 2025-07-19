@@ -79,7 +79,7 @@ MonoBehaviour:
   attackKnockback: {x: 15, y: 5}
   attackPoint: {fileID: 1804581516638287214}
   itemPrefab: {fileID: 4235565483072219220, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
-  drop: {fileID: 0}
+  drop: {fileID: 11400000, guid: ec66847c0bfc6544b870b03a6351442f, type: 2}
   itemDropPosition: {fileID: 2080757399622271911}
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   whatIsRoute:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health:
-    value: 1
+    value: 200
     modifiers: 
   poise:
     value: 12
@@ -120,7 +120,7 @@ MonoBehaviour:
   stunTime: 4
   poiseTracker: 0
   debugDamage: 0
-  currencyToDrop: e8030000d0070000
+  currencyToDrop: dc050000d0070000
   level: 1
   percentageModifier: 0.4
   bulletsToRecover: 6
@@ -468,11 +468,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782766476498596248, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6782766476498596248, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_Pivot.x
@@ -626,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782766476498596248, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6782766476498596248, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_Pivot.x
@@ -662,7 +662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 562.25
+      value: 544.6621
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_LocalScale.x
@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.099
+      value: 2.159
       objectReference: {fileID: 0}
     - target: {fileID: 6941242762129823890, guid: ac2aa5cd50f344e47b5776c4e48a2073, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
