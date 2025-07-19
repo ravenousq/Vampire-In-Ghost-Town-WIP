@@ -73,6 +73,9 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void Start()
     {
+        if (buttons.Count == 0)
+            return;
+
         defaultFontSize = buttons[currentButtonIndex].fontSize;
         defaultColor = buttons[currentButtonIndex].color;
 
@@ -99,7 +102,7 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void OnUpPressed()
     {
-        if (!CanNavigate())
+        if (!CanNavigate() || buttons.Count == 0)
             return;
 
         SwitchTo(currentButtonIndex == 0 ? buttons.Count - 1 : currentButtonIndex - 1);
@@ -107,7 +110,7 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void OnDownPressed()
     {
-        if (!CanNavigate())
+        if (!CanNavigate() || buttons.Count == 0)
             return;
 
         SwitchTo((currentButtonIndex + 1) % buttons.Count);
@@ -146,7 +149,9 @@ public class MenuNavigation : MonoBehaviour
     }
 
     protected virtual void SwitchTo(int index)
-    {
+    {        
+        if (buttons.Count == 0)
+            return;
 
         buttons[currentButtonIndex].color = defaultColor;
         buttons[currentButtonIndex].fontSize = defaultFontSize;

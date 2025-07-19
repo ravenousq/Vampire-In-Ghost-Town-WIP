@@ -6,6 +6,7 @@ public class UI : MonoBehaviour
     public static UI instance;
     public NPCShopUI npcShop { get; private set; }
     public CampfireUI campfireUI { get; private set; }
+    public FadeScreen fadeScreen { get; private set; }
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class UI : MonoBehaviour
 
         npcShop = GetComponentInChildren<NPCShopUI>(true);
         campfireUI = GetComponentInChildren<CampfireUI>(true);
+        fadeScreen = GetComponentInChildren<FadeScreen>(true);
     }
 
     [Header("Inventory")]
@@ -44,6 +46,7 @@ public class UI : MonoBehaviour
 
     [Space]
     public ConcoctionUI concoctionUI;
+
 
 
     [Header("Debug")]

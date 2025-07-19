@@ -21,7 +21,7 @@ public class DeathScreen : MonoBehaviour
             deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, alpha);
             deathText.color = new Color(deathText.color.r, deathText.color.g, deathText.color.b, alpha);
 
-            if(alpha == 1)
+            if (alpha == 1)
             {
                 isFading = false;
                 StartCoroutine(ResetGameRoutine());
@@ -33,10 +33,14 @@ public class DeathScreen : MonoBehaviour
 
     private IEnumerator ResetGameRoutine()
     {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        UI.instance.fadeScreen.FadeIn();
+
+        yield return new WaitForSecondsRealtime(1.5f);
 
         ResetGame();
     }
 
-    private void ResetGame() => Application.Quit();
+    private void ResetGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 }

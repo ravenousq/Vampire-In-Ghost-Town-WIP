@@ -14,11 +14,21 @@ public class FadeScreen : MonoBehaviour
 
     [SerializeField] private float fadeInSpeed = 1;
     [SerializeField] private float fadeOutSpeed = 1;
+    [SerializeField] private bool fadeOnStart = false;
     public bool isFadingIn { get; private set; }
     public bool isFadingOut { get; private set; }
     public float defaultFadeInSpeed { get; private set; }
     public float defaultFadeOutSpeed { get; private set; }
     private Image fadeImage;
+
+    private void Start()
+    {
+        if (fadeOnStart)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1);
+            FadeOut();
+        }
+    }
 
     private void Update()
     {

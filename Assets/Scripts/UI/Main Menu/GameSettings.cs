@@ -26,9 +26,6 @@ public class GameSettings : MenuNavigation
         switch (currentButtonIndex)
         {
             case 3:
-                screenToSwitch = Screens.ControlsScreen;
-                break;
-            case 4:
                 screenToSwitch = Screens.SettingsScreen;
                 break;
             default:

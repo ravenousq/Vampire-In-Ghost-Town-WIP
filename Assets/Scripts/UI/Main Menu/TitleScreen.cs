@@ -7,6 +7,8 @@ public class TitleScreen : MenuNavigation
 {
     private TextMeshProUGUI continueButton;
 
+    [SerializeField] private string newGameSceneName;
+
     protected override void Start()
     {
         continueButton = buttons[0];
@@ -38,7 +40,8 @@ public class TitleScreen : MenuNavigation
                 break;
             case 1:
                 // Start New Game
-                Debug.Log("New Game");
+                MainMenu.instance.fadeScreen.FadeIn();
+                Invoke(nameof(StartNewGame), 1.5f);
                 break;
             case 2:
                 screenToSwitch = Screens.SettingsScreen;
@@ -55,6 +58,12 @@ public class TitleScreen : MenuNavigation
         }
 
         base.Remote();
+    }
+
+    private void StartNewGame()
+    {
+        // Load the new game scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(newGameSceneName);
     }
 
 }

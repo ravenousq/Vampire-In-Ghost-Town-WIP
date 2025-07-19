@@ -8,8 +8,7 @@ public enum Screens
     GameSettingsScreen = 2,
     VideoSettingsScreen = 3,
     AudioSettingsScreen = 4,
-    ControlsScreen = 5,
-    CreditsScreen = 6,
+    CreditsScreen = 5,
     NullScreen = 8
 }
 public class MainMenu : MonoBehaviour
@@ -45,6 +44,8 @@ public class MainMenu : MonoBehaviour
 
     public void SwitchTo(Screens screen, float fadeSpeed = 0)
     {
+        //Debug.Log(screen);
+
         screens[(int)currentScreen].SetActive(false);
 
         currentScreen = screen;
@@ -56,7 +57,7 @@ public class MainMenu : MonoBehaviour
         fadeScreen.FadeOut(fadeSpeed);
     }
 
-    public void Switchto(int screen, float fadeSpeed = 0)
+    public void SwitchTo(int screen, float fadeSpeed = 0)
     {
         screens[(int)currentScreen].SetActive(false);
 
