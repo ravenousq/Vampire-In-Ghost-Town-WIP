@@ -36,6 +36,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
+
         SetVolume("Master", 10);
         SetVolume("SFX", 10);
         SetVolume("Music", 10);
@@ -79,20 +81,6 @@ public class MainMenu : MonoBehaviour
 
     public static string AddSpacesToEnumName(string enumName) => System.Text.RegularExpressions.Regex.Replace(enumName, "(\\B[A-Z])", " $1");
 
-    public void SetSFXVolume(float volume)
-    {
-        mixer.SetFloat("SFXV", Mathf.Log10(volume) * 20);
-    }
-
-    public float GetSFXVolume(string name)
-    {
-        if (mixer.GetFloat(name, out float value))
-            return Mathf.Pow(10, value / 20);
-
-
-        Debug.LogWarning("SFXVolume not found");
-        return 1f;
-    }
 
     public void SetVolume(string name, int level)
     {
@@ -105,15 +93,15 @@ public class MainMenu : MonoBehaviour
     }
     
     public int GetVolume(string name)
-{
-    if (mixer.GetFloat(name, out float db))
     {
-        float linear = Mathf.Pow(10f, db / 20f);
+        if (mixer.GetFloat(name, out float db))
+        {
+            float linear = Mathf.Pow(10f, db / 20f);
 
-        return Mathf.RoundToInt(linear * 10f);
+            return Mathf.RoundToInt(linear * 10f);
+        }
+
+        Debug.LogWarning($"Parameter '{name}' not found!");
+        return 10;
     }
-
-    Debug.LogWarning($"Parameter '{name}' not found!");
-    return 10;
-}
 }

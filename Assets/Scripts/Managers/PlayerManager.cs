@@ -18,16 +18,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UI.instance.fadeScreen.FadeIn();
-            AudioManager.instance.StopBGM();
-            Invoke(nameof(GoToMainMenu), 1.5f);
-            
-        }
-    }
 
     public void AddCurrency(int currencyToAdd)
     {
@@ -50,6 +40,4 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void PlayFootseps() => AudioManager.instance.PlaySFX(Random.Range(3, 6), true);
-
-    private void GoToMainMenu() => UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
 }

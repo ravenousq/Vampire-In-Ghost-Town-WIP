@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
     public NPCShopUI npcShop { get; private set; }
     public CampfireUI campfireUI { get; private set; }
     public FadeScreen fadeScreen { get; private set; }
+    public PauseMenu pauseMenu { get; private set; }
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class UI : MonoBehaviour
         npcShop = GetComponentInChildren<NPCShopUI>(true);
         campfireUI = GetComponentInChildren<CampfireUI>(true);
         fadeScreen = GetComponentInChildren<FadeScreen>(true);
+        pauseMenu = GetComponentInChildren<PauseMenu>(true);
     }
 
     [Header("Inventory")]
@@ -36,10 +38,14 @@ public class UI : MonoBehaviour
     [SerializeField] private CharmsUI charmsTab;
     [SerializeField] private BlessingsUI blessingsTab;
     [SerializeField] private NotesUI notesTab;
+    
+    //[Header("Pause Menu")]
+
     [Space]
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private SoulsUI inGameSoulsUI;
     public bool canTurnOnGameMenu { get; private set; } = true;
+    public bool canTurnOnPauseMenu { get; private set; } = true;
 
     [Space]
     public ConfirmationDialogue confirmationDialogue;
@@ -65,19 +71,37 @@ public class UI : MonoBehaviour
         gameMenu.SetActive(false);
         campfireUI.gameObject.SetActive(false);
         confirmationDialogue.gameObject.SetActive(false);
+
+        pauseMenu.gameObject.SetActive(false);
     }
 
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !npcShop.gameObject.activeSelf && canTurnOnGameMenu)
+        if (Input.GetKeyDown(KeyCode.Tab) && canTurnOnGameMenu)
         {
+            Cursor.visible = !Cursor.visible;
+            Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
+
+            EnableUI(Time.timeScale == 0);
+
+
             gameMenu.SetActive(!gameMenu.activeSelf);
+
+            canTurnOnPauseMenu = !gameMenu.activeSelf;
 
             if (gameMenu.activeSelf)
                 DefaultMenu();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && canTurnOnPauseMenu)
+        {
+            Cursor.visible = !Cursor.visible;
+            Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
+
+            pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
+        }
+    
         if (gameMenu.activeSelf)
             NavigateTabs();
     }
@@ -183,6 +207,7 @@ public class UI : MonoBehaviour
     }
 
     public void LockGameMenu() => canTurnOnGameMenu = !canTurnOnGameMenu;
+    public void LockPauseMenu() => canTurnOnPauseMenu = !canTurnOnPauseMenu;
     public GameObject GetGameMenu() => gameMenu;
     public GameObject GetInGameUI() => InGameUI;
 }

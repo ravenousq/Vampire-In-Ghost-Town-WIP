@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCShopUI : ItemsUI
@@ -58,9 +59,21 @@ public class NPCShopUI : ItemsUI
         );
     }
 
+    private void OnEnable()
+    {
+        if (UI.instance.canTurnOnGameMenu)
+            UI.instance.LockGameMenu();
+    }
+
+    private void OnDisable()
+    {
+        if (!UI.instance.canTurnOnGameMenu)
+            UI.instance.LockGameMenu();
+    }
+
     protected override void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             cinemachine.Lens.OrthographicSize = defaultCameraZoom;
             cinemachineFollow.FollowOffset.x = 0;
@@ -72,21 +85,21 @@ public class NPCShopUI : ItemsUI
         cinemachine.Lens.OrthographicSize = Mathf.Clamp(Mathf.MoveTowards(cinemachine.Lens.OrthographicSize, cameraZoom, shiftSpeed * Time.unscaledDeltaTime), cameraZoom, defaultCameraZoom);
         cinemachineFollow.FollowOffset.x = Mathf.Clamp(Mathf.MoveTowards(cinemachineFollow.FollowOffset.x, cameraOffset, shiftSpeed * Time.unscaledDeltaTime), 0, cameraOffset);
 
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
             SwitchTo(selectedIndex - 5 < 0 ? selectedIndex + 5 : selectedIndex - 5, true);
 
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             SwitchTo(selectedIndex % 5 == 0 ? selectedIndex + 4 : selectedIndex - 1, true);
 
-        if(Input.GetKeyDown(KeyCode.S))
-            SwitchTo(selectedIndex + 5 > items.Length - 1 ? selectedIndex - 5 : selectedIndex + 5, true); 
+        if (Input.GetKeyDown(KeyCode.S))
+            SwitchTo(selectedIndex + 5 > items.Length - 1 ? selectedIndex - 5 : selectedIndex + 5, true);
 
-        if(Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
             SwitchTo((selectedIndex + 1) % 5 == 0 ? selectedIndex - 4 : selectedIndex + 1, true);
 
-        if(Input.GetKeyDown(KeyCode.C) && currentData != null)
+        if (Input.GetKeyDown(KeyCode.C) && currentData != null)
         {
-            if(PlayerManager.instance.CanAfford(currentData.price))
+            if (PlayerManager.instance.CanAfford(currentData.price))
             {
                 PlayerManager.instance.RemoveCurrency(currentData.price);
                 UI.instance.ModifySouls(-currentData.price);
@@ -102,9 +115,9 @@ public class NPCShopUI : ItemsUI
 
                 for (int i = selectedIndex + 1; i < stock.Count + 1; i++)
                 {
-                    if(items[i].item == null)
+                    if (items[i].item == null)
                         break;
-                    
+
                     items[i - 1].UpdateSlot(items[i].item);
                     items[i].CleanUpSlot();
                 }

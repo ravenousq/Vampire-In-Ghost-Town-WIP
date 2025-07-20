@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum Language
@@ -41,6 +42,7 @@ public class MenuNavigation : MonoBehaviour
     protected List<string> booleans = new List<string>();
     protected List<string> screenModes = new List<string>();
     protected List<string> resolutions = new List<string>();
+    protected bool notFamiliar;
     protected int[][] possibleResolutions = new int[][]
     {
         new int[2] { 1920, 1080 },
@@ -73,6 +75,8 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void Start()
     {
+        notFamiliar = GetComponent<PauseMenu>() || GetComponent<PauseMenuSettings>();
+
         if (buttons.Count == 0)
             return;
 
@@ -176,6 +180,9 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void Remote()
     {
+        if (notFamiliar)
+            return;
+
         if (screenToSwitch != Screens.NullScreen)
         {
             Invoke(nameof(ChangeScreen), 1.5f);
@@ -185,6 +192,9 @@ public class MenuNavigation : MonoBehaviour
 
     protected virtual void ChangeScreen()
     {
+        if (notFamiliar)
+            return;
+
         MainMenu.instance.SwitchTo(screenToSwitch);
 
         screenToSwitch = Screens.NullScreen;
@@ -206,6 +216,8 @@ public class MenuNavigation : MonoBehaviour
     }
 
     public virtual bool CanNavigate() => !(MainMenu.instance.fadeScreen.isFadingIn || MainMenu.instance.fadeScreen.isFadingOut);
+    
+
 
     protected virtual bool IsListActive() => lists.Length - 1 >= currentButtonIndex;
     

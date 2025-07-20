@@ -164,15 +164,6 @@ public class Player : Entity
             Instantiate(garry, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
 
 
-        if(Input.GetKeyDown(KeyCode.Tab) && UI.instance.canTurnOnGameMenu)
-        {
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Tab) && !UI.instance.npcShop.gameObject.activeSelf && UI.instance.canTurnOnGameMenu)
-            UI.instance.EnableUI(Time.timeScale == 0);
-
         if(!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)
         {
             Time.timeScale += Time.unscaledDeltaTime;
