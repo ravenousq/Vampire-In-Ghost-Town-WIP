@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, ISaveManager
 {
     public static PlayerManager instance;
 
@@ -40,4 +40,14 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void PlayFootseps() => AudioManager.instance.PlaySFX(Random.Range(3, 6), true);
+
+    public void LoadData(GameData data)
+    {
+        currency = data.currency;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currency = currency;
+    }
 }

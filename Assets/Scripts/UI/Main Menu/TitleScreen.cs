@@ -2,6 +2,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleScreen : MenuNavigation
 {
@@ -63,6 +64,8 @@ public class TitleScreen : MenuNavigation
     private void StartNewGame()
     {
         // Load the new game scene
+        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
         UnityEngine.SceneManagement.SceneManager.LoadScene(newGameSceneName);
     }
 

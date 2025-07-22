@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PauseMenuSettings : MenuNavigation
+public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
 {
     [SerializeField] private AudioMixer mixer;
     public int masterVolume { get; private set; }
@@ -21,18 +21,19 @@ public class PauseMenuSettings : MenuNavigation
     {
         base.Start();
 
-        fullscreenMode = Screen.fullScreenMode;
-        resolution = new KeyValuePair<int, int>(Screen.width, Screen.height);
-
         lists[0].SetUp(screenModes);
         lists[1].SetUp(resolutions);
 
-        masterVolume = GetVolume("Master");
-        effectVolume = GetVolume("SFX");
-        musicVolume = GetVolume("Music");
-        dialoguesVoulme = GetVolume("Dialogues");
+        for (int i = 0; i < (int)fullscreenMode; i++)
+            lists[0].Proceed();
 
-        AdjustSettings(true);
+        for (int i = 0; i < chosenResolutionIndex; i++)
+            lists[1].Proceed();
+
+        sliders[0].SetTo(masterVolume);
+        sliders[1].SetTo(effectVolume);
+        sliders[2].SetTo(musicVolume);
+        sliders[3].SetTo(dialoguesVoulme);
     }
 
     private void OnEnable()
@@ -45,16 +46,6 @@ public class PauseMenuSettings : MenuNavigation
     {
         switch (currentButtonIndex)
         {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 5:
-                break;
             case 6:
                 StartCoroutine(GoBackToSettings());
                 UI.instance.fadeScreen.FadeIn();
@@ -144,28 +135,28 @@ public class PauseMenuSettings : MenuNavigation
             switch (currentButtonIndex)
             {
                 case 0:
-                    masterVolume = sliders[0].value;
+                    masterVolume = Mathf.Clamp(sliders[0].value, 0, 9);
                     SetVolume("Master", masterVolume);
                     break;
                 case 1:
-                    effectVolume = sliders[1].value;
+                    effectVolume = Mathf.Clamp(sliders[1].value, 0, 9);
                     SetVolume("SFX", effectVolume);
                     break;
                 case 2:
-                    musicVolume = sliders[2].value;
+                    musicVolume = Mathf.Clamp(sliders[2].value, 0, 9);
                     SetVolume("Music", musicVolume);
                     break;
                 case 3:
-                    dialoguesVoulme = sliders[3].value;
+                    dialoguesVoulme = Mathf.Clamp(sliders[3].value, 0, 9);
                     SetVolume("Dialogues", dialoguesVoulme);
                     break;
             }
         else
         {
-            sliders[0].SetTo(masterVolume);
-            sliders[1].SetTo(effectVolume);
-            sliders[2].SetTo(musicVolume);
-            sliders[3].SetTo(dialoguesVoulme);
+            SetVolume("Master", masterVolume);
+            SetVolume("SFX", effectVolume);
+            SetVolume("Music", musicVolume);
+            SetVolume("Dialogues", dialoguesVoulme);
         }
     }
 
@@ -196,12 +187,6 @@ public class PauseMenuSettings : MenuNavigation
     {
         Screen.SetResolution(resolution.Key, resolution.Value, fullscreenMode);
     }
-
-    public void ToggleFullscreen()
-    {
-        fullscreenMode = fullscreenMode == FullScreenMode.FullScreenWindow ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
-        SetResolution();
-    }
     
     protected override void ChangeOption(bool increment = true)
     {
@@ -227,5 +212,33 @@ public class PauseMenuSettings : MenuNavigation
             default:
                 break;
         }
+    }
+
+    public void LoadData(SettingsData data)
+    {
+        masterVolume = data.soundSettings[0];
+        musicVolume = data.soundSettings[1];
+        effectVolume = data.soundSettings[2];
+        dialoguesVoulme = data.soundSettings[3];
+
+        AdjustSettings(true);
+
+        chosenResolutionIndex = data.resolution;
+        fullscreenMode = (FullScreenMode)data.screenMode;
+
+        resolution = new KeyValuePair<int, int>(possibleResolutions[chosenResolutionIndex][0], possibleResolutions[chosenResolutionIndex][1]);
+
+        SetResolution();
+    }
+
+    public void SaveData(ref SettingsData data)
+    {
+        data.soundSettings[0] = masterVolume;
+        data.soundSettings[1] = musicVolume;
+        data.soundSettings[2] = effectVolume;
+        data.soundSettings[3] = dialoguesVoulme;
+
+        data.resolution = chosenResolutionIndex;
+        data.screenMode = (int)fullscreenMode;
     }
 }

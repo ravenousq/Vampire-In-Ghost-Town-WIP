@@ -12,9 +12,9 @@ public class DeathScreen : MonoBehaviour
     private bool isFading;
 
 
-    private void Update() 
+    private void Update()
     {
-        if(isFading)
+        if (isFading)
         {
             float alpha = Mathf.MoveTowards(deathScreen.color.a, 1, fadeOutSpeed * Time.unscaledDeltaTime);
 
@@ -42,5 +42,11 @@ public class DeathScreen : MonoBehaviour
         ResetGame();
     }
 
-    private void ResetGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    private void ResetGame()
+    {
+        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }

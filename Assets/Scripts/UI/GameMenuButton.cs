@@ -8,20 +8,19 @@ public class GameMenuButton : MonoBehaviour
     [SerializeField] private Color selectionColor;
     [SerializeField] private Color defaultColor;
     public GameObject menuToTurnOn;
-    private bool selected;
+
 
 
     public void Select(bool selected)
     {
-        this.selected = selected;
-
         GetComponent<Image>().color = selected ? Color.white : Color.clear;
         GetComponentInChildren<TextMeshProUGUI>().color = selected ? selectionColor : defaultColor;
 
-        if(selected)
+        if (selected)
         {
             menuToTurnOn.SetActive(true);
             menuToTurnOn.GetComponent<ItemsUI>()?.SwitchTo();
+            menuToTurnOn.GetComponent<BlessingsUI>()?.TabSwitch();
         }
         else
             menuToTurnOn.SetActive(false);

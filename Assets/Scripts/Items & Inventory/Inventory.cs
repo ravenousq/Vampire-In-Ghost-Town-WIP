@@ -1,16 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
 
-    private void Awake() 
+    private void Awake()
     {
-        if(!instance)
+        if (!instance)
             instance = this;
         else
             Destroy(gameObject);
@@ -39,8 +37,11 @@ public class Inventory : MonoBehaviour
     private ItemSlotUI[] equipedCharmsSlots;
     private UI ui;
 
+    [Header("Data Base")]
+    public List<InventoryItem> loadedItems;
+    public List<CharmData> loadedCharms;
 
-    private void Start() 
+    private void Start()
     {
         ui = UI.instance;
 
@@ -60,24 +61,43 @@ public class Inventory : MonoBehaviour
         keyItemsSlots = ui.keyItemsParent.GetComponentsInChildren<ItemSlotUI>();
         charmsSlots = ui.charmsParent.GetComponentsInChildren<ItemSlotUI>();
         equipedCharmsSlots = ui.equipedCharmsParent.GetComponentsInChildren<ItemSlotUI>();
-        
+
         itemDisplays = new List<RectTransform>();
 
-        for (int i = 0; i < startingEquipment.Count; i++)
-            AddItemMute(startingEquipment[i]);
+        AddStartingEquipment();
+    }
 
+    private void AddStartingEquipment()
+    {
+        if (loadedCharms.Count > 0)
+            foreach (CharmData charm in loadedCharms)
+                EquipCharm(charm);
+
+        if (loadedItems.Count > 0)
+        {
+            foreach (InventoryItem item in loadedItems)
+            {
+                for (int i = 0; i < item.stackSize; i++)
+                    AddItemMute(item.itemData);
+            }
+
+            return;
+        }
+
+        for (int i = 0; i < startingEquipment.Count; i++)
+                AddItemMute(startingEquipment[i]);
     }
 
     public void EquipCharm(CharmData item, int slotToEquip = -1)
     {
-        if(!item)
+        if (!item)
             return;
 
-        if(equipedCharmsDictionary.ContainsKey(item))
+        if (equipedCharmsDictionary.ContainsKey(item))
         {
             for (int i = 0; i < equipedCharms.Length; i++)
             {
-                if(equipedCharms[i]?.itemData == item)
+                if (equipedCharms[i]?.itemData == item)
                 {
                     UnequipCharm(item, i);
                     return;
@@ -85,9 +105,26 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        InventoryItem newCharm = new InventoryItem(item);
-        if(equipedCharms[slotToEquip] != null)
+        int firstFreeSlot = 0;
+        for (int i = 0; i < charmsSlots.Length; i++)
+        {
+            if (charmsSlots[i].item == null)
+            {
+                firstFreeSlot = i;
+                break;
+            }
+        }
+
+        if (slotToEquip == -1)
+            slotToEquip = firstFreeSlot;
+
+        //prolly equipping on slot -1 fix it bruw
+
+            InventoryItem newCharm = new InventoryItem(item);
+
+        if (equipedCharms[slotToEquip] != null)
             UnequipCharm(equipedCharms[slotToEquip].itemData as CharmData, slotToEquip);
+
         equipedCharms[slotToEquip] = newCharm;
         equipedCharmsDictionary.Add(item, newCharm);
         item.EquipEffects();
@@ -97,7 +134,7 @@ public class Inventory : MonoBehaviour
 
     public void UnequipCharm(CharmData item, int slotToUnequip = -1)
     {
-        if(equipedCharmsDictionary.TryGetValue(item, out InventoryItem value))
+        if (equipedCharmsDictionary.TryGetValue(item, out InventoryItem value))
         {
             equipedCharms[slotToUnequip] = null;
             equipedCharmsDictionary.Remove(item);
@@ -117,7 +154,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < charmsSlots.Length; i++)
             charmsSlots[i].CleanUpSlot();
-        
+
         for (int i = 0; i < equipedCharmsSlots.Length; i++)
             equipedCharmsSlots[i].CleanUpSlot();
 
@@ -165,13 +202,13 @@ public class Inventory : MonoBehaviour
 
     public bool HasItem(ItemData item)
     {
-        if(item.itemType == ItemType.KeyItem && keyItemsDictionary.ContainsKey(item as KeyItemData))
-            return true;
-        
-        if(item.itemType == ItemType.Charm &&charmsDictionary.ContainsKey(item as CharmData))
+        if (item.itemType == ItemType.KeyItem && keyItemsDictionary.ContainsKey(item as KeyItemData))
             return true;
 
-        if(item.itemType == ItemType.Note &&noteDictionary.ContainsKey(item))
+        if (item.itemType == ItemType.Charm && charmsDictionary.ContainsKey(item as CharmData))
+            return true;
+
+        if (item.itemType == ItemType.Note && noteDictionary.ContainsKey(item))
             return true;
 
         return false;
@@ -207,9 +244,9 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        if(charmsDictionary.TryGetValue(item as CharmData, out InventoryItem charmValue))
+        if (charmsDictionary.TryGetValue(item as CharmData, out InventoryItem charmValue))
         {
-            if(charmValue.stackSize <= 1)
+            if (charmValue.stackSize <= 1)
             {
                 charms.Remove(charmValue);
                 charmsDictionary.Remove(item as CharmData);
@@ -223,7 +260,7 @@ public class Inventory : MonoBehaviour
 
     private void AddToNotes(ItemData item)
     {
-        if(noteDictionary.TryGetValue(item, out InventoryItem value))
+        if (noteDictionary.TryGetValue(item, out InventoryItem value))
             value.AddStack();
         else
         {
@@ -235,7 +272,7 @@ public class Inventory : MonoBehaviour
 
     private void AddToKeyItems(KeyItemData item)
     {
-        if(keyItemsDictionary.TryGetValue(item, out InventoryItem value))
+        if (keyItemsDictionary.TryGetValue(item, out InventoryItem value))
             value.AddStack();
         else
         {
@@ -251,7 +288,7 @@ public class Inventory : MonoBehaviour
 
     private void AddToCharms(CharmData item)
     {
-        if(charmsDictionary.TryGetValue(item, out InventoryItem value))
+        if (charmsDictionary.TryGetValue(item, out InventoryItem value))
             value.AddStack();
         else
         {
@@ -261,4 +298,63 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        foreach (KeyValuePair<string, int> pair in data.inventory)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemID == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+
+        foreach (string loadedCharmID in data.charmsID)
+        {
+            foreach (var charm in GetItemDataBase())
+            {
+                if (charm != null && loadedCharmID == charm.itemID)
+                    loadedCharms.Add(charm as CharmData);
+            }
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.inventory.Clear();
+        data.charmsID.Clear();
+
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in noteDictionary)
+            data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+
+        foreach (KeyValuePair<KeyItemData, InventoryItem> pair in keyItemsDictionary)
+            data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+
+        foreach (KeyValuePair<CharmData, InventoryItem> pair in charmsDictionary)
+            data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+
+        foreach (KeyValuePair<CharmData, InventoryItem> pair in equipedCharmsDictionary)
+            data.charmsID.Add(pair.Key.itemID);
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Scripts/Data/Items" });
+
+        foreach (string SOName in assetNames)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDataBase.Add(itemData);
+        }
+
+        return itemDataBase;
+    }
 }

@@ -163,7 +163,12 @@ public class CampfireUI : MonoBehaviour
             SwitchTo(0);
         }
     }
-    
-    private void ResetGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    private void ResetGame()
+    {
+        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 }

@@ -38,11 +38,6 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        SetVolume("Master", 10);
-        SetVolume("SFX", 10);
-        SetVolume("Music", 10);
-        SetVolume("Dialogues", 10);
-
         screens[3].GetComponent<VideoSettings>().SetResolution();
 
         foreach (var screen in screens)
@@ -85,9 +80,8 @@ public class MainMenu : MonoBehaviour
     public void SetVolume(string name, int level)
     {
         level = Mathf.Clamp(level, 0, 10);
-        float linear = level / 10f;
 
-        float db = (linear > 0.0001f) ? Mathf.Log10(linear) * 20f : -80f;
+        float db = (level / 10f > 0.0001f) ? Mathf.Log10(level / 10f) * 20f : -80f;
 
         mixer.SetFloat(name, db);
     }
@@ -95,11 +89,7 @@ public class MainMenu : MonoBehaviour
     public int GetVolume(string name)
     {
         if (mixer.GetFloat(name, out float db))
-        {
-            float linear = Mathf.Pow(10f, db / 20f);
-
-            return Mathf.RoundToInt(linear * 10f);
-        }
+            return Mathf.RoundToInt(Mathf.Pow(10f, db / 20f) * 10f);
 
         Debug.LogWarning($"Parameter '{name}' not found!");
         return 10;

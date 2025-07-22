@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class PipSlider : MonoBehaviour
 {
-    public int value { get; private set; } = 10;
+    public int value { get; private set; } = 9;
     [SerializeField] private GameObject pipsParent;
-    [SerializeField] private int defaultValue = 10;
+    [SerializeField] private int defaultValue = 9;
     private void Awake()
     {
         pips = pipsParent.GetComponentsInChildren<Image>();
         value = defaultValue;
 
-        for (int i = 0; i < MAX_PIPS - 1; i++)
+        for (int i = 0; i < MAX_PIPS; i++)
             pips[i].sprite = emptyPip;
 
     }
@@ -59,18 +59,21 @@ public class PipSlider : MonoBehaviour
 
     public void SetTo(int value)
     {
-        if (value > MAX_PIPS || value < 0)
+        Debug.Log(value);
+
+        if (value > MAX_PIPS - 1 || value < 0)
             return;
 
-        this.value = value;
 
         for (int i = 0; i < MAX_PIPS; i++)
         {
-            if (i <= value)
+            if (i < value)
                 pips[i].sprite = filledPip;
             else
                 pips[i].sprite = emptyPip;
         }
+
+        this.value = value;
     }
 
     public void Highlight(bool highlight = true)

@@ -55,6 +55,8 @@ public class PauseMenu : MenuNavigation
     {
         yield return new WaitForSecondsRealtime(1.5f);
 
+        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 

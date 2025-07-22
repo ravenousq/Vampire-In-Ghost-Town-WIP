@@ -6,7 +6,7 @@ using Libs;
 public class OpenShopEffect : DialogueEffect
 {
     [SerializeField] private NPC npc;
-    [SerializeField] private SerializableDictionary<string, int> possibleChoices;
+    [SerializeField] private OldSerializableDictionary<string, int> possibleChoices;
     public Dictionary<string, int> choices;
     
     public override void Effect()

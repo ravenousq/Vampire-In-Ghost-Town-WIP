@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Security;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public enum Row
     Forth,
     Default
 }
-public class SkillButtonUI : MonoBehaviour
+public class SkillButtonUI : MonoBehaviour, ISaveManager
 {
     [SerializeField] private string skillName = "";
     [TextArea]
@@ -41,24 +42,24 @@ public class SkillButtonUI : MonoBehaviour
     public int index { get; private set; }
     public int movingRight;
 
-    private void Start() 
+    private void Start()
     {
-        defaultPosition = transform.position;    
+        defaultPosition = transform.position;
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(movingRight != 0)
+        if (movingRight != 0)
         {
             transform.Translate(new Vector3(movingRight * shakeSpeed * Time.unscaledDeltaTime, 0f, 0f), Space.World);
             return;
         }
 
-        lockImage.fillAmount = Mathf.Clamp(isPurchasing ? 
-            lockImage.fillAmount - (purchaseSpeed * .01f * Time.unscaledDeltaTime) : 
+        lockImage.fillAmount = Mathf.Clamp(isPurchasing ?
+            lockImage.fillAmount - (purchaseSpeed * .01f * Time.unscaledDeltaTime) :
             lockImage.fillAmount + (purchaseSpeed * .05f * Time.unscaledDeltaTime), 0, 1);
 
-        if(lockImage.fillAmount == 0 && !guard)
+        if (lockImage.fillAmount == 0 && !guard)
         {
             guard = true;
             Purchase();
@@ -72,39 +73,39 @@ public class SkillButtonUI : MonoBehaviour
         this.boss = boss;
 
         for (int i = 0; i < shouldBeUnlocked.Length; i++)
-            if(shouldBeUnlocked[i].isSecret)
+            if (shouldBeUnlocked[i].isSecret)
             {
                 isSecret = true;
                 break;
             }
-        
+
         secretImage.gameObject.SetActive(isSecret);
-        
+
         UpdatePurchase();
     }
 
     public void UpdatePurchase()
     {
-        if(isSecret && shouldBeUnlocked.Length == 0 && !unlocked)
+        if (isSecret && shouldBeUnlocked.Length == 0 && !unlocked)
             return;
 
         canBePurchased = true;
 
         for (int i = 0; i < shouldBeUnlocked.Length; i++)
         {
-            if (!shouldBeUnlocked[i].unlocked)  
+            if (!shouldBeUnlocked[i].unlocked)
             {
                 canBePurchased = false;
 
-                if(shouldBeUnlocked[i].isSecret)
-                    return;     
+                if (shouldBeUnlocked[i].isSecret)
+                    return;
             }
         }
 
         isSecret = false;
         secretImage.gameObject.SetActive(false);
-        
-        if(unlocked)
+
+        if (unlocked)
             canBePurchased = !false;
         lockImage.gameObject.SetActive(!unlocked);
     }
@@ -115,7 +116,7 @@ public class SkillButtonUI : MonoBehaviour
         transform.localScale = selected ? new Vector3(.85f, .85f) : new Vector3(.75f, .75f);
     }
 
-    public string GetName(bool uiPurpose = true) => uiPurpose ? isSecret ? "???" : skillName : skillName ;
+    public string GetName(bool uiPurpose = true) => uiPurpose ? isSecret ? "???" : skillName : skillName;
     public string GetDescription() => isSecret ? "" : skillDescription;
     public Sprite GetImage() => isSecret ? secretImage.sprite : skillIcon.sprite;
     public string GetPrice() => isSecret ? "???" : hasNoPrice ? "N/A" : price.ToString();
@@ -124,7 +125,7 @@ public class SkillButtonUI : MonoBehaviour
 
     public void Purchase()
     {
-        if(!hasNoPrice)
+        if (!hasNoPrice)
         {
             PlayerManager.instance.RemoveCurrency(price);
             boss.RemoveSouls(price);
@@ -138,50 +139,50 @@ public class SkillButtonUI : MonoBehaviour
     {
         int index = this.index;
         int rowCount = GetRowCount();
-        
 
-        switch(keyCode)
+
+        switch (keyCode)
         {
             case KeyCode.W:
-            {
-                if(row == Row.First)
-                    break;
-                else
                 {
-                    int upperRowCount = GetRowCount((Row)((int)row - 1));
-                    index = this.index - Mathf.FloorToInt(rowCount/2) - Mathf.FloorToInt(upperRowCount/2);
-                    while(boss.GetRowByIndex(index) == row)
-                        index -= 1;
+                    if (row == Row.First)
+                        break;
+                    else
+                    {
+                        int upperRowCount = GetRowCount((Row)((int)row - 1));
+                        index = this.index - Mathf.FloorToInt(rowCount / 2) - Mathf.FloorToInt(upperRowCount / 2);
+                        while (boss.GetRowByIndex(index) == row)
+                            index -= 1;
+                    }
+                    break;
                 }
-                break;
-            }
             case KeyCode.A:
-            {
-                if(boss.GetRowByIndex(this.index - 1) == row)
-                    index -= 1;
-                break;
-            }
-            case KeyCode.S:
-            {
-                if(row == Row.Forth)
-                    break;
-                else
                 {
-                    int lowerRowCount = GetRowCount((Row)((int)row + 1));
-                    index = this.index + Mathf.FloorToInt(rowCount/2) + Mathf.FloorToInt(lowerRowCount/2);
-                    while(boss.GetRowByIndex(index) == row)
-                        index += 1;
+                    if (boss.GetRowByIndex(this.index - 1) == row)
+                        index -= 1;
+                    break;
                 }
-                break;
-            }
+            case KeyCode.S:
+                {
+                    if (row == Row.Forth)
+                        break;
+                    else
+                    {
+                        int lowerRowCount = GetRowCount((Row)((int)row + 1));
+                        index = this.index + Mathf.FloorToInt(rowCount / 2) + Mathf.FloorToInt(lowerRowCount / 2);
+                        while (boss.GetRowByIndex(index) == row)
+                            index += 1;
+                    }
+                    break;
+                }
             case KeyCode.D:
-            {
-                if(boss.GetRowByIndex(this.index + 1) == row)
-                    index += 1;
-                break;
-            }
+                {
+                    if (boss.GetRowByIndex(this.index + 1) == row)
+                        index += 1;
+                    break;
+                }
             default:
-                break;    
+                break;
         }
 
         return index;
@@ -189,7 +190,7 @@ public class SkillButtonUI : MonoBehaviour
 
     private int GetRowCount(Row rowToCheck = Row.Default)
     {
-        if(rowToCheck == Row.Default)
+        if (rowToCheck == Row.Default)
             rowToCheck = row;
         switch (rowToCheck)
         {
@@ -205,12 +206,12 @@ public class SkillButtonUI : MonoBehaviour
         return 0;
     }
 
-    private void OnValidate() 
+    private void OnValidate()
     {
-        if(!string.IsNullOrWhiteSpace(skillName))
+        if (!string.IsNullOrWhiteSpace(skillName))
             gameObject.name = skillName;
 
-        if(skillImage != null && skillIcon != null)    
+        if (skillImage != null && skillIcon != null)
         {
             skillIcon.sprite = skillImage;
             skillIcon.SetNativeSize();
@@ -220,18 +221,18 @@ public class SkillButtonUI : MonoBehaviour
     public void NotEnoughCurrency()
     {
         movingRight = 1;
-        StartCoroutine(BlockRoutine(blockadeTime, blockadeTime/10));
+        StartCoroutine(BlockRoutine(blockadeTime, blockadeTime / 10));
     }
 
     private IEnumerator BlockRoutine(float blockadeTime, float interval)
     {
         movingRight *= -1;
 
-        yield return new WaitForSecondsRealtime(this.blockadeTime/10);
+        yield return new WaitForSecondsRealtime(this.blockadeTime / 10);
 
         blockadeTime -= interval;
 
-        if(blockadeTime > 0)
+        if (blockadeTime > 0)
             StartCoroutine(BlockRoutine(blockadeTime, interval));
         else
         {
@@ -241,5 +242,33 @@ public class SkillButtonUI : MonoBehaviour
         }
     }
 
-    public void SetPurchase(bool isPruchasing) => this.isPurchasing = isPruchasing;
+    public void SetPurchase(bool isPurchasing) => this.isPurchasing = isPurchasing;
+
+    public void LoadData(GameData data)
+    {
+        if (data.skillTree.TryGetValue(skillName, out bool value))
+            unlocked = value;
+
+        if (unlocked)
+        {
+            SkillManager.instance.UnlockSkill(skillName);
+            isSecret = false;
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        if (data.skillTree.TryGetValue(skillName, out bool value))
+        {
+            data.skillTree.Remove(skillName);
+            data.skillTree.Add(skillName, unlocked);
+        }
+        else
+            data.skillTree.Add(skillName, unlocked);
+    }
+
+    private void OnEnable()
+    {
+        LoadData(SaveManager.instance.GiveDataToButtons());
+    }
 }

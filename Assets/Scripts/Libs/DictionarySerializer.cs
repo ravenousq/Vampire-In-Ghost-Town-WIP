@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Libs
 {
     [Serializable]
-    public class SerializableDictionary<TKey, TValue>
+    public class OldSerializableDictionary<TKey, TValue>
     {
-        [SerializeField] private List<SerializableDictionaryItem<TKey, TValue>> items = new();
+        [SerializeField] private List<OldSerializableDictionaryItem<TKey, TValue>> items = new();
 
         public Dictionary<TKey, TValue> ToDictionary()
         {
@@ -37,12 +37,12 @@ namespace Libs
                 }
             }
 
-            items.Add(new SerializableDictionaryItem<TKey, TValue> { key = key, value = value });
+            items.Add(new OldSerializableDictionaryItem<TKey, TValue> { key = key, value = value });
         }
     }
 
     [Serializable]
-    public class SerializableDictionaryItem<TKey, TValue>
+    public class OldSerializableDictionaryItem<TKey, TValue>
     {
         public TKey key;
         public TValue value;

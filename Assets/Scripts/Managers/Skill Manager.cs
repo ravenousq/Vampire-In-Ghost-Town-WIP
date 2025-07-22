@@ -32,7 +32,7 @@ public class SkillManager : MonoBehaviour
     }
 
     [SerializeField] private string skillToSwitch = "";
-    [SerializeField] private SerializableDictionary<string, bool> unlockableSkills;
+    [SerializeField] private OldSerializableDictionary<string, bool> unlockableSkills;
     public Dictionary<string, bool> skills;
 
     private void Start()

@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class VideoSettings : MenuNavigation
+public class VideoSettings : MenuNavigation, ISaveManagerSettings
 {
     public KeyValuePair<int, int> resolution { get; private set; } = new KeyValuePair<int, int>(1920, 1080);
     public FullScreenMode fullscreenMode { get; private set; } = FullScreenMode.ExclusiveFullScreen;
     private int chosenResolutionIndex = 0;
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     protected override void Start()
     {
@@ -20,11 +14,12 @@ public class VideoSettings : MenuNavigation
 
         lists[0].SetUp(screenModes);
         lists[1].SetUp(resolutions);
-    }
 
-    protected override void Update()
-    {
-        base.Update();
+        for (int i = 0; i < (int)fullscreenMode; i++)
+            lists[0].Proceed();
+
+        for (int i = 0; i < chosenResolutionIndex; i++)
+            lists[1].Proceed();
     }
 
     public void SetResolution()
@@ -32,20 +27,10 @@ public class VideoSettings : MenuNavigation
         Screen.SetResolution(resolution.Key, resolution.Value, fullscreenMode);
     }
 
-    public void ToggleFullscreen()
-    {
-        fullscreenMode = fullscreenMode == FullScreenMode.FullScreenWindow ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
-        SetResolution();
-    }
-
     protected override void Remote()
     {
         switch (currentButtonIndex)
         {
-            case 0:
-                break;
-            case 1:
-                break;
             case 2:
                 screenToSwitch = Screens.SettingsScreen;
                 break;
@@ -96,4 +81,19 @@ public class VideoSettings : MenuNavigation
         }
     }
 
+    public void LoadData(SettingsData data)
+    {
+        chosenResolutionIndex = data.resolution;
+        fullscreenMode = (FullScreenMode)data.screenMode;
+
+        resolution = new KeyValuePair<int, int>(possibleResolutions[chosenResolutionIndex][0], possibleResolutions[chosenResolutionIndex][1]);
+
+        SetResolution();
+    }
+
+    public void SaveData(ref SettingsData data)
+    {
+        data.resolution = chosenResolutionIndex;
+        data.screenMode = (int)fullscreenMode;
+    }
 }

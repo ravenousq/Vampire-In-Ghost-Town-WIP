@@ -5,7 +5,7 @@ using Libs;
 [CreateAssetMenu(fileName = "Simple Choice Effect", menuName = "Data/Dialogue Effect/Simple Choice Effect")]
 public class SimpleChoiceEffect : DialogueEffect
 {
-    [SerializeField] private SerializableDictionary<string, int> possibleChoices;
+    [SerializeField] private OldSerializableDictionary<string, int> possibleChoices;
     public Dictionary<string, int> choices;
 
     public override void Effect()

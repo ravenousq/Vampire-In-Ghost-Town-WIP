@@ -61,7 +61,10 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
+        gameMenu.SetActive(true);
+
         blessingsTab.TabSwitch();
+
         for (int i = 0; i < menuButtons.Length; i++)
         {
             menuButtons[i].Select(true);
@@ -84,7 +87,6 @@ public class UI : MonoBehaviour
             Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
 
             EnableUI(Time.timeScale == 0);
-
 
             gameMenu.SetActive(!gameMenu.activeSelf);
 
