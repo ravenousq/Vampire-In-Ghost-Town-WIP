@@ -25,9 +25,12 @@ public class IllusoryWall : MonoBehaviour
 
         if(!wall.enabled)
             tr.color = new Color(tr.color.r, tr.color.g, tr.color.b, Mathf.MoveTowards(tr.color.a, 0, fadeSpeed * Time.deltaTime));
-        
-        if(tr.color.a == 0)
+
+        if (tr.color.a == 0)
+        {
+            LevelManager.instance.IllusoryWallFound(this);
             Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

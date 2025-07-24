@@ -7,10 +7,8 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         if (!instance)
-        {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        
         else
             Destroy(gameObject);
 

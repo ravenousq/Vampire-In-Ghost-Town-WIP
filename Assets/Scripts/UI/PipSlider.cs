@@ -59,8 +59,6 @@ public class PipSlider : MonoBehaviour
 
     public void SetTo(int value)
     {
-        Debug.Log(value);
-
         if (value > MAX_PIPS - 1 || value < 0)
             return;
 

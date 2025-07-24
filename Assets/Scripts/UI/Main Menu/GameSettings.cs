@@ -96,9 +96,9 @@ public class GameSettings : MenuNavigation, ISaveManagerSettings
     public void SaveData(ref SettingsData data)
     {
         data.audioLanguage = (int)audioLanguage;
-        Debug.Log($"Saved: {data.audioLanguage} as {audioLanguage}");
+        //Debug.Log($"Saved: {data.audioLanguage} as {audioLanguage}");
         data.textLanguage = (int)textLanguage;
-        Debug.Log($"Saved: {data.textLanguage} as {textLanguage}");
+        //Debug.Log($"Saved: {data.textLanguage} as {textLanguage}");
         data.showTutorials = showTutorials;
     }
 }

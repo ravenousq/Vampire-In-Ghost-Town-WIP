@@ -1,20 +1,19 @@
-
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class TitleScreen : MenuNavigation
+
+public class TitleScreen : MenuNavigation, ISaveManager
 {
-    private TextMeshProUGUI continueButton;
-
     [SerializeField] private string newGameSceneName;
+    private TextMeshProUGUI continueButton;
+    private int lastScene;
 
     protected override void Start()
     {
         continueButton = buttons[0];
 
-        HideContinueButton();
+        if (!SaveManager.instance.HasSavedData())
+            HideContinueButton();
 
         base.Start();
     }
@@ -36,11 +35,10 @@ public class TitleScreen : MenuNavigation
         switch (continueButton.gameObject.activeSelf ? currentButtonIndex : currentButtonIndex + 1)
         {
             case 0:
-                // Continue game
-                Debug.Log("Continue");
+                MainMenu.instance.fadeScreen.FadeIn();
+                Invoke(nameof(ContinueGame), 1.5f);
                 break;
             case 1:
-                // Start New Game
                 MainMenu.instance.fadeScreen.FadeIn();
                 Invoke(nameof(StartNewGame), 1.5f);
                 break;
@@ -63,10 +61,24 @@ public class TitleScreen : MenuNavigation
 
     private void StartNewGame()
     {
-        // Load the new game scene
-        SaveManager.instance.SaveGame();
+        SaveManager.instance.DeleteSavedData();
         SaveManager.instance.SaveSettings();
         UnityEngine.SceneManagement.SceneManager.LoadScene(newGameSceneName);
     }
 
+    private void ContinueGame()
+    {
+        SaveManager.instance.SaveSettings();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(lastScene);
+    }
+
+    public void LoadData(GameData data)
+    {
+        lastScene = data.lastScene;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+    
+    }
 }

@@ -1,25 +1,25 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class GameData
 {
     public int currency;
+    public int lastScene;
     public SerializableDictionary<string, bool> skillTree;
     public SerializableDictionary<string, int> inventory;
     public List<string> charmsID = new List<string>();
+    public SerializableDictionary<int, string> levels = new SerializableDictionary<int, string>();
+    //public Dictionary<int, List<bool>> levels = new Dictionary<int, List<bool>>();
 
-    public SerializableDictionary<string, bool> campfires;
-    public string lastCampfire;
 
     public GameData()
     {
         currency = 99999;
+        lastScene = 1;
         skillTree = new SerializableDictionary<string, bool>();
         inventory = new SerializableDictionary<string, int>();
         charmsID = new List<string>();
-
-        campfires = new SerializableDictionary<string, bool>();
-        lastCampfire = string.Empty;
+        levels = new SerializableDictionary<int, string>();
+        //levels = new Dictionary<int, List<bool>>();
     }
 }

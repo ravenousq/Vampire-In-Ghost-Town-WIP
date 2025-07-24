@@ -9,6 +9,8 @@ public class Enemy : Entity
     public GameObject mark;
     #endregion
 
+    [SerializeField] private bool isAMiniBoss;
+
     [Header("Movement")]
     public float movementSpeed;
     public float idleTime;
@@ -29,10 +31,10 @@ public class Enemy : Entity
     public bool canBeExecuted { get; private set; }
 
     [Header("Drop")]
-    
     [SerializeField] private ItemObject itemPrefab;
     [SerializeField] private ItemData drop;
     [SerializeField] private Transform itemDropPosition;
+
     [Header("FX")]
     [SerializeField] protected GameObject bloodFX;
 
@@ -109,6 +111,9 @@ public class Enemy : Entity
 
         if(drop)
             Instantiate(itemPrefab, itemDropPosition.position, Quaternion.identity).SetUpItem(drop);
+
+        if (isAMiniBoss)
+            LevelManager.instance.MiniBossDefeated(this);
 
         Destroy(gameObject);
     }
@@ -240,6 +245,8 @@ public class Enemy : Entity
         transform.position.y + Random.Range(-yOffset, yOffset)),
         Quaternion.Euler(0, player.transform.position.x > transform.position.x && facingDir != player.facingDir ? 180 : 0, Random.Range(-30, 30))).transform.parent = transform;
     }
+
+    public bool IsAMiniBoss() => isAMiniBoss;
 
     protected override void OnDrawGizmos()
     {

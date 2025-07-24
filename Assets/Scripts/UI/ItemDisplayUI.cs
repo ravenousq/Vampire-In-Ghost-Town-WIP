@@ -52,7 +52,7 @@ public class ItemDisplayUI : MonoBehaviour
                 Disappear();
             else
             {
-                if(Input.GetKeyDown(KeyCode.C))
+                if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Escape))
                 {
                     confirmation = !confirmation;
                     disappearingDuration = .1f;
@@ -62,7 +62,7 @@ public class ItemDisplayUI : MonoBehaviour
             }
         }
         
-        if((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.C)) && !confirmation)
+        if((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Escape)) && !confirmation)
             Destroy(gameObject);
     }
 

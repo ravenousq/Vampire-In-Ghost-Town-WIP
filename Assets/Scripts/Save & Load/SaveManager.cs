@@ -13,6 +13,10 @@ public class SaveManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData, settingsDataFileName);
+        saveManagers = FindAllSaveManagers();
+        settingsSaveManagers = FindAllSettingsSaveManagers();
     }
 
     [SerializeField] private string fileName;
@@ -27,10 +31,6 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData, settingsDataFileName);
-        saveManagers = FindAllSaveManagers();
-        settingsSaveManagers = FindAllSettingsSaveManagers();
-
         LoadGame();
         LoadSettings();
     }
