@@ -9,7 +9,6 @@ public class GameData
     public SerializableDictionary<string, int> inventory;
     public List<string> charmsID = new List<string>();
     public SerializableDictionary<int, string> levels = new SerializableDictionary<int, string>();
-    //public Dictionary<int, List<bool>> levels = new Dictionary<int, List<bool>>();
 
 
     public GameData()
@@ -20,6 +19,5 @@ public class GameData
         inventory = new SerializableDictionary<string, int>();
         charmsID = new List<string>();
         levels = new SerializableDictionary<int, string>();
-        //levels = new Dictionary<int, List<bool>>();
     }
 }

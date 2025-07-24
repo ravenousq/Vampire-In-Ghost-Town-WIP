@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -29,9 +30,10 @@ public class ItemData : ScriptableObject
     }
         void OnValidate()
     {
-#if UNITY_EDITOR
+
+    #if UNITY_EDITOR
         string path = AssetDatabase.GetAssetPath(this);
         itemID = AssetDatabase.AssetPathToGUID(path);
-#endif
+    #endif
     }
 }

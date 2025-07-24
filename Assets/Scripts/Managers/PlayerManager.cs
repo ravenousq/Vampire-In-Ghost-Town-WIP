@@ -20,6 +20,11 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+            Debug.Log(currency);    
+    }
 
     public void AddCurrency(int currencyToAdd)
     {
@@ -46,6 +51,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     {
         currency = data.currency;
         lastSceneName = data.lastScene;
+        UI.instance.ModifySouls();
     }
 
     public void SaveData(ref GameData data)

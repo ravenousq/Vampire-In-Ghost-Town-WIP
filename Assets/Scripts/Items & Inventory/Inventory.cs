@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     [Header("Data Base")]
     public List<InventoryItem> loadedItems;
     public List<CharmData> loadedCharms;
+    [SerializeField] private ItemDataBase dataBase;
 
     private void Start()
     {
@@ -64,7 +65,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         itemDisplays = new List<RectTransform>();
 
-        AddStartingEquipment();
+        //AddStartingEquipment();
     }
 
     private void AddStartingEquipment()
@@ -84,7 +85,8 @@ public class Inventory : MonoBehaviour, ISaveManager
             return;
         }
 
-        for (int i = 0; i < startingEquipment.Count; i++)
+        if(!SaveManager.instance.HasSavedData())
+            for (int i = 0; i < startingEquipment.Count; i++)
                 AddItemMute(startingEquipment[i]);
     }
 
@@ -174,8 +176,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void AddItem(ItemData item, bool confirmation = false)
     {
+        if (item == null)
+            return;
+
         if (item.itemType == ItemType.Note)
-            AddToNotes(item);
+                AddToNotes(item);
 
         if (item.itemType == ItemType.KeyItem)
             AddToKeyItems(item as KeyItemData);
@@ -190,8 +195,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void AddItemMute(ItemData item)
     {
+        if (item == null)
+            return;
+
         if (item.itemType == ItemType.Note)
-            AddToNotes(item);
+                AddToNotes(item);
 
         if (item.itemType == ItemType.KeyItem)
             AddToKeyItems(item as KeyItemData);
@@ -302,7 +310,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     {
         foreach (KeyValuePair<string, int> pair in data.inventory)
         {
-            foreach (var item in GetItemDataBase())
+            foreach (var item in dataBase.itemList)
             {
                 if (item != null && item.itemID == pair.Key)
                 {
@@ -316,12 +324,14 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach (string loadedCharmID in data.charmsID)
         {
-            foreach (var charm in GetItemDataBase())
+            foreach (var charm in dataBase.itemList)
             {
                 if (charm != null && loadedCharmID == charm.itemID)
                     loadedCharms.Add(charm as CharmData);
             }
         }
+
+        AddStartingEquipment();
     }
 
     public void SaveData(ref GameData data)
@@ -342,19 +352,21 @@ public class Inventory : MonoBehaviour, ISaveManager
             data.charmsID.Add(pair.Key.itemID);
     }
 
-    private List<ItemData> GetItemDataBase()
-    {
-        List<ItemData> itemDataBase = new List<ItemData>();
+    // private List<ItemData> GetItemDataBase()
+    // {
+    //     List<ItemData> itemDataBase = new List<ItemData>();
 
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Scripts/Data/Items" });
+    //     string[] assetNames = UnityEditor.AssetDatabase.FindAssets("", new[] { "Assets/Scripts/Data/Items" });
 
-        foreach (string SOName in assetNames)
-        {
-            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
-            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
-            itemDataBase.Add(itemData);
-        }
+    //     foreach (string SOName in assetNames)
+    //     {
+    //         var SOpath = UnityEditor.AssetDatabase.GUIDToAssetPath(SOName);
+    //         var itemData = UnityEditor.AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+    //         itemDataBase.Add(itemData);
+    //     }
 
-        return itemDataBase;
-    }
+    //     EditorUtility.SetDirty(this);
+
+    //     return itemDataBase;
+    // }
 }

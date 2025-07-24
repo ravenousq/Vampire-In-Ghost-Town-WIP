@@ -16,11 +16,16 @@ public class LevelManager : MonoBehaviour, ISaveManager
         else
             Destroy(gameObject);
 
-        // items = FindObjectsByType<ItemObject>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
-        // illusoryWalls = FindObjectsByType<IllusoryWall>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
-        // miniBosses = FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
-        // .Where(enemy => enemy.IsAMiniBoss())
-        // .ToArray();
+        items = FindObjectsByType<ItemObject>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+        .OrderBy(item => item.gameObject.name)
+        .ToArray();
+        illusoryWalls = FindObjectsByType<IllusoryWall>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+        .OrderBy(item => item.gameObject.name)
+        .ToArray();
+        miniBosses = FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
+        .Where(enemy => enemy.IsAMiniBoss())
+        .OrderBy(item => item.gameObject.name)
+        .ToArray();
 
         for (int i = 0; i < items.Length; i++)
             levelItems.Add(false);
@@ -41,7 +46,7 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
     private void Start()
     {
-        CleanUp();    
+        //CleanUp();    
     }
 
     public void ItemFound(ItemObject item)
@@ -92,6 +97,8 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
             for (int i = 0; i < levleMiniBosses.Count; i++)
                 levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
+
+            CleanUp();
         }
 
         #region Old Testing

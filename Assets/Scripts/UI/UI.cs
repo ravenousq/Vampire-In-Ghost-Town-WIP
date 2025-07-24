@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class UI : MonoBehaviour
     [SerializeField] private CharmsUI charmsTab;
     [SerializeField] private BlessingsUI blessingsTab;
     [SerializeField] private NotesUI notesTab;
-    
+
     //[Header("Pause Menu")]
 
     [Space]
@@ -103,7 +104,7 @@ public class UI : MonoBehaviour
 
             pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
         }
-    
+
         if (gameMenu.activeSelf)
             NavigateTabs();
     }
@@ -194,10 +195,10 @@ public class UI : MonoBehaviour
     public void UnlockSecretSkill(string name) => blessingsTab.UnlockSecretSkill(name);
 
 
-    public void ModifySouls(int souls = 0)
+    public void ModifySouls(int souls = 0, bool wait = true)
     {
         if (souls != 0)
-            inGameSoulsUI.ModifySouls(souls);
+            inGameSoulsUI.ModifySouls(souls, wait);
         else
             inGameSoulsUI.UpdateSouls();
     }
