@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,13 +17,19 @@ public class LevelManager : MonoBehaviour, ISaveManager
         items = FindObjectsByType<ItemObject>(FindObjectsInactive.Include, FindObjectsSortMode.None)
         .OrderBy(item => item.gameObject.name)
         .ToArray();
+
         illusoryWalls = FindObjectsByType<IllusoryWall>(FindObjectsInactive.Include, FindObjectsSortMode.None)
         .OrderBy(item => item.gameObject.name)
         .ToArray();
+
         miniBosses = FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
         .Where(enemy => enemy.IsAMiniBoss())
         .OrderBy(item => item.gameObject.name)
         .ToArray();
+
+        // npcs = FindObjectsByType<NPC>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
+        // .OrderBy(npc => name)
+        // .ToArray();
 
         for (int i = 0; i < items.Length; i++)
             levelItems.Add(false);
@@ -40,6 +44,7 @@ public class LevelManager : MonoBehaviour, ISaveManager
     [SerializeField] private ItemObject[] items;
     [SerializeField] private IllusoryWall[] illusoryWalls;
     [SerializeField] private Enemy[] miniBosses;
+    //[SerializeField] private NPC[] npcs;
     private List<bool> levelItems = new List<bool>();
     private List<bool> levelIllusoryWalls = new List<bool>();
     private List<bool> levleMiniBosses = new List<bool>();

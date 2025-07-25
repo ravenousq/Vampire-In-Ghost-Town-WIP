@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour,ISaveManager
 {
     public SpriteRenderer sr { get; protected set; }
     public Animator anim { get; protected set; }
@@ -14,6 +18,9 @@ public class NPC : MonoBehaviour
         anim = GetComponentInChildren<Animator>();    
         triggerArea = GetComponent<BoxCollider2D>();
         dialogue = GetComponent<Dialogue>();
+
+        foreach (ItemData item in stock)
+            defaultStock.Add(item);
     }
 
     [SerializeField] protected string npcName;
@@ -23,6 +30,7 @@ public class NPC : MonoBehaviour
 
     [Header("Shop")]
     [SerializeField] public List<ItemData> stock;
+    protected List<ItemData> defaultStock = new List<ItemData>();
     protected DialogueManager dialogueManager;
     protected Player player;
     protected bool canStartDialogue;
@@ -30,10 +38,10 @@ public class NPC : MonoBehaviour
     private bool dialogueOngoing;
     private bool inRange;
 
-    private void Start() 
+    private void Start()
     {
         player = PlayerManager.instance.player;
-        dialogueManager = DialogueManager.instance; 
+        dialogueManager = DialogueManager.instance;
     }
 
     private void Update() 
@@ -92,4 +100,63 @@ public class NPC : MonoBehaviour
         gameObject.name = npcName;    
     }
 
+    public void LoadData(GameData data)
+    {
+
+        if (data.npcs.TryGetValue(npcName, out int firstIndex))
+            dialogue.AssignFirstLine(dialogue.dialogueTree[firstIndex]);
+
+        if (data.npcShops.TryGetValue(npcName, out string newStock))
+        {
+            stock.Clear();
+
+            for (int i = 0; i < defaultStock.Count; i++)
+                if (newStock[i] == 'T')
+                    stock.Add(defaultStock[i]);
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        SaveDialogueLines(ref data);
+        SaveShop(ref data);
+    }
+
+    private void SaveShop(ref GameData data)
+    {
+        Dictionary<string, string> helper = new Dictionary<string, string>();
+
+        foreach (KeyValuePair<string, string> pair in data.npcShops)
+            if (pair.Key != npcName)
+                helper.Add(pair.Key, pair.Value);
+
+        data.npcShops.Clear();
+
+        string helperString = String.Empty;
+
+        //Solution for no duplicates in stock
+        foreach (ItemData item in defaultStock)
+            helperString += stock.Contains(item) ? 'T' : 'F';
+
+        helper.Add(npcName, helperString);
+
+        foreach (KeyValuePair<string, string> pair in helper)
+            data.npcShops.Add(pair.Key, pair.Value);
+    }
+
+    private void SaveDialogueLines(ref GameData data)
+    {
+        Dictionary<string, int> helper = new Dictionary<string, int>();
+
+        foreach (KeyValuePair<string, int> pair in data.npcs)
+            if (pair.Key != npcName)
+                helper.Add(pair.Key, pair.Value);
+
+        data.npcs.Clear();
+
+        helper.Add(npcName, dialogue.dialogueTree.IndexOf(dialogue.firstLine));
+
+        foreach (KeyValuePair<string, int> pair in helper)
+            data.npcs.Add(pair.Key, pair.Value);
+    }
 }

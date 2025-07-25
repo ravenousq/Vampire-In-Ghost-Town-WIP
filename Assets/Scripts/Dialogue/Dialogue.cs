@@ -4,7 +4,7 @@ using UnityEngine;
 public class Dialogue : MonoBehaviour
 {
     public List<DialogueLine> dialogueTree;
-    private DialogueLine firstLine;
+    public DialogueLine firstLine { get; private set; }
     public DialogueLine currentLine { get; private set; }
 
     private void Start() 

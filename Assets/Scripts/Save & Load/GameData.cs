@@ -8,7 +8,9 @@ public class GameData
     public SerializableDictionary<string, bool> skillTree;
     public SerializableDictionary<string, int> inventory;
     public List<string> charmsID = new List<string>();
-    public SerializableDictionary<int, string> levels = new SerializableDictionary<int, string>();
+    public SerializableDictionary<int, string> levels;
+    public SerializableDictionary<string, int> npcs;
+    public SerializableDictionary<string, string> npcShops;
 
 
     public GameData()
@@ -19,5 +21,7 @@ public class GameData
         inventory = new SerializableDictionary<string, int>();
         charmsID = new List<string>();
         levels = new SerializableDictionary<int, string>();
+        npcs = new SerializableDictionary<string, int>();
+        npcShops = new SerializableDictionary<string, string>();
     }
 }
