@@ -72,14 +72,14 @@ public class ItemObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        inRange = false;
-
         if (other.GetComponent<Player>())
             UndoItem();
     }
 
     private void UndoItem()
     {
+        inRange = false;
+
         if (PlayerManager.instance.player.pickup.item == this)
             PlayerManager.instance.player.AssignItemToPickUp(null);
     }

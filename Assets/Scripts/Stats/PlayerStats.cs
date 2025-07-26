@@ -48,7 +48,6 @@ public class PlayerStats : CharacterStats
 
         AudioManager.instance.PlaySFX(30);
         
-
         fx.IFramesFlashing(iFrames);
     }
 
@@ -56,6 +55,7 @@ public class PlayerStats : CharacterStats
     {
         base.Die();
 
+        PlayerManager.instance.Die();
         player.Die();
     }
 

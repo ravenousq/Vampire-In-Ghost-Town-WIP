@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,15 +16,18 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     public Player player;
     [SerializeField] private float multiplier = 1;
+    [SerializeField] private Bloodstain bloodstainPrefab;
     public int currency { get; private set; } = 10000;
     public int lastSceneName { get; private set; }
+    private bool playerIsDead;
+    private bool bloodstainExists;
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
-            Debug.Log(currency);    
+            Debug.Log(currency);
     }
 
     public void AddCurrency(int currencyToAdd)
@@ -52,11 +56,40 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         currency = data.currency;
         lastSceneName = data.lastScene;
         UI.instance.ModifySouls();
+        bloodstainExists = data.bloodstainExists;
+
+        if (data.bloodstainExists && SceneManager.GetActiveScene().buildIndex == data.bloodstainScene)
+            Instantiate(bloodstainPrefab).SetUpBloodstain(new Vector3(data.bloodstainPosition[0], data.bloodstainPosition[1], 0), data.bloodstainCurrency);
     }
 
     public void SaveData(ref GameData data)
     {
-        data.currency = currency;
         data.lastScene = SceneManager.GetActiveScene().buildIndex;
+
+        data.bloodstainExists = bloodstainExists;
+
+        if (!playerIsDead)
+            data.currency = currency;
+        
+        else
+        {
+            data.currency = 0;
+            data.bloodstainCurrency = currency;
+            data.bloodstainScene = SceneManager.GetActiveScene().buildIndex;
+            data.bloodstainPosition = new float[] { player.transform.position.x, player.transform.position.y };
+        }
+    }
+
+    public void Die()
+    {
+        UI.instance.ModifySouls(-currency);
+        bloodstainExists = true;
+        playerIsDead = true;
+    }
+
+    public void RecoveredSouls(int soulsToRecoever)
+    {
+        AddCurrency(soulsToRecoever);
+        bloodstainExists = false;
     }
 }

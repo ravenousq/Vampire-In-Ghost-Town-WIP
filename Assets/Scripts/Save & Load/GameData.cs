@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 [System.Serializable]
 public class GameData
@@ -11,6 +12,10 @@ public class GameData
     public SerializableDictionary<int, string> levels;
     public SerializableDictionary<string, int> npcs;
     public SerializableDictionary<string, string> npcShops;
+    public int bloodstainCurrency;
+    public int bloodstainScene;
+    public float[] bloodstainPosition;
+    public bool bloodstainExists;
 
 
     public GameData()

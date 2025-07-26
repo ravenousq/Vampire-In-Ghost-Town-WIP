@@ -64,23 +64,18 @@ public class Inventory : MonoBehaviour, ISaveManager
         equipedCharmsSlots = ui.equipedCharmsParent.GetComponentsInChildren<ItemSlotUI>();
 
         itemDisplays = new List<RectTransform>();
-
-        //AddStartingEquipment();
     }
 
     private void AddStartingEquipment()
     {
-        if (loadedCharms.Count > 0)
-            foreach (CharmData charm in loadedCharms)
-                EquipCharm(charm);
+        for (int i = 0; i < loadedCharms.Count; i++)
+            EquipCharm(loadedCharms[i], i);
 
         if (loadedItems.Count > 0)
         {
             foreach (InventoryItem item in loadedItems)
-            {
                 for (int i = 0; i < item.stackSize; i++)
                     AddItemMute(item.itemData);
-            }
 
             return;
         }
@@ -90,7 +85,7 @@ public class Inventory : MonoBehaviour, ISaveManager
                 AddItemMute(startingEquipment[i]);
     }
 
-    public void EquipCharm(CharmData item, int slotToEquip = -1)
+    public void EquipCharm(CharmData item, int slotToEquip)
     {
         if (!item)
             return;
@@ -107,22 +102,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
         }
 
-        int firstFreeSlot = 0;
-        for (int i = 0; i < charmsSlots.Length; i++)
-        {
-            if (charmsSlots[i].item == null)
-            {
-                firstFreeSlot = i;
-                break;
-            }
-        }
-
-        if (slotToEquip == -1)
-            slotToEquip = firstFreeSlot;
-
-        //prolly equipping on slot -1 fix it bruw
-
-            InventoryItem newCharm = new InventoryItem(item);
+        InventoryItem newCharm = new InventoryItem(item);
 
         if (equipedCharms[slotToEquip] != null)
             UnequipCharm(equipedCharms[slotToEquip].itemData as CharmData, slotToEquip);
