@@ -89,6 +89,8 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     public void RecoveredSouls(int soulsToRecoever)
     {
+        UI.instance.bloodstain.gameObject.SetActive(true);
+        AudioManager.instance.PlaySFX(32);
         AddCurrency(soulsToRecoever);
         bloodstainExists = false;
     }

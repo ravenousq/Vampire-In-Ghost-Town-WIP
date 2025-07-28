@@ -19,6 +19,24 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-3044199210611514272
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: a944b82f0ceb09340969a6e300d5bafe
+  m_EffectName: Lowpass
+  m_MixLevel: 7e8061a378395f64b80b4add898496c0
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: dee2aba64fd31904082bc718d4eb9cfd
+  - m_ParameterName: Resonance
+    m_GUID: af30caae8041b2444ab9b723edded44a
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -41,6 +59,8 @@ AudioMixerController:
     name: Master
   - guid: 622bdfa1ed90b8b46b5c218120a4809c
     name: Music
+  - guid: dee2aba64fd31904082bc718d4eb9cfd
+    name: Frequency
   - guid: ae3b10361d528aa4993754c26a3c96ea
     name: SFX
   m_AudioMixerGroupViews:
@@ -98,10 +118,31 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: f06bf84cf9dbb7f4b88b8460cc259ea9
   m_FloatValues:
+    20065f90ed49c7c45ae2f2615c01c339: 2000
+    0e5374015ed09be4cb936f0238de2c50: 1.98
+    e705528158598394faea070ba716c29b: 0
     622bdfa1ed90b8b46b5c218120a4809c: 0.0070013776
+    953ae623d91006246a030eca2809bc8c: 0
+    1bcd8863f50e2ad47865cdb4fe0e5f04: 10
+    6f2103b53b48c324eaeaf85d7da539c3: 10
+    9781e926cd7bdad4495ea2ecf2a3c8d4: 20
     ae3b10361d528aa4993754c26a3c96ea: 0.20482743
+    8fbeb74605f253f45b4ab4a643ada5e4: 0
+    dee2aba64fd31904082bc718d4eb9cfd: 22000
+    56631bf6ddc26ee49811f64a690c959d: 0
+    529178174d4ef0e42babb68631ba85c9: -10000
+    b8abfb9744b185b4cb3bbbc3ee9b3321: 20
+    d5ad1ae87a9345c4c8d5e766d3798d0b: -10000
+    517b02e9b52935f4e899706421f712c5: 50
+    657f252a584d73d499ff31ead1164789: 0
+    766f08ba23dc9554ead636041372301a: 0.616
+    23ea43fb7aa79af4f83945bbc28d3fa1: 380
     86a11c6ce2077bf448823c0e50c68c04: -19.962366
+    c08974cc4b601a149803651bdb234523: -4.1
     30d4b48e66a53ce4e8ff07f2c5439220: -8.0101185
+    17b0aaaeaf8e894468229f0484542eea: 10
+    af30caae8041b2444ab9b723edded44a: 1
+    9b4f11cf899bcd94b8d8d7a0fd4824ff: -13.2
   m_TransitionOverrides: {}
 --- !u!244 &328176211407304063
 AudioMixerEffectController:
@@ -179,6 +220,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 328176211407304063}
+  - {fileID: -3044199210611514272}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
