@@ -32,6 +32,7 @@ public class Player : Entity
     public PlayerEdgeState edge { get; private set; }
     public PlayerPickUpState pickup { get; private set; }
     public PlayerRestState rest { get; private set;  }
+    public PlayerExitState exit { get; private set; }
     #endregion
 
     [Header("Movement")]
@@ -67,7 +68,7 @@ public class Player : Entity
     public ReapersHalo halo { get; private set; }
     public Enemy enemyToExecute;
     public int executionDamage;
-    public bool canSlowTime = false;
+    public bool canSlowTime;
     public bool slowMotion { get; private set; }
 
     [Header("Prefabs")]
@@ -132,6 +133,7 @@ public class Player : Entity
         edge = new PlayerEdgeState(this, stateMachine, "edge");
         pickup = new PlayerPickUpState(this, stateMachine, "pickup");
         rest = new PlayerRestState(this, stateMachine, "rest");
+        exit = new PlayerExitState(this, stateMachine, "move");
         #endregion
     }
 
@@ -331,13 +333,20 @@ public class Player : Entity
     public void AssignLadder(BoxCollider2D ladder) => ladderToClimb = ladder;
     #endregion
 
+    #region MoveThroughDoors
+    public void MoveTowardsObjective(Transform objective)
+    {
+        exit.SetObjective(objective);
+        stateMachine.ChangeState(exit);
+    }
+    #endregion
 
     #region Collisions
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.GetComponent<Enemy>())
+        if (other.gameObject.GetComponent<Enemy>())
         {
-            if(!isKnocked && stateMachine.current != dive)
+            if (!isKnocked && stateMachine.current != dive)
             {
                 stats.SwitchInvincibility(true);
                 stats.TakeDamage(5);
