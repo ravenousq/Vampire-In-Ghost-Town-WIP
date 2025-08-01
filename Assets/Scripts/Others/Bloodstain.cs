@@ -30,6 +30,16 @@ public class Bloodstain : MonoBehaviour
 
     private void Update()
     {
+        if (isPickedUp)
+        {
+            transform.localScale = Vector3.one * Mathf.Clamp(Mathf.Lerp(transform.localScale.x, 0, 4 * Time.deltaTime), 0, 3);
+
+            if (transform.localScale.x <= .1f)
+                Destroy(gameObject);
+
+            return;
+        }
+
         inputImage.color = new Color(
             inputImage.color.r,
             inputImage.color.g,
@@ -64,11 +74,10 @@ public class Bloodstain : MonoBehaviour
 
     private void PickUpSouls()
     {
-        SetLowPassFrequency(defaultLowPass);
         isPickedUp = true;
-
+        inputImage.gameObject.SetActive(false);
+        SetLowPassFrequency(defaultLowPass);
         PlayerManager.instance.RecoveredSouls(soulsToRecover);
-        Destroy(gameObject, .5f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 [SelectionBase]
@@ -10,12 +11,18 @@ public class Garry : Enemy
     public GarryAttackState attack { get; private set; }
     public GarryStunnedState stun { get; private set; }
     public GarryParriedState parried { get; private set; }
+    public GarryDeathState death { get; private set; }
     #endregion
+
+    [Header("Lullaby")]
+    [SerializeField] private Transform audioPoint;
+    public float ambientRange = 5;
 
     [Header("Pathing")]
     [SerializeField] private LayerMask whatIsRoute;
     public EdgeCollider2D patrolRoute = null;
     private EdgeCollider2D possibleRoute;
+    private AudioSource au;
 
     protected override void Awake()
     {
@@ -27,6 +34,9 @@ public class Garry : Enemy
         attack = new GarryAttackState(this, stateMachine, "attack", this);
         stun = new GarryStunnedState(this, stateMachine, "stun", this);
         parried = new GarryParriedState(this, stateMachine, "parried", this);
+        death = new GarryDeathState(this, stateMachine, "death", this);
+
+        au = audioPoint.GetComponent<AudioSource>();
     }
 
     protected override void Start()
@@ -39,6 +49,11 @@ public class Garry : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if (CanHum() && Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < ambientRange)
+            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)), .2f, .9f);
+        else
+            au.volume = 0;
 
         stateMachine.current.Update();
 
@@ -54,30 +69,23 @@ public class Garry : Enemy
         }
     }
 
-    public void NoZaryczNo()
-    {
-        if (Random.Range(0, 100) < 25)
-            AudioManager.instance.PlaySFX(26);
-
-        move.noZaryczNo = true;
-    }
-
     public override void Die()
     {
         base.Die();
 
         AudioManager.instance.PlaySFX(31);
+        stateMachine.ChangeState(death);
     }
 
     public override void BecomeAggresive()
     {
-        if (IsAlreadyAggresive() || stateMachine.current == stun)
+        if (IsAggresive() || stateMachine.current == stun)
             return;
 
         stateMachine.ChangeState(aggro);
     }
 
-    public override bool IsAlreadyAggresive()
+    public override bool IsAggresive()
     {
         if(stateMachine.current == aggro || stateMachine.current == attack)
             return true;
@@ -85,11 +93,13 @@ public class Garry : Enemy
         return false;
     }
 
+    private bool CanHum() => !IsAggresive() && stateMachine.current != death && stateMachine.current != stun;
+    
     public override void Recover()
     {
         base.Recover();
 
-        if(stateMachine.current == stun)
+        if (stateMachine.current == stun)
             stateMachine.ChangeState(idle);
     }
 
@@ -131,30 +141,35 @@ public class Garry : Enemy
     }
     #endregion
 
-    /*protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
+    //comment on build
+    // protected override void OnDrawGizmos()
+    // {
+    //     base.OnDrawGizmos();
 
-        if(!EditorApplication.isPlaying)
-            return;
+    //     if (!EditorApplication.isPlaying)
+    //         return;
 
-        if(stateMachine.current == stun)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, executionRange);
-        }
+    //     if (stateMachine.current == stun)
+    //     {
+    //         Gizmos.color = Color.magenta;
+    //         Gizmos.DrawWireSphere(transform.position, executionRange);
+    //     }
 
-        if(stateMachine.current == attack)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPoint.position, attackDistance);
-        }
+    //     if (stateMachine.current == attack)
+    //     {
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawWireSphere(attackPoint.position, attackDistance);
+    //     }
 
-        if(stateMachine.current == idle || stateMachine.current == move)
-        {
-            Gizmos.color = Color.black;
-            Gizmos.DrawLine(transform.position - new Vector3(0, .1f), new Vector3(transform.position.x + (aggroRange * facingDir), transform.position.y - .1f));
-            Gizmos.DrawLine(transform.position - new Vector3(0, .1f), new Vector3(transform.position.x - (aggroRange/2 * facingDir), transform.position.y - .1f));
-        }
-    }*/
+    //     if (stateMachine.current == idle || stateMachine.current == move)
+    //     {
+    //         Gizmos.color = Color.black;
+    //         Gizmos.DrawLine(transform.position - new Vector3(0, .1f), new Vector3(transform.position.x + (aggroRange * facingDir), transform.position.y - .1f));
+    //         Gizmos.DrawLine(transform.position - new Vector3(0, .1f), new Vector3(transform.position.x - (aggroRange / 2 * facingDir), transform.position.y - .1f));
+    //     }
+
+    //     Gizmos.color = Color.white;
+
+    //     Gizmos.DrawWireSphere(audioPoint.position, ambientRange);
+    // }
 }

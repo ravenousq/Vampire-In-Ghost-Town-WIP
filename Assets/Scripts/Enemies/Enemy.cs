@@ -37,6 +37,7 @@ public class Enemy : Entity
 
     [Header("FX")]
     [SerializeField] protected GameObject bloodFX;
+    [SerializeField] protected GameObject stunFX;
 
     Player player;
 
@@ -114,8 +115,6 @@ public class Enemy : Entity
 
         if (isAMiniBoss)
             LevelManager.instance.MiniBossDefeated(this);
-
-        Destroy(gameObject);
     }
 
     public override void Flip()
@@ -133,7 +132,9 @@ public class Enemy : Entity
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    public virtual void Recover() 
+    public void EnableStunFX(bool enable) => stunFX.SetActive(enable);
+
+    public virtual void Recover()
     {
         cd.isTrigger = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -225,11 +226,11 @@ public class Enemy : Entity
 
     public virtual void BecomeAggresive()
     {
-        if(IsAlreadyAggresive() || canBeExecuted)
+        if(IsAggresive() || canBeExecuted)
             return;
     }
 
-    public virtual bool  IsAlreadyAggresive()
+    public virtual bool  IsAggresive()
     {
         return false;
     }
@@ -247,6 +248,8 @@ public class Enemy : Entity
     }
 
     public bool IsAMiniBoss() => isAMiniBoss;
+
+    public void DestroyMe() => Destroy(gameObject);
 
     protected override void OnDrawGizmos()
     {

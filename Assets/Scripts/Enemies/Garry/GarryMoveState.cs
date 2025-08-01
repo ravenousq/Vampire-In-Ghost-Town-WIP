@@ -8,8 +8,6 @@ public class GarryMoveState : GarryGroundedState
 
     }
 
-    public bool noZaryczNo;
-
     public override void Enter()
     {
         base.Enter();
@@ -18,19 +16,11 @@ public class GarryMoveState : GarryGroundedState
 
         if (enemy.patrolRoute && !enemy.IsWallOnTheBackDetected())
             enemy.Flip();
-
-        noZaryczNo = true;
     }
 
     public override void Update()
     {
         base.Update();
-
-        if (noZaryczNo && Physics2D.OverlapCircle(enemy.transform.position, 10, enemy.whatIsPlayer))
-        {
-            noZaryczNo = false;
-            enemy.InvokeName(nameof(enemy.NoZaryczNo), 4);
-        }
 
         enemy.SetVelocity(enemy.movementSpeed * enemy.facingDir, rb.linearVelocityY);
 

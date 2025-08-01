@@ -21,19 +21,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2056532390, guid: 86edc4400b13895489493222b6a890aa, type: 3}
+      value: {fileID: -1057813921, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
+    - time: 0.1
+      value: {fileID: -2056283856, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
     - time: 0.2
-      value: {fileID: -2023598958, guid: 86edc4400b13895489493222b6a890aa, type: 3}
-    - time: 0.4
-      value: {fileID: 2056532390, guid: 86edc4400b13895489493222b6a890aa, type: 3}
-    - time: 0.6
-      value: {fileID: -2023598958, guid: 86edc4400b13895489493222b6a890aa, type: 3}
+      value: {fileID: 743527382, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
+    - time: 0.3
+      value: {fileID: -654233688, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 5
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,16 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2056532390, guid: 86edc4400b13895489493222b6a890aa, type: 3}
-    - {fileID: -2023598958, guid: 86edc4400b13895489493222b6a890aa, type: 3}
-    - {fileID: 2056532390, guid: 86edc4400b13895489493222b6a890aa, type: 3}
-    - {fileID: -2023598958, guid: 86edc4400b13895489493222b6a890aa, type: 3}
+    - {fileID: -1057813921, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
+    - {fileID: -2056283856, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
+    - {fileID: 743527382, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
+    - {fileID: -654233688, guid: 853667c82282c5943ae0853ac3ef25ba, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,7 +79,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.6
+  - time: 0.3
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

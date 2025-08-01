@@ -21,29 +21,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -4213313507244229716, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 0.1
-      value: {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: 1983583548, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.2
-      value: {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 0.3
-      value: {fileID: 3265072075838132775, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: -2037056828, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.4
-      value: {fileID: -6117782692820810155, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: -1184031498, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.5
-      value: {fileID: -1742882090762670504, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: -2098959408, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.6
-      value: {fileID: -208130614188860236, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: -1142983637, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.7
-      value: {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 0.8
-      value: {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 0.9
-      value: {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 1
-      value: {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - time: 1.1
-      value: {fileID: -4213313507244229716, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+      value: {fileID: 2055261999, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -66,24 +54,18 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -4213313507244229716, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 3265072075838132775, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: -6117782692820810155, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: -1742882090762670504, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: -208130614188860236, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 5880109729141281783, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: 7034492367458522638, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
-    - {fileID: -4213313507244229716, guid: 58707eb6a0d5d1d46bbae5f0b1bd16ba, type: 3}
+    - {fileID: 1983583548, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - {fileID: -2037056828, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - {fileID: -1184031498, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - {fileID: -2098959408, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - {fileID: -1142983637, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - {fileID: 2055261999, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.2
+    m_StopTime: 0.8
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -110,28 +92,28 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.4
     functionName: OpenParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6
-    functionName: CloseParryWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.6
+  - time: 0.5
     functionName: DoDamage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1
+  - time: 0.5
+    functionName: CloseParryWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

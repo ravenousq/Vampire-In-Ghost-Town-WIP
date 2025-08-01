@@ -14,6 +14,7 @@ public class GarryStunnedState : GarryGroundedState
         base.Enter();
         stateTimer = enemy.stats.stunTime;
         enemy.AllowExecution(true);
+        enemy.EnableStunFX(true);
     }
 
     public override void Update()
@@ -32,5 +33,6 @@ public class GarryStunnedState : GarryGroundedState
         base.Exit();
 
         enemy.AllowExecution(false);
+        enemy.EnableStunFX(false);
     }
 }

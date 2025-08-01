@@ -299,6 +299,8 @@ public class Player : Entity
 
     public override void Die()
     {
+        skills.ChangeLockOnAllSkills(true);
+
         deathScreen.gameObject.SetActive(true);
         deathScreen.ActivateDeathScreen();
 
