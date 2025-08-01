@@ -346,7 +346,7 @@ public class Player : Entity
     #region Collisions
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<Enemy>())
+        if (other.gameObject.GetComponent<Enemy>() && !other.gameObject.GetComponent<Dog>())
         {
             if (!isKnocked && stateMachine.current != dive)
             {

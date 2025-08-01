@@ -68,7 +68,7 @@ MonoBehaviour:
   knockbackMultiplayer: 2
   mark: {fileID: 1462670565729340223}
   isAMiniBoss: 1
-  movementSpeed: 2
+  movementSpeed: 1.5
   idleTime: 5
   aggroTime: 15
   aggroRange: 10

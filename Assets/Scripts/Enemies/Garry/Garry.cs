@@ -17,12 +17,12 @@ public class Garry : Enemy
     [Header("Lullaby")]
     [SerializeField] private Transform audioPoint;
     public float ambientRange = 5;
+    private AudioSource au;
 
     [Header("Pathing")]
     [SerializeField] private LayerMask whatIsRoute;
     public EdgeCollider2D patrolRoute = null;
     private EdgeCollider2D possibleRoute;
-    private AudioSource au;
 
     protected override void Awake()
     {
@@ -51,7 +51,7 @@ public class Garry : Enemy
         base.Update();
 
         if (CanHum() && Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < ambientRange)
-            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)), .2f, .9f);
+            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)), 0, .9f);
         else
             au.volume = 0;
 

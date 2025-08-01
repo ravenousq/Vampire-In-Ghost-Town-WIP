@@ -9,6 +9,8 @@ public class EnemyState
     public String animBoolName;
     protected float stateTimer;
     protected bool trigger;
+    protected int playerLayer = LayerMask.NameToLayer("Player");
+    protected int enemyLayer = LayerMask.NameToLayer("Enemy");
 
     public EnemyState(Enemy enemyBase, EnemyStateMachine stateMachine, String animBoolName)
     {
@@ -45,4 +47,5 @@ public class EnemyState
     }
 
     public virtual void CallTrigger() => trigger = true;
+    
 }

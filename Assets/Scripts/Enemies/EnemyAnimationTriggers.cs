@@ -14,7 +14,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
 
     public void DoDamage() => enemy.DoDamage();
 
-    public void AnimationTrigger() => enemy.GetComponentInParent<Garry>().stateMachine.current.CallTrigger();
+    public void AnimationTrigger() => enemy.stateMachine.current.CallTrigger();
 
     public void OpenParryWindow() => enemy.OpenParryWindow();
 
@@ -30,7 +30,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
 
         if (Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position) < ambientRange)
         {
-            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), .2f, .9f);
+            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), 0, .4f);
             au.Play();
         }
         
