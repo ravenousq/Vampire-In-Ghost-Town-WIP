@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,8 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public int lastSceneName { get; private set; }
     private bool playerIsDead;
     private bool bloodstainExists;
+    private int doorIndexToSave = -1;
+    private bool usedDoor;
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
@@ -59,18 +62,21 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         bloodstainExists = data.bloodstainExists;
 
         if (data.bloodstainExists && SceneManager.GetActiveScene().buildIndex == data.bloodstainScene)
-            Instantiate(bloodstainPrefab).SetUpBloodstain(new Vector3(data.bloodstainPosition[0], data.bloodstainPosition[1], 0), data.bloodstainCurrency);
+                Instantiate(bloodstainPrefab).SetUpBloodstain(new Vector3(data.bloodstainPosition[0], data.bloodstainPosition[1], 0), data.bloodstainCurrency);
     }
 
     public void SaveData(ref GameData data)
     {
         data.lastScene = SceneManager.GetActiveScene().buildIndex;
 
+        data.doorIndex = doorIndexToSave == -1 ? data.doorIndex : doorIndexToSave;
+        data.usedDoor = usedDoor;
+
         data.bloodstainExists = bloodstainExists;
 
         if (!playerIsDead)
             data.currency = currency;
-        
+
         else
         {
             data.currency = 0;
@@ -93,5 +99,25 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         AudioManager.instance.PlaySFX(32);
         AddCurrency(soulsToRecoever);
         bloodstainExists = false;
+    }
+
+    public void ExitLevel(Transform objective, string targetScene, int targetIndex)
+    {
+        player.MoveTowardsObjective(objective);
+
+        doorIndexToSave = targetIndex;
+        usedDoor = true;
+
+        StartCoroutine(Leave(targetScene));
+    }
+
+    private IEnumerator Leave(string targetScene)
+    {
+        UI.instance.fadeScreen.FadeIn();
+        SaveManager.instance.SaveGame();
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        SceneManager.LoadScene(targetScene);
     }
 }

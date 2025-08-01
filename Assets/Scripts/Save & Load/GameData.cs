@@ -16,6 +16,8 @@ public class GameData
     public int bloodstainScene;
     public float[] bloodstainPosition;
     public bool bloodstainExists;
+    public int doorIndex;
+    public bool usedDoor;
 
 
     public GameData()

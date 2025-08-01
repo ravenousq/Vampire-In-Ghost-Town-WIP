@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LevelExit : MonoBehaviour
@@ -9,7 +10,11 @@ public class LevelExit : MonoBehaviour
         cd = GetComponent<BoxCollider2D>();
     }
 
-    [SerializeField] private Transform objective;
+    public Transform exitPoint;
+    public Transform enterPoint;
+    public int index;
+    [SerializeField] private int targetIndex;
+    [SerializeField] private string targetSceneName;
     private bool isTriggered;
 
 
@@ -21,12 +26,19 @@ public class LevelExit : MonoBehaviour
         if (other.GetComponent<Player>())
         {
             isTriggered = true;
-            PlayerManager.instance.player.MoveTowardsObjective(objective);
+            PlayerManager.instance.ExitLevel(exitPoint, targetSceneName, targetIndex);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void DisableCollider() => StartCoroutine(DisableColliderRoutine()); 
+
+    private IEnumerator DisableColliderRoutine()
     {
+        isTriggered = true;
+
+        yield return new WaitForSecondsRealtime(2f);
+
         isTriggered = false;
     }
+
 }

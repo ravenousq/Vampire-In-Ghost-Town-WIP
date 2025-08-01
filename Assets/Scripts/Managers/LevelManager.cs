@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +29,10 @@ public class LevelManager : MonoBehaviour, ISaveManager
         .OrderBy(item => item.gameObject.name)
         .ToArray();
 
+        doors = FindObjectsByType<LevelExit>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToArray();
+
+        cam = GameObject.Find("CinemachineCamera").GetComponent<CinemachineFollow>();
+
         // npcs = FindObjectsByType<NPC>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
         // .OrderBy(npc => name)
         // .ToArray();
@@ -44,7 +50,9 @@ public class LevelManager : MonoBehaviour, ISaveManager
     [SerializeField] private ItemObject[] items;
     [SerializeField] private IllusoryWall[] illusoryWalls;
     [SerializeField] private Enemy[] miniBosses;
-    //[SerializeField] private NPC[] npcs;
+    [SerializeField] private LevelExit[] doors;
+    [Space]
+    [SerializeField] private CinemachineFollow cam;
     private List<bool> levelItems = new List<bool>();
     private List<bool> levelIllusoryWalls = new List<bool>();
     private List<bool> levleMiniBosses = new List<bool>();
@@ -92,19 +100,30 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
     public void LoadData(GameData data)
     {
+        if (data.usedDoor)
+            foreach (LevelExit door in doors)
+                if (door.index == data.doorIndex)
+                {
+                    PlayerManager.instance.player.transform.position = door.exitPoint.position;
+                    cam.ForceCameraPosition(PlayerManager.instance.player.transform.position, quaternion.identity);
+                    door.DisableCollider();
+                    PlayerManager.instance.player.MoveTowardsObjective(door.enterPoint);
+                    break;   
+                }
+            
         if (data.levels.TryGetValue(SceneManager.GetActiveScene().buildIndex, out string value))
-        {
-            for (int i = 0; i < levelItems.Count; i++)
-                levelItems[i] = value[i] == 'T';
+            {
+                for (int i = 0; i < levelItems.Count; i++)
+                    levelItems[i] = value[i] == 'T';
 
-            for (int i = 0; i < levelIllusoryWalls.Count; i++)
-                levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
+                for (int i = 0; i < levelIllusoryWalls.Count; i++)
+                    levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
 
-            for (int i = 0; i < levleMiniBosses.Count; i++)
-                levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
+                for (int i = 0; i < levleMiniBosses.Count; i++)
+                    levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
 
-            CleanUp();
-        }
+                CleanUp();
+            }
 
         #region Old Testing
         // foreach (var keyValuePair in data.levels)
