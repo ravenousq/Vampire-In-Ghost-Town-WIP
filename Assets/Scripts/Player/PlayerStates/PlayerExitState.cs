@@ -35,11 +35,8 @@ public class PlayerExitState : PlayerState
         }
 
         if (Vector2.Distance(player.transform.position, objective.transform.position) < 2f)
-        {
-            Debug.Log("Finish");
             stateMachine.ChangeState(player.idle);
-        }
-            
+        
     }
 
     public override void Exit()
