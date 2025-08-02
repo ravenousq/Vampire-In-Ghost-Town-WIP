@@ -13,8 +13,6 @@ public class DogAttackState : DogGroundedState
     {
         base.Enter();
 
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
-
         defaultVelocity = rb.linearVelocity;
     }
 

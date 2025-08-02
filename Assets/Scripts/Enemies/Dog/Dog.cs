@@ -12,6 +12,9 @@ public class Dog : Enemy
     public DogDeathState death { get; private set; }
     #endregion
 
+    [Space]
+    private AudioSource au;
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,7 +26,11 @@ public class Dog : Enemy
         parried = new DogParriedState(this, stateMachine, "parried", this);
         stun = new DogStunnedState(this, stateMachine, "idle", this);
         death = new DogDeathState(this, stateMachine, "death", this);
+
+        au = GetComponent<AudioSource>();
     }
+
+    [SerializeField] private float ambientRange;
 
     protected override void Start()
     {
@@ -37,12 +44,18 @@ public class Dog : Enemy
         base.Update();
 
         stateMachine.current.Update();
+
+        if (CanGrowl() && Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position) < ambientRange)
+            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), 0, .9f);
+        else
+            au.volume = 0;
     }
 
     public override void Die()
     {
         base.Die();
         stateMachine.ChangeState(death);
+        AudioManager.instance.PlaySFX(35, false);
     }
 
     public override void Stun()
@@ -62,7 +75,7 @@ public class Dog : Enemy
 
     public override bool IsAggresive()
     {
-        if(stateMachine.current == run /*|| stateMachine.current == attack*/)
+        if (stateMachine.current == run)
             return true;
 
         return false;
@@ -77,8 +90,8 @@ public class Dog : Enemy
 
         stateMachine.ChangeState(run);
     }
-    
-     public override void Parried()
+
+    public override void Parried()
     {
         base.Parried();
 
@@ -94,4 +107,6 @@ public class Dog : Enemy
 
         stateMachine.ChangeState(stun);
     }
+    
+    private bool CanGrowl() => !IsAggresive() && stateMachine.current != death && stateMachine.current != stun && stateMachine.current != turn;
 }

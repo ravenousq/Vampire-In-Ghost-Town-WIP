@@ -21,6 +21,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
     public void CloseParryWindow() => enemy.CloseParryWindow();
 
     public void PlayGarryAttack() => AudioManager.instance.PlaySFX(24);
+    public void PlayDogAttack() => AudioManager.instance.PlaySFX(34);
 
     public void PlayFootstep()
     {
@@ -33,6 +34,6 @@ public class EnemyAnimationTriggers : MonoBehaviour
             au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), 0, .4f);
             au.Play();
         }
-        
+
     }
 }

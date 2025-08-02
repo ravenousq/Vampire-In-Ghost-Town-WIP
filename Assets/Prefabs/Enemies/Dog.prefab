@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2865146594071363664}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Wall Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167554179160484100}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2408021370848092723}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Item Drop Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5823345091669603884}
   - component: {fileID: 3672368940997109692}
   - component: {fileID: 1271833760725002335}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2024996485988739338}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Attack Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,8 @@ GameObject:
   - component: {fileID: 2240945998775356307}
   - component: {fileID: 189352401956625402}
   - component: {fileID: 5455053144130301208}
-  m_Layer: 6
+  - component: {fileID: 5122481991421880992}
+  m_Layer: 11
   m_Name: Dog
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -315,13 +316,13 @@ MonoBehaviour:
   movementSpeed: 10
   idleTime: 2
   aggroTime: 10
-  aggroRange: 15
+  aggroRange: 40
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
   executionRange: 3.3
   poiseDamage: 5
-  attackDistance: 3
+  attackDistance: 4
   attackCooldown: 1
   attackKnockback: {x: 2, y: 5}
   attackPoint: {fileID: 2024996485988739338}
@@ -330,6 +331,7 @@ MonoBehaviour:
   itemDropPosition: {fileID: 2408021370848092723}
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   stunFX: {fileID: 4413174498114440615}
+  ambientRange: 10
 --- !u!114 &3457788285880149139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +449,103 @@ MonoBehaviour:
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
   reloadTorso: {fileID: 0}
+--- !u!82 &5122481991421880992
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369029860403836451}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 57cd6303d8f007945ba161de59ae3095, type: 3}
+  m_Resource: {fileID: 8300000, guid: 57cd6303d8f007945ba161de59ae3095, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &8312887097648751422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,7 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8134305537603648754, guid: 4c09f62d231e2a645abb65b72f2e77e1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8134305537603648754, guid: 4c09f62d231e2a645abb65b72f2e77e1, type: 3}
       propertyPath: m_IsActive
@@ -576,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5155960474367110522, guid: 9c7b9bb17434b10438ac36635e2845be, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5155960474367110522, guid: 9c7b9bb17434b10438ac36635e2845be, type: 3}
       propertyPath: m_IsActive

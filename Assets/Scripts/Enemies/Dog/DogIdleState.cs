@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DogIdleState : DogGroundedState
 {
+    private float lastAggro;
+
     public DogIdleState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Dog enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
@@ -10,8 +12,6 @@ public class DogIdleState : DogGroundedState
     public override void Enter()
     {
         base.Enter();
-
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
 
         enemy.stats.OnDamaged += enemy.BecomeAggresive;
         stateTimer = enemy.attackCooldown;
@@ -29,7 +29,13 @@ public class DogIdleState : DogGroundedState
 
     public override void Exit()
     {
-        enemy.stats.OnDamaged -= enemy.BecomeAggresive;
         base.Exit();
+
+        enemy.stats.OnDamaged -= enemy.BecomeAggresive;
+
+        if(Time.time - lastAggro > 10)
+            AudioManager.instance.PlaySFX(33);
+
+        lastAggro = Time.time;
     }
 }
