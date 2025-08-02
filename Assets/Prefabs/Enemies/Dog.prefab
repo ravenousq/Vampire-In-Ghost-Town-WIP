@@ -168,8 +168,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1491053707
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 8435022972513979088, guid: 10380d4e91fefac408dbaf93bbdce912, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -331,7 +331,7 @@ MonoBehaviour:
   itemDropPosition: {fileID: 2408021370848092723}
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   stunFX: {fileID: 4413174498114440615}
-  ambientRange: 10
+  ambientRange: 15
 --- !u!114 &3457788285880149139
 MonoBehaviour:
   m_ObjectHideFlags: 0

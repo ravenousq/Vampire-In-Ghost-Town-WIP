@@ -21,7 +21,7 @@ public class DogIdleState : DogGroundedState
     {
         base.Update();
 
-        if (enemy.IsPlayerDetected() && enemy.IsGroundDetected() && stateTimer < 0)
+        if (enemy.IsPlayerDetected() && enemy.IsGroundDetected() && stateTimer < 0 && PlayerManager.instance.player.IsGroundDetected())
             stateMachine.ChangeState(enemy.run);
 
         enemy.ResetVelocity();

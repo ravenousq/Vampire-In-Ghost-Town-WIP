@@ -52,6 +52,9 @@ public class DogRunState : DogGroundedState
         base.Exit();
 
         AudioManager.instance.StopSFX(36);
+
+        if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
+            enemy.Flip();
     }
     
     private int playerOnRight() => player.transform.position.x > enemy.transform.position.x ? 1 : -1;

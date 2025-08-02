@@ -12,6 +12,7 @@ public class GarryStunnedState : GarryGroundedState
     public override void Enter()
     {
         base.Enter();
+        
         stateTimer = enemy.stats.stunTime;
         enemy.AllowExecution(true);
         enemy.EnableStunFX(true);

@@ -34,6 +34,5 @@ public class GarryIdleState : GarryGroundedState
 
         if(!enemy.patrolRoute && (!enemy.IsGroundDetected() || enemy.IsWallDetected()))
             enemy.Flip();
-
     }
 }

@@ -198,7 +198,7 @@ public class Enemy : Entity
     #endregion
 
     #region Detection 
-    public virtual bool IsPlayerDetected()
+    public virtual bool IsPlayerDetected(bool detectBack = true)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right * facingDir, aggroRange);
         RaycastHit2D[] hitsBack = Physics2D.RaycastAll(transform.position, Vector2.left * facingDir, aggroRange/2);
@@ -212,14 +212,16 @@ public class Enemy : Entity
                 return true;
         }
 
-        for(int i = 0; i < hitsBack.Length; i++)
-        {
-            if(((1<<hitsBack[i].collider.gameObject.layer) & whatIsGround) != 0)
-                return false;
+        if (detectBack)
+            for (int i = 0; i < hitsBack.Length; i++)
+            {
+                if (((1 << hitsBack[i].collider.gameObject.layer) & whatIsGround) != 0)
+                    return false;
 
-            if(((1<<hitsBack[i].collider.gameObject.layer) & whatIsPlayer) != 0)
-                return true;
-        }
+                if (((1 << hitsBack[i].collider.gameObject.layer) & whatIsPlayer) != 0)
+                    return true;
+            }
+        
 
         return false;
     } 

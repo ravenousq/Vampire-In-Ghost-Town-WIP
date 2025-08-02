@@ -75,7 +75,7 @@ public class Dog : Enemy
 
     public override bool IsAggresive()
     {
-        if (stateMachine.current == run)
+        if (stateMachine.current == run && stateMachine.current == attack)
             return true;
 
         return false;
@@ -95,10 +95,7 @@ public class Dog : Enemy
     {
         base.Parried();
 
-        if (stats.isStunned)
-            Stun();
-        else
-            stateMachine.ChangeState(parried);
+        stateMachine.ChangeState(parried);
     }
 
     public override void GetExecuted()
@@ -107,6 +104,6 @@ public class Dog : Enemy
 
         stateMachine.ChangeState(stun);
     }
-    
-    private bool CanGrowl() => !IsAggresive() && stateMachine.current != death && stateMachine.current != stun && stateMachine.current != turn;
+
+    private bool CanGrowl() => stateMachine.current == idle;
 }

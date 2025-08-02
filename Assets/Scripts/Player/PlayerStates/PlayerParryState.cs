@@ -26,7 +26,7 @@ public class PlayerParryState : PlayerState
 
         if(canParry)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(player.transform.position, 3, player.whatIsEnemy);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(player.wallCheck.transform.position, 5, player.whatIsEnemy);
 
             foreach (var hit in hits)
             {
