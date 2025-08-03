@@ -20,8 +20,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
 
     public void CloseParryWindow() => enemy.CloseParryWindow();
 
-    public void PlayGarryAttack() => AudioManager.instance.PlaySFX(24);
-    public void PlayDogAttack() => AudioManager.instance.PlaySFX(34);
+    public void PlayAttackSound() => AudioManager.instance.PlaySFX(enemy.attackFXIndex);
 
     public void PlayFootstep()
     {

@@ -10,12 +10,22 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
     public float lastTimeAttacked { get; private set; }
 
     private bool firstAttack = true;
+    private int lastClip;
+    private int clipToPlay = 3;
 
     public override void Enter()
     {
         base.Enter();
 
         enemy.stats.OnDamaged -= enemy.BecomeAggresive;
+
+        while (clipToPlay == lastClip)
+            clipToPlay = Random.Range(2, 7);
+
+        lastClip = clipToPlay;
+
+        //if (firstAttack)
+        enemy.PlayClip(clipToPlay);
     }
 
     public override void Update()

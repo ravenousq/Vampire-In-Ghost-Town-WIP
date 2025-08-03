@@ -38,6 +38,7 @@ public class Enemy : Entity
     [Header("FX")]
     [SerializeField] protected GameObject bloodFX;
     [SerializeField] protected GameObject stunFX;
+    public int attackFXIndex;
 
     Player player;
 

@@ -308,7 +308,7 @@ public class Player : Entity
 
         canMove = false;
         canBeKnocked = false;
-        stats.InvincibleFor(5f);
+        stats.InvincibleFor(10f);
 
         Time.timeScale = 0;
     }

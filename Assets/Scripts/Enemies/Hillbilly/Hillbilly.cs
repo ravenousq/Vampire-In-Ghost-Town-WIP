@@ -12,6 +12,7 @@ public class Hillbilly : Enemy
     public HillbillyStunnedState stun { get; private set; }
     #endregion
 
+    public AudioSource au { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -23,7 +24,11 @@ public class Hillbilly : Enemy
         combo = new HillbillyComboState(this, stateMachine, "attack2", this);
         parried = new HillbillyParriedState(this, stateMachine, "parried", this);
         stun = new HillbillyStunnedState(this, stateMachine, "stun", this);
+
+        au = GetComponent<AudioSource>();
     }
+
+    [SerializeField] private AudioClip[] clips;
 
     protected override void Start()
     {
@@ -86,7 +91,12 @@ public class Hillbilly : Enemy
         base.Parried();
 
         stateMachine.ChangeState(parried);
-        Debug.Log("Called");
+    }
+
+    public void PlayClip(int clip)
+    {
+        au.clip = clips[clip];
+        au.Play();
     }
 
 }

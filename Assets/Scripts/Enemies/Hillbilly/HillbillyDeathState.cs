@@ -10,13 +10,15 @@ public class HillbillyDeathState : HillbillyGroundedState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.PlayClip(Random.Range(0, 3));
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (trigger)
+        if (trigger && !enemy.au.isPlaying)
             enemy.DestroyMe();
     }
 
