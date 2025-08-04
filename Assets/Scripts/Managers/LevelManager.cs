@@ -101,6 +101,7 @@ public class LevelManager : MonoBehaviour, ISaveManager
     public void LoadData(GameData data)
     {
         if (data.usedDoor)
+        {
             foreach (LevelExit door in doors)
                 if (door.index == data.doorIndex)
                 {
@@ -108,22 +109,29 @@ public class LevelManager : MonoBehaviour, ISaveManager
                     cam.ForceCameraPosition(PlayerManager.instance.player.transform.position, quaternion.identity);
                     door.DisableCollider();
                     PlayerManager.instance.player.MoveTowardsObjective(door.enterPoint);
-                    break;   
+                    break;
                 }
+        }
+        else if(data.spawnPosition != null && data.spawnPosition.Length == 3)
+        {
+            PlayerManager.instance.player.transform.position = new Vector3(data.spawnPosition[0], data.spawnPosition[1], data.spawnPosition[2]);
+            cam.ForceCameraPosition(PlayerManager.instance.player.transform.position, quaternion.identity);
+        }
+        
             
         if (data.levels.TryGetValue(SceneManager.GetActiveScene().buildIndex, out string value))
-            {
-                for (int i = 0; i < levelItems.Count; i++)
-                    levelItems[i] = value[i] == 'T';
+                {
+                    for (int i = 0; i < levelItems.Count; i++)
+                        levelItems[i] = value[i] == 'T';
 
-                for (int i = 0; i < levelIllusoryWalls.Count; i++)
-                    levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
+                    for (int i = 0; i < levelIllusoryWalls.Count; i++)
+                        levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
 
-                for (int i = 0; i < levleMiniBosses.Count; i++)
-                    levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
+                    for (int i = 0; i < levleMiniBosses.Count; i++)
+                        levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
 
-                CleanUp();
-            }
+                    CleanUp();
+                }
 
         #region Old Testing
         // foreach (var keyValuePair in data.levels)

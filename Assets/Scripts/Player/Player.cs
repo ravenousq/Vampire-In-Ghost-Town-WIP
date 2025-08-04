@@ -1,5 +1,7 @@
 
 using System.Collections;
+using System.Diagnostics;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -94,6 +96,7 @@ public class Player : Entity
     [HideInInspector] public bool floorParry;
     [HideInInspector] public bool isAimingHalo;
     [HideInInspector] public bool thirdAttack;
+    [HideInInspector] public bool noGroundDetection;
     private bool creatingAfterImage;
 
     [Header("Debug")]
@@ -149,8 +152,8 @@ public class Player : Entity
 
         stateMachine.Initialize(idle);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
 
         skills.shoot.Reload();
     }
@@ -346,7 +349,7 @@ public class Player : Entity
     #region Collisions
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<Enemy>() && !other.gameObject.GetComponent<Dog>())
+        if (other.gameObject.GetComponent<EnemyStats>()?.HP >= 0)
         {
             if (!isKnocked && stateMachine.current != dive)
             {
@@ -358,12 +361,31 @@ public class Player : Entity
             }
         }
     }
-    
+
+    public override bool IsGroundDetected()
+    {
+        if (noGroundDetection)
+        {
+            if (!base.IsGroundDetected())
+                noGroundDetection = false;
+
+            return !base.IsGroundDetected();
+        }
+
+        return base.IsGroundDetected();
+    }
+
+    public override bool IsWallDetected()
+    {
+        return base.IsWallDetected() &&
+            !Physics2D.Raycast(new Vector3(transform.position.x - Mathf.Abs(wallCheck.transform.position.x - transform.position.x) * facingDir, wallCheck.transform.position.y), Vector2.left * facingDir, wallCheckDistance, whatIsGround);
+    }
+
     public bool IsLadderDetected()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundCheckDistance, LayerMask.GetMask("Ladder"));
 
-        if(colliders.Length > 0)
+        if (colliders.Length > 0)
             return true;
 
         return false;
@@ -383,6 +405,8 @@ public class Player : Entity
     }
 
     public void NoCollisionsFor(float seconds) => StartCoroutine(NoCollisionsRoutine(seconds));
+
+    public bool IsCrouching() => stateMachine.current == crouch;
 
     private IEnumerator NoCollisionsRoutine(float seconds)
     {
@@ -414,20 +438,24 @@ public class Player : Entity
 
     public void InstantiateFX(GameObject fx, Transform pos, Vector3 offset, Vector3 rotation) => Instantiate(fx, pos.position + offset, Quaternion.identity).transform.Rotate(rotation.x, rotation.y, rotation.z);
 
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
+    // protected override void OnDrawGizmos()
+    // {
+    //     base.OnDrawGizmos();
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 3);
+    //     // Gizmos.color = Color.magenta;
+    //     // Gizmos.DrawLine(new Vector3(transform.position.x - Mathf.Abs(wallCheck.transform.position.x - transform.position.x) * facingDir, wallCheck.transform.position.y), new Vector3(transform.position.x - Mathf.Abs(wallCheck.transform.position.x - transform.position.x) * facingDir - wallCheckDistance * facingDir, wallCheck.transform.position.y));
 
-        if(SkillManager.instance)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(new Vector2(transform.position.x + 1.2f / 1.2f * facingDir, transform.position.y + 2.7f / 5), new Vector2(transform.position.x + (1.2f / 1.2f) + (skills.shoot.effectiveAttackRange * facingDir), transform.position.y + 2.7f / 5));
-        }
+    //     Gizmos.color = Color.blue;
+    //     Gizmos.DrawWireSphere(transform.position, 3);
+
+    //     if(SkillManager.instance)
+    //     {
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawLine(new Vector2(transform.position.x + 1.2f / 1.2f * facingDir, transform.position.y + 2.7f / 5), new Vector2(transform.position.x + (1.2f / 1.2f) + (skills.shoot.effectiveAttackRange * facingDir), transform.position.y + 2.7f / 5));
+    //     }
         
-        if(Application.isPlaying)
-            Gizmos.DrawWireSphere(airborne.edge, .1f);
-    }
+    //     if(Application.isPlaying)
+    //         Gizmos.DrawWireSphere(airborne.edge, .1f);
+    // }
 }
+ 

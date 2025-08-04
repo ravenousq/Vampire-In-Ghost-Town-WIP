@@ -18,7 +18,7 @@ public class PlayerAirborneState : PlayerState
         //rb.gravityScale = player.gravityScale;
         bufferTimer = 0;
 
-        if(player.allowCoyote)
+        if (player.allowCoyote)
         {
             player.allowCoyote = false;
             stateTimer = player.coyoteJumpWindow;
@@ -28,7 +28,7 @@ public class PlayerAirborneState : PlayerState
     public override void Update()
     {
         base.Update();
-        
+
         //CheckForEdge();
 
         if (edge != Vector2.zero & !player.isBusy && Vector2.Distance(player.edgeCheck.position, edge) < .5f)
@@ -45,7 +45,7 @@ public class PlayerAirborneState : PlayerState
         if (xInput != 0 && rb.gravityScale > 0 && !player.isKnocked)
             player.SetVelocity(player.movementSpeed * .8f * xInput, rb.linearVelocityY);
 
-        if (player.IsGroundDetected() && !player.isBusy)
+        if (player.IsGroundDetected() && !player.isBusy && rb.linearVelocityY <= 0)
         {
             player.InstantiateFX(player.landFX, player.groundCheck, new Vector3(0, .8f), Vector3.zero);
             AudioManager.instance.PlaySFX(8);
@@ -57,6 +57,16 @@ public class PlayerAirborneState : PlayerState
 
         if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Mouse0) && SkillManager.instance.isSkillUnlocked("Into The Abyss"))
             stateMachine.ChangeState(player.dive);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        if (bufferTimer > 0)
+            player.executeBuffer = true;
+
+        edge = Vector2.zero;
     }
 
     private void CheckForEdge()
@@ -75,15 +85,5 @@ public class PlayerAirborneState : PlayerState
             if (finalEdgeChecker)
                 edge = finalEdgeChecker.point;
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        if(bufferTimer > 0)
-            player.executeBuffer = true;
-
-        edge = Vector2.zero;
     }
 }

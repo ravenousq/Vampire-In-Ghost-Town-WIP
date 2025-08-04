@@ -11,7 +11,7 @@ public class HillbillyDeathState : HillbillyGroundedState
     {
         base.Enter();
 
-        enemy.PlayClip(Random.Range(0, 3));
+        enemy.PlayClip(Random.Range(0, 2));
     }
 
     public override void Update()

@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void EquipCharm(CharmData item, int slotToEquip)
     {
-        if (!item)
+        if (item == null)
             return;
 
         if (equipedCharmsDictionary.ContainsKey(item))

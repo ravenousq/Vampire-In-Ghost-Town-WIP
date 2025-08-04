@@ -3,7 +3,7 @@ using UnityEngine;
 public class DogRunState : DogGroundedState
 {
     private Player player;
-    private const float MIN_RUN_TIME = .5f;
+    private const float MIN_RUN_TIME = 1f;
     private float runChecker;
     private float runDirection;
 
@@ -28,6 +28,8 @@ public class DogRunState : DogGroundedState
     {
         base.Update();
         runChecker -= Time.deltaTime;
+
+        //Debug.Log(runChecker);
 
         if (!enemy.IsGroundDetected() || stateTimer < 0 || enemy.IsWallDetected())
             stateMachine.ChangeState(enemy.idle);

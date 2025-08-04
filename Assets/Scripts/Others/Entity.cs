@@ -189,9 +189,9 @@ public class Entity : MonoBehaviour
     #endregion 
 
     #region Collision
-    public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
 
-    public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
+    public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
 
     public bool IsWallOnTheBackDetected() => Physics2D.Raycast(transform.position + (wallCheck.position - transform.position) * -1, Vector2.left * facingDir, wallCheckDistance, whatIsGround);
     

@@ -21,9 +21,12 @@ public class PlayerCrouchState : PlayerState
 
         player.ResetVelocity();
 
+        if (!player.IsGroundDetected())
+            player.stateMachine.ChangeState(player.airborne);
+
         player.FlipController(xInput);
 
-        if(Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S))
             stateMachine.ChangeState(player.idle);
     }
 

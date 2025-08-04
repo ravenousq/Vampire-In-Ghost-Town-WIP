@@ -39,6 +39,7 @@ public class Enemy : Entity
     [SerializeField] protected GameObject bloodFX;
     [SerializeField] protected GameObject stunFX;
     public int attackFXIndex;
+    private bool isBeingDestroyed;
 
     Player player;
 
@@ -68,12 +69,20 @@ public class Enemy : Entity
 
         stateMachine.current.Update();
 
-        if(canBeExecuted)
+        if (canBeExecuted)
         {
-            if(Physics2D.OverlapCircle(transform.position, executionRange, whatIsPlayer))
+            if (Physics2D.OverlapCircle(transform.position, executionRange, whatIsPlayer))
                 ControlExecution();
             else
                 player.enemyToExecute = player.enemyToExecute == this ? null : player.enemyToExecute;
+        }
+
+        if (isBeingDestroyed)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, Mathf.MoveTowards(sr.color.a, 0, Time.deltaTime));
+
+            if (sr.color.a <= 0)
+                Destroy(gameObject);
         }
     }
 
@@ -252,7 +261,11 @@ public class Enemy : Entity
 
     public bool IsAMiniBoss() => isAMiniBoss;
 
-    public void DestroyMe() => Destroy(gameObject);
+    public void DestroyMe()
+    {
+        isBeingDestroyed = true;
+    }
+        
 
     protected override void OnDrawGizmos()
     {

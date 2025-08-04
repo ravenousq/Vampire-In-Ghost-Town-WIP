@@ -86,8 +86,8 @@ public class UI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && canTurnOnGameMenu)
         {
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
+            // Cursor.visible = !Cursor.visible;
+            // Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
 
             EnableUI(Time.timeScale == 0);
 
