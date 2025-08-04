@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Fragment of Distant Reality
-  icon: {fileID: -2851504948808273196, guid: 8c1897c735d575648bbdf29aa8fc5a14, type: 3}
+  price: 0
+  icon: {fileID: -413516581935555840, guid: b6f7256a6b2ecfd43ba90caabe1f2329, type: 3}
   itemDescription: "A bizarre shard that feels impossible to hold in one\u2019s palm.
     It shifts and spasms in ways no mind can comprehend. At least not a mind from
     this realm.\n\nOwner grants power to break laws of time and space."
   noteContent: 
+  itemID: f3a1f465836d3b141932e7ba8138c8cb
   pickUpEffects:
   - {fileID: 11400000, guid: 87c986416c609b94f865dce8e1b337dd, type: 2}

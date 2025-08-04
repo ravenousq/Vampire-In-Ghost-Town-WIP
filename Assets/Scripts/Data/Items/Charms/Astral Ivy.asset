@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Astral Ivy
-  icon: {fileID: 6433612475771069219, guid: 546464cb644d2f5408f1610dfe0e2459, type: 3}
+  price: 0
+  icon: {fileID: 7722210457025874125, guid: c1995c04cec037945b0cbe6f6dfea5a7, type: 3}
   itemDescription: 'Especially bizarre shrub with blossoms, eerily resembling eyeballs,
     forever gazing skyward; as if longing for the stars. Its ivy writhes with a strange
     sentience, eager to cling to any living being it finds.
@@ -22,5 +23,7 @@ MonoBehaviour:
 
     Improves its hosts
     healing capabilities.'
+  noteContent: 
+  itemID: b3e85160eb7238649a13a1ddea8b6840
   equipEffects:
   - {fileID: 11400000, guid: d3e395ab0b5620f45bbdbcd0282183bd, type: 2}

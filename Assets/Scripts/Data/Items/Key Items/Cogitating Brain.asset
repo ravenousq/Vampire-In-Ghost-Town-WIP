@@ -15,11 +15,12 @@ MonoBehaviour:
   itemType: 1
   itemName: Cogitating Brain
   price: 4000
-  icon: {fileID: 2733544961961851100, guid: 218dfad7dffe6bf47aa8b593185212b6, type: 3}
+  icon: {fileID: -8688305923969377921, guid: 906a21bc833ac5f40960d381131d083d, type: 3}
   itemDescription: "This fleshy mush of nerves seems to be consumed in thoughts even
     heeding it\u2019s sorry state. It\u2019s eyes are fixated, not reacting to any
     stimulus and the flesh itself pulsates calmly.\n\nGrants insight into ones existence,
     raising the survivability."
   noteContent: 
+  itemID: 40c0ed29194f93a4caabaac3544a25e0
   pickUpEffects:
   - {fileID: 11400000, guid: 375ab92134088734aae1fc8bb6502509, type: 2}

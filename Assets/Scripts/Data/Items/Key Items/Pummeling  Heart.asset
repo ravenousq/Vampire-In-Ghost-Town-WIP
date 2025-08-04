@@ -15,11 +15,12 @@ MonoBehaviour:
   itemType: 1
   itemName: Pummeling  Heart
   price: 4000
-  icon: {fileID: 21300000, guid: a7649a63fbe5b2b409a0e26159e8526f, type: 3}
+  icon: {fileID: 1821987885390581804, guid: d913285603814bd4cad452352b1db30a, type: 3}
   itemDescription: "Even though separated from it\u2019s owner, this mysterious heart
     keeps on pounding in a malevolent tone. Each thump echoes with a chiming sound,
     bringing visions of warm blood and cries for mercy.\n\nGrants inhuman sense of
     violence, raising the ferocity."
   noteContent: 
+  itemID: 993912688bc3c03429e0df971d04396b
   pickUpEffects:
   - {fileID: 11400000, guid: 2cd26e2ef7d00d34fbc204bd151efa3a, type: 2}

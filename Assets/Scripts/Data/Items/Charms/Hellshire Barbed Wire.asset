@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Hellshire Barbed Wire
-  icon: {fileID: 7188378612884400379, guid: fc244fa974b5e354ba13c45355ddbdb9, type: 3}
+  price: 0
+  icon: {fileID: -5534315651353498702, guid: 904267a9478c935409ef721b68c974f3, type: 3}
   itemDescription: "Hellshire holds its bad reputation for a reason. The Church holds
     no sway there, and delinquency walks boldly in broad daylight. Still, some say
     it's safer than Ghost Town.\n\nIncreases amount of times Reaper\u2019s Halo can
     bounce before returning to The Gunman."
+  noteContent: 
+  itemID: be7cb7ee81c9cfd44ae0c5984cdbea6f
   equipEffects:
   - {fileID: 11400000, guid: bdb5df1025be38543a6995e993bb1cac, type: 2}

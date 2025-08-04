@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 1
   itemName: Herbal Concoction
   price: 2000
-  icon: {fileID: 21300000, guid: b5ac32e1ca969fe41acee3ffd17f7e11, type: 3}
+  icon: {fileID: 7654372739447520550, guid: ca30a52401d48634db322628330e54bf, type: 3}
   itemDescription: 'Brewed out of various perennials and weeds. Even tough it smell
     resembles an incense blended with alcohol, there are very few able to prepare
     such convoluted mixture.  The clergy keeps their secrets sealed.
@@ -24,5 +24,6 @@ MonoBehaviour:
     Fills
     HP. Brew new concoction at Campfire.'
   noteContent: 
+  itemID: c2c6fadbadcacd448a50a8404a409f01
   pickUpEffects:
   - {fileID: 11400000, guid: 5c9e64d3046f17f4494a58462d2f1a64, type: 2}

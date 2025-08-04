@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Severed Scythe Limb
-  icon: {fileID: 8916209223919105418, guid: e4c1a2ffcab16054ea1b732783efb6b5, type: 3}
+  price: 0
+  icon: {fileID: -1947171329001034211, guid: 335a10137869abd4b816344345859d1c, type: 3}
   itemDescription: "Morphed body part of a reliable servant. Beasts neither scheme
     nor do they grumble, but simply obey their owners will. This severed scythe stands
     as proof, having cleaved through countless rebellious heads in unquestioning
     service.\L\nIncreases chances to bypass enemy defenses."
+  noteContent: 
+  itemID: ec66847c0bfc6544b870b03a6351442f
   equipEffects:
   - {fileID: 11400000, guid: d4ecf292f704f6f418f86ddaf393d8b8, type: 2}

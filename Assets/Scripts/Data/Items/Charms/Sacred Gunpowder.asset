@@ -15,10 +15,11 @@ MonoBehaviour:
   itemType: 2
   itemName: Sacred Gunpowder
   price: 1000
-  icon: {fileID: -4869021399287211354, guid: eb080e1486977b948b3049fd17e688e4, type: 3}
+  icon: {fileID: 1161138782020119392, guid: 20a8a0b0781f0b040a120e6c982c07c7, type: 3}
   itemDescription: "Special kind of gunpowder, crafted solely by The Evangelists.
     Whispers claim it\u2019s laced with the blood of the devil himself. Only initiate
     know whether this is only a hearsay.\n\nRevolvers deal more posture damage."
   noteContent: 
+  itemID: f2fa22e374f485f4fb619a914d780c85
   equipEffects:
   - {fileID: 11400000, guid: 6639b088ed0669a419892db466d3ad8a, type: 2}

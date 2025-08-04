@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Cheap Whiskey Bottle
-  icon: {fileID: 21300000, guid: 68e5b05381930c848a9aa3cdbba364c1, type: 3}
+  price: 0
+  icon: {fileID: 7733368988372669016, guid: ce1effd423bfe4e4699655998311df10, type: 3}
   itemDescription: "A well-renowned bottle of whiskey in these parts. Sots and topers
     have sparked more than a few scrimmages over it\u2019s artificial yet oddly intoxicating
     flavor.  This particular batch leaves a sharp, tangy aftertaste on ones tongue.\n\nSlightly
     boosts vitality."
+  noteContent: 
+  itemID: 6d70576e0a960c84180de1e86a294783
   equipEffects:
   - {fileID: 11400000, guid: bdca853dff7f11747817721fa316fb82, type: 2}
