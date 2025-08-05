@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems;
 
 public class ItemSlotUI : MonoBehaviour
 {
@@ -48,6 +47,6 @@ public class ItemSlotUI : MonoBehaviour
 
     public void Select(bool selected)
     {
-        selectedImage.color = selected ? Color.white : Color.clear;
+        GetComponent<RectTransform>().localScale = selected ? Vector3.one * 1.2f : Vector3.one;
     }
 }

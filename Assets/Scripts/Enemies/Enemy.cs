@@ -40,6 +40,7 @@ public class Enemy : Entity
     [SerializeField] protected GameObject stunFX;
     public int attackFXIndex;
     private bool isBeingDestroyed;
+    public float ambientRange;
 
     Player player;
 

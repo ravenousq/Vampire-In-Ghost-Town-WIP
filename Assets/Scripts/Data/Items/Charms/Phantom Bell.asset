@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5c05333c89d684ebbeea7fc11a4577, type: 3}
+  m_Name: Phantom Bell
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemName: Phantom Bell
+  price: 3000
+  icon: {fileID: 1592060510358242380, guid: 5fc23080d6eb6c847ba8300f70361508, type: 3}
+  itemDescription: "Small bell covered in greenish rust. Even though the clapper
+    is present and untouched, tinkling it is eerily mute. As if the bell devoured
+    sound instead of producing it.\L\nA soft chiming sound can be heard from time
+    to time."
+  noteContent: 
+  itemID: 58dbd81ef655de34aa7d06c18e21cd09
+  equipEffects:
+  - {fileID: 11400000, guid: 0e67cc6fc7d13f44ea6b45d7be563c90, type: 2}

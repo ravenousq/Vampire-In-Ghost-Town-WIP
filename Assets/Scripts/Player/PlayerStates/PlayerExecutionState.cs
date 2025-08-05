@@ -55,7 +55,7 @@ public class PlayerExecutionState : PlayerState
 
         if(trigger)
         {
-            player.enemyToExecute.AllowExecution(false);
+            player.enemyToExecute?.AllowExecution(false);
             player.enemyToExecute = null;
             stateMachine.ChangeState(player.idle);
         }

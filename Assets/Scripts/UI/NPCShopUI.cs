@@ -63,6 +63,8 @@ public class NPCShopUI : ItemsUI
     {
         if (UI.instance.canTurnOnGameMenu)
             UI.instance.LockGameMenu();
+
+        
     }
 
     private void OnDisable()

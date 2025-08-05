@@ -19,6 +19,7 @@ public class GameData
     public bool bloodstainExists;
     public int doorIndex;
     public bool usedDoor;
+    public int concoctionStacks = 3;
 
 
     public GameData()

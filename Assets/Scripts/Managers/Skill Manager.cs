@@ -34,6 +34,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private string skillToSwitch = "";
     [SerializeField] private OldSerializableDictionary<string, bool> unlockableSkills;
     public Dictionary<string, bool> skills;
+    public bool chimingItems { get; private set; }
 
     private void Start()
     {
@@ -70,6 +71,8 @@ public class SkillManager : MonoBehaviour
         skills[skillToUnlock] = true;
         unlockableSkills.UpdateValue(skillToUnlock, skills[skillToUnlock]); 
     }
+
+    public void AddChimingToItems(bool value = true) => chimingItems = value;
 
     public void ChangeLockOnAllSkills(bool block)
     {

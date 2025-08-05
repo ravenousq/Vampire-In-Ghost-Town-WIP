@@ -32,8 +32,8 @@ public class ItemObject : MonoBehaviour
             )
         );
 
-        if (Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < ambientRange)
-            au.volume = Mathf.Clamp01(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)));
+        if (SkillManager.instance.chimingItems)
+            AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, ambientRange);
         else
             au.volume = 0;
 
@@ -47,11 +47,11 @@ public class ItemObject : MonoBehaviour
         // item = 1;
         // != null ?
 
-        // if (item > 1)
-        // {
-        //     then 1 > 00;
-        //     private item = < 64;
-        // }
+            // if (item > 1)
+            // {
+            //     then 1 > 00;
+            //     private item = < 64;
+            // }
     }
 
     private void OnValidate() => gameObject.name = item != null ? item.itemName : "Item Object";

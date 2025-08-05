@@ -38,11 +38,7 @@ public class Campfire : MonoBehaviour, ISaveManager
             menuActive = true;
         }
 
-        if (Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < 10)
-            au.volume = Mathf.Clamp01(Mathf.InverseLerp(10, 1, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)));
-        else
-            au.volume = 0;
-
+        AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, 10);
 
         inputImage.color = new Color(
             inputImage.color.r,

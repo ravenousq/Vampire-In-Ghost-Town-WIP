@@ -72,13 +72,7 @@ public class CampfireUI : MonoBehaviour
 
     private void Rest()
     {
-        UI.instance.SetUpConfirmationDialogue(
-            "In current version, resting will erase all progress. Continue?",
-            gameObject,
-            "Yes",
-            "No"
-        );
-        UI.instance.confirmationDialogue.onConfirm += ResetGame;
+        ResetGame();
     }
 
     private void Travel()

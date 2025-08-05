@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ConcoctionController : SkillController
+public class ConcoctionController : SkillController, ISaveManager
 {
     [SerializeField] private int maxConcoctionStacks = 3;
     public int currentConcoctionStacks;
@@ -34,7 +34,19 @@ public class ConcoctionController : SkillController
     {
         maxConcoctionStacks++;
         currentConcoctionStacks = maxConcoctionStacks;
-        UI.instance.concoctionUI.UpdateConcoctionStacks();
+
+        if(UI.instance.concoctionUI.gameObject.activeSelf)
+            UI.instance.concoctionUI.UpdateConcoctionStacks();
     }
 
+    public void LoadData(GameData data)
+    {
+        for (int i = 0; i < data.concoctionStacks - maxConcoctionStacks; i++)
+            AddStack();
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.concoctionStacks = maxConcoctionStacks;
+    }
 }

@@ -17,6 +17,7 @@ public class ChoiceButtonUI : MonoBehaviour
             image.color = Color.clear;
     }
 
+    [SerializeField] private RectTransform item;
     private ItemData requiredItem;
     private bool highlighted;
     public bool goToShop { get; private set; }
@@ -72,9 +73,6 @@ public class ChoiceButtonUI : MonoBehaviour
         }
 
         if(requiredItem)
-        {
-            foreach(Image image in images)
-                image.GetComponent<RectTransform>().localScale *= highlighted ? 1.2f : 1/1.2f;
-        }
+            item.GetComponent<RectTransform>().localScale *= highlighted ? 1.2f : 1/1.2f;
     }
 }

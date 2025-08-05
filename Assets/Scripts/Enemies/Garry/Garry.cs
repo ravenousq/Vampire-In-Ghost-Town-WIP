@@ -16,7 +16,6 @@ public class Garry : Enemy
 
     [Header("Lullaby")]
     [SerializeField] private Transform audioPoint;
-    public float ambientRange = 5;
     private AudioSource au;
 
     [Header("Pathing")]
@@ -36,7 +35,7 @@ public class Garry : Enemy
         parried = new GarryParriedState(this, stateMachine, "parried", this);
         death = new GarryDeathState(this, stateMachine, "death", this);
 
-        au = audioPoint.GetComponent<AudioSource>();
+        au = GetComponent<AudioSource>();
     }
 
     protected override void Start()
@@ -50,8 +49,8 @@ public class Garry : Enemy
     {
         base.Update();
 
-        if (CanHum() && Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position) < ambientRange)
-            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(audioPoint.position, PlayerManager.instance.player.transform.position)), 0, .9f);
+        if (CanHum())
+            AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, ambientRange);
         else
             au.volume = 0;
 

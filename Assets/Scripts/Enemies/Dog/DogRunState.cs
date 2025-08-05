@@ -19,9 +19,9 @@ public class DogRunState : DogGroundedState
         player = PlayerManager.instance.player;
         stateTimer = enemy.aggroTime;
         runChecker = MIN_RUN_TIME;
-        runDirection = playerOnRight();
+        runDirection = PlayerOnRight();
 
-        AudioManager.instance.PlaySFX(36);
+        enemy.anim.GetComponent<EnemyAnimationTriggers>().PlayFootstep();
     }
 
     public override void Update()
@@ -38,13 +38,13 @@ public class DogRunState : DogGroundedState
             enemy.SetVelocity(enemy.movementSpeed * runDirection, rb.linearVelocityY);
         else
         {
-            if (playerOnRight() != runDirection)
+            if (PlayerOnRight() != runDirection)
                 stateMachine.ChangeState(enemy.turn);
 
             if (Mathf.Abs(player.transform.position.x - enemy.attackPoint.transform.position.x) > enemy.attackDistance)
-                    enemy.SetVelocity(enemy.movementSpeed * runDirection, rb.linearVelocityY);
-                else
-                    stateMachine.ChangeState(enemy.attack);
+                enemy.SetVelocity(enemy.movementSpeed * runDirection, rb.linearVelocityY);
+            else
+                stateMachine.ChangeState(enemy.attack);
         }
 
     }
@@ -53,13 +53,13 @@ public class DogRunState : DogGroundedState
     {
         base.Exit();
 
-        AudioManager.instance.StopSFX(36);
+        enemy.anim.GetComponent<EnemyAnimationTriggers>().StopFootstep();
 
         if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
             enemy.Flip();
     }
     
-    private int playerOnRight() => player.transform.position.x > enemy.transform.position.x ? 1 : -1;
+    private int PlayerOnRight() => player.transform.position.x > enemy.transform.position.x ? 1 : -1;
 
 }
 

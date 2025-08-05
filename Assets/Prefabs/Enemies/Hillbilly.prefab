@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4104
   groundCheck: {fileID: 1450063785538067569}
   groundCheckDistance: 0.26
   wallCheck: {fileID: 1764377225815265495}
@@ -108,7 +108,7 @@ MonoBehaviour:
   poiseDamage: 15
   attackDistance: 1
   attackCooldown: 2
-  attackKnockback: {x: 2, y: 1}
+  attackKnockback: {x: 1, y: 2}
   attackPoint: {fileID: 6265684706792004123}
   itemPrefab: {fileID: 4235565483072219220, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
   drop: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   stunFX: {fileID: 7231425726482371352}
   attackFXIndex: 37
+  ambientRange: 0
   clips:
   - {fileID: 8300000, guid: a9093dff0456263409cef83738f4d28e, type: 3}
   - {fileID: 8300000, guid: 3568336c476846e40aecc377dd0bede6, type: 3}

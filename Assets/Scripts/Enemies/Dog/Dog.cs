@@ -30,8 +30,6 @@ public class Dog : Enemy
         au = GetComponent<AudioSource>();
     }
 
-    [SerializeField] private float ambientRange;
-
     protected override void Start()
     {
         base.Start();
@@ -45,8 +43,8 @@ public class Dog : Enemy
 
         stateMachine.current.Update();
 
-        if (CanGrowl() && Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position) < ambientRange)
-            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), 0, .9f);
+        if (CanGrowl())
+            AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, ambientRange, 0, .7f);
         else
             au.volume = 0;
     }

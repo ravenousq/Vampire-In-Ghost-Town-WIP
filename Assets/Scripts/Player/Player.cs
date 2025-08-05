@@ -1,10 +1,20 @@
 
 using System.Collections;
-using System.Diagnostics;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+//TODO: fix wanted dead;
+//TODO: make 'return' only appear on entering charms;
+//TODO: player freezes after doing an execution(dog only)(nwm);
+//TODO: add confirmation dialogue on quiting;
+//TODO: fix hillbilly's death state;
+//TODO: reset cursor position at npc shop;
+//TODO: give player item from enemy if it wasn't picked up;
+//TODO: add reset to default on video settings;
+//TODO: add a tooltip to credits;
+//TODO: delete rest notification; //DONE
+//TODO: delete cursor; //DONE
+//TODO: add chimming item; //DONE
+//TODO: fix dialogue item; //DONE
 
 [SelectionBase]
 public class Player : Entity

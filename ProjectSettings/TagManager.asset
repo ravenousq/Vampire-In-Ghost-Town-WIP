@@ -18,7 +18,7 @@ TagManager:
   - Ladder
   - Camera Bounds
   - Enemy No Collisions
-  - 
+  - Door
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 715952231
+    locked: 0
+  - name: Ladder
+    uniqueID: 3079442597
     locked: 0
   - name: Foreground
     uniqueID: 1590824005

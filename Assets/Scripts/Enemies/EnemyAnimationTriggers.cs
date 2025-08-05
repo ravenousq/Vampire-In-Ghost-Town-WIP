@@ -26,13 +26,12 @@ public class EnemyAnimationTriggers : MonoBehaviour
     {
         au.pitch = Random.Range(.9f, 1.1f);
 
-        float ambientRange = enemy.gameObject.GetComponent<Garry>().ambientRange;
+        float ambientRange = enemy.gameObject.GetComponent<Enemy>().ambientRange;
 
-        if (Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position) < ambientRange)
-        {
-            au.volume = Mathf.Clamp(Mathf.InverseLerp(ambientRange, 0, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position)), 0, .4f);
-            au.Play();
-        }
+        AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, ambientRange);
 
+        au.Play();
     }
+
+    public void StopFootstep() => au.Stop();
 }

@@ -79,6 +79,17 @@ public class UI : MonoBehaviour
         confirmationDialogue.gameObject.SetActive(false);
 
         pauseMenu.gameObject.SetActive(false);
+        
+        if (Application.isEditor)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private void Update()
@@ -86,8 +97,6 @@ public class UI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && canTurnOnGameMenu)
         {
-            // Cursor.visible = !Cursor.visible;
-            // Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
 
             EnableUI(Time.timeScale == 0);
 
@@ -100,12 +109,7 @@ public class UI : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && canTurnOnPauseMenu)
-        {
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Confined : CursorLockMode.None;
-
             pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
-        }
 
         if (gameMenu.activeSelf)
             NavigateTabs();
