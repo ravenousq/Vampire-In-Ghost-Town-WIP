@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
+//TODO: picking up cross after fragment doesn't unlock skill in the menu;
+//TODO: save settings on changing scene;
 //TODO: fix wanted dead;
-//TODO: make 'return' only appear on entering charms;
 //TODO: player freezes after doing an execution(dog only)(nwm);
 //TODO: add confirmation dialogue on quiting;
 //TODO: fix hillbilly's death state;
@@ -11,6 +12,7 @@ using UnityEngine;
 //TODO: give player item from enemy if it wasn't picked up;
 //TODO: add reset to default on video settings;
 //TODO: add a tooltip to credits;
+//TODO: make 'return' only appear on entering charms; //DONE
 //TODO: delete rest notification; //DONE
 //TODO: delete cursor; //DONE
 //TODO: add chimming item; //DONE

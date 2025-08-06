@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Inventory : MonoBehaviour, ISaveManager
 {
@@ -68,17 +69,17 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     private void AddStartingEquipment()
     {
-        for (int i = 0; i < loadedCharms.Count; i++)
-            EquipCharm(loadedCharms[i], i);
-
         if (loadedItems.Count > 0)
         {
             foreach (InventoryItem item in loadedItems)
                 for (int i = 0; i < item.stackSize; i++)
                     AddItemMute(item.itemData);
-
-            return;
         }
+
+        UpdateSlotUI();
+
+        for (int i = 0; i < loadedCharms.Count; i++)
+            EquipCharm(loadedCharms[i], i);
 
         if(!SaveManager.instance.HasSavedData())
             for (int i = 0; i < startingEquipment.Count; i++)
@@ -91,21 +92,26 @@ public class Inventory : MonoBehaviour, ISaveManager
             return;
 
         if (equipedCharmsDictionary.ContainsKey(item))
-        {
             for (int i = 0; i < equipedCharms.Length; i++)
-            {
                 if (equipedCharms[i]?.itemData == item)
                 {
                     UnequipCharm(item, i);
-                    return;
+                    break;
                 }
-            }
-        }
-
+        
         InventoryItem newCharm = new InventoryItem(item);
 
         if (equipedCharms[slotToEquip] != null)
             UnequipCharm(equipedCharms[slotToEquip].itemData as CharmData, slotToEquip);
+
+        foreach (ItemSlotUI slot in charmsSlots)
+        {
+            if (slot?.item?.itemData == item)
+            {
+                slot.EquipCharm();
+                break;
+            }
+        }
 
         equipedCharms[slotToEquip] = newCharm;
         equipedCharmsDictionary.Add(item, newCharm);
@@ -116,12 +122,19 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void UnequipCharm(CharmData item, int slotToUnequip = -1)
     {
+        if (slotToUnequip == -1)
+            return;
+
         if (equipedCharmsDictionary.TryGetValue(item, out InventoryItem value))
         {
             equipedCharms[slotToUnequip] = null;
             equipedCharmsDictionary.Remove(item);
             item.UnequipEffects();
         }
+
+        foreach (ItemSlotUI slot in charmsSlots)
+            if (slot?.item?.itemData == item)
+                slot.EquipCharm(false);
 
         UpdateSlotUI();
     }

@@ -8,6 +8,8 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private Image itemImage;
     [SerializeField] private Image selectedImage;
     [SerializeField] private TextMeshProUGUI itemText;
+    [SerializeField] private Sprite equipedCharmFrame;
+    [SerializeField] private Sprite unequippedCharmFrame;
     private ItemDescriptionUI itemDescription;
 
     public InventoryItem item;
@@ -15,22 +17,23 @@ public class ItemSlotUI : MonoBehaviour
     private void Start()
     {
         itemDescription = UI.instance.itemDescription;
-        if(gameObject.name.Contains("Equipped Charm Slot"))
-           frame.color = Color.white;
+
+        if (gameObject.name.Contains("Equipped Charm Slot"))
+            frame.color = Color.white;
     }
 
     public void UpdateSlot(InventoryItem item)
     {
-        if(item == null)
+        if (item == null)
             return;
 
         this.item = item;
         itemImage.color = Color.white;
 
-        if(gameObject.name.Contains("Equipped Charm Slot") || item != null)
-           frame.color = Color.white;
-         
-        if(item != null && item.itemData != null)
+        if (gameObject.name.Contains("Equipped Charm Slot") || item != null)
+            frame.color = Color.white;
+
+        if (item != null && item.itemData != null)
         {
             itemImage.sprite = item?.itemData.icon;
             itemText.text = item.stackSize > 1 ? item.stackSize.ToString() : "";
@@ -49,4 +52,10 @@ public class ItemSlotUI : MonoBehaviour
     {
         GetComponent<RectTransform>().localScale = selected ? Vector3.one * 1.2f : Vector3.one;
     }
+
+    public void EquipCharm(bool equip = true)
+    {
+        frame.sprite = equip ? equipedCharmFrame : unequippedCharmFrame;
+    }
+
 }

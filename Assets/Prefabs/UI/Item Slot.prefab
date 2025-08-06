@@ -95,6 +95,7 @@ MonoBehaviour:
   itemImage: {fileID: 8833865855692089656}
   selectedImage: {fileID: 2773473359208830028}
   itemText: {fileID: 6759210315825642401}
+  equipedCharmFrame: {fileID: -468306068546887166, guid: b85da535219c5f5408f558f020482252, type: 3}
   item:
     itemData: {fileID: 0}
     stackSize: 0
