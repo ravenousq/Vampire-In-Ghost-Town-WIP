@@ -17,6 +17,7 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private Transform audioPoint;
     [SerializeField] private float fadeSpeed;
     [SerializeField] private float ambientRange = 5;
+    public bool isLoot { get; private set; }
     private bool inRange;
 
     private void Update()
@@ -47,16 +48,21 @@ public class ItemObject : MonoBehaviour
         // item = 1;
         // != null ?
 
-            // if (item > 1)
-            // {
-            //     then 1 > 00;
-            //     private item = < 64;
-            // }
+        // if (item > 1)
+        // {
+        //     then 1 > 00;
+        //     private item = < 64;
+        // }
     }
 
     private void OnValidate() => gameObject.name = item != null ? item.itemName : "Item Object";
 
-    public void SetUpItem(ItemData item) => this.item = item;
+    public void SetUpItem(ItemData item, bool isLoot = false)
+    {
+        this.item = item;
+        this.isLoot = isLoot;
+    } 
+        
 
     public void PickUpItem()
     {

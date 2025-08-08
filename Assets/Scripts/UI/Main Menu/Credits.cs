@@ -34,12 +34,15 @@ public class Credits : MenuNavigation
             scrollSpeed = Mathf.Clamp(scrollSpeed * 2, defaultScrollSpeed / 2, defaultScrollSpeed * 2);
         else if (Input.GetKeyUp(KeyCode.S) || Input.GetKey(KeyCode.W))
             scrollSpeed = Mathf.Clamp(scrollSpeed / 2, defaultScrollSpeed / 2, defaultScrollSpeed * 2);
-            
+
 
         if (!MainMenu.instance.fadeScreen.isFadingOut)
             credtisText.anchoredPosition += Vector2.up * scrollSpeed * Time.deltaTime;
 
         if (credtisText.anchoredPosition.y > offScreenPosition || Input.GetKeyDown(KeyCode.Space))
+            Remote();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
             Remote();
     }
 

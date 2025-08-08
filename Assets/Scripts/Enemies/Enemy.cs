@@ -122,7 +122,7 @@ public class Enemy : Entity
         stats.OnDamaged -= BloodFX;
 
         if(drop)
-            Instantiate(itemPrefab, itemDropPosition.position, Quaternion.identity).SetUpItem(drop);
+            Instantiate(itemPrefab, itemDropPosition.position, Quaternion.identity).SetUpItem(drop, true);
 
         if (isAMiniBoss)
             LevelManager.instance.MiniBossDefeated(this);

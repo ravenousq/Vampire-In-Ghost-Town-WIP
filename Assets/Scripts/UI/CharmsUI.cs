@@ -190,7 +190,7 @@ public class CharmsUI : MonoBehaviour
     {
         SwitchToCharm(0);
         charmIndex = 0;
-        navigatingCharms = false;
+        navigatingCharms = true;
         SwitchToSlot(-1);
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -329,6 +330,13 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void SaveData(ref GameData data)
     {
+        ItemObject[] lootItems = FindObjectsByType<ItemObject>(FindObjectsSortMode.None)
+        .Where(item => item.isLoot)
+        .ToArray();
+
+        foreach (ItemObject itemObject in lootItems)
+            AddItemMute(itemObject.item);
+
         data.inventory.Clear();
         data.charmsID.Clear();
 

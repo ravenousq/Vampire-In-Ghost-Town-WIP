@@ -14,7 +14,8 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
     public KeyValuePair<int, int> resolution { get; private set; } = new KeyValuePair<int, int>(1920, 1080);
     public FullScreenMode fullscreenMode { get; private set; } = FullScreenMode.ExclusiveFullScreen;
     private int chosenResolutionIndex = 0;
-
+    private const int defaultResolutionIndex = 0;
+    private const int defaultFullscreenMode = 0;
 
 
     protected override void Start()
@@ -47,6 +48,9 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
         switch (currentButtonIndex)
         {
             case 6:
+                RestoreDefaultSettings();
+                break;
+            case 7:
                 StartCoroutine(GoBackToSettings());
                 UI.instance.fadeScreen.FadeIn();
                 break;
@@ -187,7 +191,7 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
     {
         Screen.SetResolution(resolution.Key, resolution.Value, fullscreenMode);
     }
-    
+
     protected override void ChangeOption(bool increment = true)
     {
         switch (currentButtonIndex - 4)
@@ -240,5 +244,21 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
 
         data.resolution = chosenResolutionIndex;
         data.screenMode = (int)fullscreenMode;
+    }
+    
+    private void RestoreDefaultSettings()
+    {
+        for (int i = 0; i < (int)fullscreenMode; i++)
+            lists[0].Retract();
+
+        for (int i = 0; i < chosenResolutionIndex; i++)
+            lists[1].Retract();
+
+        chosenResolutionIndex = defaultResolutionIndex;
+        fullscreenMode = (FullScreenMode)defaultFullscreenMode;
+
+        resolution = new KeyValuePair<int, int>(possibleResolutions[chosenResolutionIndex][0], possibleResolutions[chosenResolutionIndex][1]);
+
+        SetResolution();
     }
 }

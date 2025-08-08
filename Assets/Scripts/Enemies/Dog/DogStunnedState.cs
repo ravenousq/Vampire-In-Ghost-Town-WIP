@@ -13,6 +13,7 @@ public class DogStunnedState : DogGroundedState
         stateTimer = enemy.stats.stunTime;
         enemy.AllowExecution(true);
         enemy.EnableStunFX(true);
+        enemy.anim.GetComponent<EnemyAnimationTriggers>().PlayFootstep();
     }
 
     public override void Update()
@@ -29,6 +30,7 @@ public class DogStunnedState : DogGroundedState
     {
         base.Exit();
 
+        enemy.anim.GetComponent<EnemyAnimationTriggers>().StopFootstep();
         enemy.AllowExecution(false);
         enemy.EnableStunFX(false);
     }

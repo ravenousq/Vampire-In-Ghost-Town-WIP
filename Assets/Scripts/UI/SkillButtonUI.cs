@@ -123,9 +123,9 @@ public class SkillButtonUI : MonoBehaviour, ISaveManager
     public int GetIntPrice() => price;
     public bool IsSecret() => isSecret;
 
-    public void Purchase()
+    public void Purchase(bool forFree = false)
     {
-        if (!hasNoPrice)
+        if (!hasNoPrice && !forFree)
         {
             PlayerManager.instance.RemoveCurrency(price);
             boss.RemoveSouls(price);
@@ -247,12 +247,16 @@ public class SkillButtonUI : MonoBehaviour, ISaveManager
     public void LoadData(GameData data)
     {
         if (data.skillTree.TryGetValue(skillName, out bool value))
-            unlocked = value;
-
-        if (unlocked)
         {
-            SkillManager.instance.UnlockSkill(skillName);
-            isSecret = false;
+            if (value == true)
+            {
+                if (isSecret)
+                    boss.UnlockSecretSkill(skillName);
+                else
+                    Purchase(true);
+                
+                boss.UpdateAll();
+            }
         }
     }
 

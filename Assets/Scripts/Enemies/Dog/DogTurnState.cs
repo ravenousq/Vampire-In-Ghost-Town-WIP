@@ -15,7 +15,6 @@ public class DogTurnState : DogGroundedState
 
         stateTimer = enemy.idleTime;
         turned = false;
-        AudioManager.instance.PlaySFX(36);
     }
 
     public override void Update()
@@ -26,7 +25,6 @@ public class DogTurnState : DogGroundedState
         {
             if (playerOnRight() && enemy.facingDir == -1 || !playerOnRight() && enemy.facingDir == 1)
             {
-                AudioManager.instance.StopSFX(36);
                 turned = true;
                 enemy.anim.SetBool("run", false);
                 enemy.anim.SetTrigger("turn");

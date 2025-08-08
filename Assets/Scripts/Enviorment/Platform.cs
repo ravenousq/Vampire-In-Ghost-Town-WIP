@@ -9,9 +9,7 @@ public class Platform : MonoBehaviour
     {
         effector = GetComponentInChildren<PlatformEffector2D>();
     }
-
-    [SerializeField] private LayerMask whatIsGround;
-    [SerializeField] private LayerMask whatIsDefault;
+    
     private Player player;
     private bool collisionActive;
     private float defaultArc;
@@ -34,15 +32,16 @@ public class Platform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Player>().GetComponent<CapsuleCollider2D>())
+        if (other.GetComponent<Player>() && other.GetComponent<CapsuleCollider2D>())
         {
             collisionActive = true;
+            
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<Player>().GetComponent<CapsuleCollider2D>())
+        if (other.GetComponent<Player>() && other.GetComponent<CapsuleCollider2D>())
         {
             collisionActive = false;
             effector.surfaceArc = defaultArc;

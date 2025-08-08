@@ -24,8 +24,8 @@ public class Crosshair : MonoBehaviour
     private float rewardMultiplier = 1.5f;
     private bool canIncreaseRewards;
 
-    private List<Transform> enemiesToAdd = new List<Transform>();
-    private List<Transform> targets = new List<Transform>();
+    private List<Enemy> enemiesToAdd = new List<Enemy>();
+    private List<Enemy> targets = new List<Enemy>();
 
 
     public void SetUp(float maxAimDuration, float crosshairSpeed, float crosshairResistance, CinemachineCamera cinemachine, int ammo, int physicalDamage, int poiseDamage, int defaultReward)
@@ -58,9 +58,9 @@ public class Crosshair : MonoBehaviour
     private void Update()
     {
         aimTimer -= Time.deltaTime;
+
         if (aimTimer <= 0 || Input.GetKeyDown(KeyCode.F))
             Execute();
-
 
         MovementLogic();
 
@@ -84,7 +84,7 @@ public class Crosshair : MonoBehaviour
     {
         if(targets.Count > 0)
         {
-            Enemy enemy = targets[Random.Range(0, targets.Count)].GetComponent<Enemy>();
+            Enemy enemy = targets[Random.Range(0, targets.Count)];
             enemy.stats.OnDie += IncreaseRewards;
 
             enemy.stats.TakeDamage(Mathf.RoundToInt(physicalDamage/finalTargets));
@@ -92,7 +92,7 @@ public class Crosshair : MonoBehaviour
             enemy.Knockback(new Vector2(2, 2), enemy.gameObject.transform.position.x + (Random.Range(1, 10) > 5 ? -1 : 1), 2);
             enemy.mark.SetActive(false);
             enemy.stats.OnDie -= IncreaseRewards;
-            targets.Remove(enemy.gameObject.transform);
+            targets.Remove(enemy);
 
             if(!SkillManager.instance.isSkillUnlocked("Amen & Attack"))
                 SkillManager.instance.shoot.ModifyBullets(-1);
@@ -136,15 +136,16 @@ public class Crosshair : MonoBehaviour
             if(ammo == targets.Count && !SkillManager.instance.isSkillUnlocked("Amen & Attack"))
                 return;
             
-            targets.Add(enemiesToAdd[^1]);
+            targets.Add(enemiesToAdd[0]);
+            enemiesToAdd[0].mark.SetActive(true);
 
-            if(!SkillManager.instance.isSkillUnlocked("Ashen Rain"))
+            enemiesToAdd.RemoveAt(0);
+
+            if (!SkillManager.instance.isSkillUnlocked("Ashen Rain"))
             {
                 Execute();
                 return;
             }
-
-            enemiesToAdd[^1].GetComponent<Enemy>().mark.SetActive(true);
         }
     }
 
@@ -168,20 +169,28 @@ public class Crosshair : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(!other.GetComponent<Enemy>())
-            return;   
+        Enemy enemy; 
+
+        if (!other.GetComponent<Enemy>())
+            return;
+        else 
+            enemy = other.GetComponent<Enemy>();   
         
-        if(!targets.Contains(other.gameObject.transform) && !enemiesToAdd.Contains(other.gameObject.transform))
-            enemiesToAdd.Add(other.gameObject.transform);
+        if (!targets.Contains(enemy) && !enemiesToAdd.Contains(enemy))
+            enemiesToAdd.Add(enemy);
     }
     
     private void OnTriggerExit2D(Collider2D other) 
     {
-        if(!other.GetComponent<Enemy>())
-            return;   
+        Enemy enemy;
+        
+        if (!other.GetComponent<Enemy>())
+            return;
+        else
+            enemy = other.GetComponent<Enemy>();      
 
-        if(enemiesToAdd.Contains(other.gameObject.transform))
-            enemiesToAdd.Remove(other.gameObject.transform);
+        if(enemiesToAdd.Contains(enemy))
+            enemiesToAdd.Remove(enemy);
     }
 
     private void OnDrawGizmos() 

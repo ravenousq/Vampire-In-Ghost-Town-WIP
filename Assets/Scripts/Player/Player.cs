@@ -2,21 +2,16 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: picking up cross after fragment doesn't unlock skill in the menu;
 //TODO: save settings on changing scene;
 //TODO: fix wanted dead;
 //TODO: player freezes after doing an execution(dog only)(nwm);
 //TODO: add confirmation dialogue on quiting;
 //TODO: fix hillbilly's death state;
-//TODO: reset cursor position at npc shop;
-//TODO: give player item from enemy if it wasn't picked up;
-//TODO: add reset to default on video settings;
-//TODO: add a tooltip to credits;
-//TODO: make 'return' only appear on entering charms; //DONE
-//TODO: delete rest notification; //DONE
-//TODO: delete cursor; //DONE
-//TODO: add chimming item; //DONE
-//TODO: fix dialogue item; //DONE
+//TODO: reset cursor position at npc shop; //DONE
+//TODO: picking up cross after fragment doesn't unlock skill in the menu; //DONE
+//TODO: give player item from enemy if it wasn't picked up; //DONE
+//TODO: add reset to default on video settings; //DONE
+//TODO: add a tooltip to credits; //DONE
 
 [SelectionBase]
 public class Player : Entity
@@ -112,7 +107,7 @@ public class Player : Entity
     private bool creatingAfterImage;
 
     [Header("Debug")]
-    [SerializeField] private Garry garry;
+    [SerializeField] private Enemy enemyToSpawn;
     private float haloTimer;
     #endregion
 
@@ -178,7 +173,7 @@ public class Player : Entity
         stateMachine.current.Update();
 
         if(Input.GetKeyDown(KeyCode.I))
-            Instantiate(garry, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
+            Instantiate(enemyToSpawn, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
 
 
         if(!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)

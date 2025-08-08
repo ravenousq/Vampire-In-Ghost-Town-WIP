@@ -52,7 +52,7 @@ public class PlayerAirborneState : PlayerState
             stateMachine.ChangeState(player.idle);
         }
 
-        if (player.IsWallDetected() && rb.linearVelocityY < 0 && player.canWallSlide)
+        if (player.IsWallDetected() && rb.linearVelocityY < 0 && player.canWallSlide && SkillManager.instance.isSkillUnlocked("Paradise Of The Architect"))
             stateMachine.ChangeState(player.wallSlide);
 
         if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Mouse0) && SkillManager.instance.isSkillUnlocked("Into The Abyss"))

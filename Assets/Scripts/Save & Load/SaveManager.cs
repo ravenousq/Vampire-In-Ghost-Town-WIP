@@ -22,6 +22,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private string settingsDataFileName;
     [SerializeField] private bool encryptData;
+    [SerializeField] private bool debug;
     private List<ISaveManager> saveManagers;
     private List<ISaveManagerSettings> settingsSaveManagers;
 
@@ -31,8 +32,17 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        LoadGame();
-        LoadSettings();
+        if (debug)
+        {
+            Debug.LogWarning("Debuigging is on, data cleared.");
+            if (HasSavedData())
+                DeleteSavedData();
+        }
+        else
+        {            
+            LoadGame();
+            LoadSettings();
+        }
     }
 
     public void NewGame()

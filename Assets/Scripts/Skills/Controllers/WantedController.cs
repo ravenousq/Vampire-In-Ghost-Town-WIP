@@ -55,8 +55,7 @@ public class WantedController : SkillController
 
         currentCrosshair = newCrosshair;
 
-
-        newCrosshair.SetUp(SkillManager.instance.isSkillUnlocked("Ashen Rain") ? ashenRainDuration : maxAimDuration, crosshairSpeed, crosshairResistance, cinemachine, currentAmmo, physicalDamage, poiseDamage, defaultReward);
+        newCrosshair.SetUp(GetMaxDuration(), crosshairSpeed, crosshairResistance, cinemachine, currentAmmo, physicalDamage, poiseDamage, defaultReward);
 
         PlayerManager.instance.player.AssignCrosshair(newCrosshair);
     }

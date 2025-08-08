@@ -80,7 +80,7 @@ public class UI : MonoBehaviour
 
         pauseMenu.gameObject.SetActive(false);
         
-        if (Application.isEditor)
+        if (!Application.isEditor)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
