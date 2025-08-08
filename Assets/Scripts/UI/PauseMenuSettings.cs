@@ -15,7 +15,7 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
     public FullScreenMode fullscreenMode { get; private set; } = FullScreenMode.ExclusiveFullScreen;
     private int chosenResolutionIndex = 0;
     private const int defaultResolutionIndex = 0;
-    private const int defaultFullscreenMode = 0;
+    private const int defaultFullscreenMode = 1;
 
 
     protected override void Start()
@@ -248,11 +248,14 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
     
     private void RestoreDefaultSettings()
     {
-        for (int i = 0; i < (int)fullscreenMode; i++)
+        for (int i = 0; i < (int)fullscreenMode - 1; i++)
             lists[0].Retract();
 
+        if (fullscreenMode == FullScreenMode.ExclusiveFullScreen)
+            lists[0].Proceed();
+
         for (int i = 0; i < chosenResolutionIndex; i++)
-            lists[1].Retract();
+                lists[1].Retract();
 
         chosenResolutionIndex = defaultResolutionIndex;
         fullscreenMode = (FullScreenMode)defaultFullscreenMode;

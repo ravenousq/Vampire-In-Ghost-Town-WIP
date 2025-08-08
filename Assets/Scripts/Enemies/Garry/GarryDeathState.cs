@@ -15,6 +15,8 @@ public class GarryDeathState : GarryGroundedState
     {
         base.Update();
 
+        enemy.ResetVelocity();
+
         if (trigger)
             enemy.DestroyMe(); 
     }

@@ -11,7 +11,8 @@ public class HillbillyMoveState : HillbillyGroundedState
     {
         base.Enter();
 
-        if(!enemy.IsGroundDetected())
+    
+        if (!enemy.IsGroundDetected())
             enemy.Flip();
     }
 
@@ -22,7 +23,6 @@ public class HillbillyMoveState : HillbillyGroundedState
         if (enemy.IsPlayerDetected(false) && Time.time - enemy.primary.lastTimeAttacked > enemy.attackCooldown)
             stateMachine.ChangeState(enemy.primary);
     
-
         enemy.SetVelocity(enemy.movementSpeed * enemy.facingDir, rb.linearVelocityY);
 
         if (!enemy.IsGroundDetected() || enemy.IsWallDetected())

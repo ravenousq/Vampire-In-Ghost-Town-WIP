@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4104
+    m_Bits: 12296
   groundCheck: {fileID: 2631237467825647870}
   groundCheckDistance: 0.31
   wallCheck: {fileID: 1273608519000908600}

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -115,6 +114,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     {
         UI.instance.fadeScreen.FadeIn();
         SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
 
         yield return new WaitForSecondsRealtime(1.5f);
 

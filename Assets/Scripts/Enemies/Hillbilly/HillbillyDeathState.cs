@@ -18,6 +18,8 @@ public class HillbillyDeathState : HillbillyGroundedState
     {
         base.Update();
 
+        enemy.ResetVelocity();
+
         if (trigger && !enemy.au.isPlaying)
             enemy.DestroyMe();
     }

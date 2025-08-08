@@ -11,13 +11,16 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
 
     private bool firstAttack = true;
     private int lastClip;
-    private int clipToPlay = 3;
+    private int clipToPlay = -1;
 
     public override void Enter()
     {
         base.Enter();
 
         enemy.stats.OnDamaged -= enemy.BecomeAggresive;
+
+        if(clipToPlay == -1)
+            clipToPlay = Random.Range(2, 7);
 
         while (clipToPlay == lastClip)
             clipToPlay = Random.Range(2, 7);

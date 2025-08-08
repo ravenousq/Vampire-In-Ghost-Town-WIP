@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
     public bool canMove { get; protected set; } = true;
     public int facingDir {get; protected set; } = 1;
     public bool facingRight { get; protected set; } = true;
+    public bool debug;
     #endregion
 
     public System.Action OnFlipped;
@@ -51,7 +52,7 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void SetVelocity(Vector2 velocity, bool SlowMotion = false)
     {
-        if(rb.bodyType == RigidbodyType2D.Static)
+        if (rb.bodyType == RigidbodyType2D.Static)
             return;
 
         FlipController(velocity.x);
@@ -60,7 +61,7 @@ public class Entity : MonoBehaviour
         
         if(canMove)
         {
-            if(!SlowMotion)
+            if (!SlowMotion)
                 rb.linearVelocity = velocity;
             else
                 rb.MovePosition(rb.position + velocity);
@@ -82,7 +83,7 @@ public class Entity : MonoBehaviour
 
         if(canMove)
         {
-            if(!SlowMotion)
+            if (!SlowMotion)
                 rb.linearVelocity = velocity;
             else
                 rb.MovePosition(rb.position + velocity);

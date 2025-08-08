@@ -24,7 +24,7 @@ public class PauseMenu : MenuNavigation
 
     protected override void Update()
     {
-        if (settings.gameObject.activeSelf)
+        if (settings.gameObject.activeSelf || UI.instance.confirmationDialogue.gameObject.activeSelf)
             return;
 
         base.Update();
@@ -42,17 +42,25 @@ public class PauseMenu : MenuNavigation
                 StartCoroutine(GoToSettings());
                 break;
             case 2:
-                UI.instance.fadeScreen.FadeIn();
-                AudioManager.instance.StopBGM();
-                StartCoroutine(GoToMainMenu());
+                UI.instance.SetUpConfirmationDialogue("Save and Quit?", null, "Yes", "No");
+                UI.instance.confirmationDialogue.onConfirm += QuitGame;
                 break;
         }
 
         base.Remote();
     }
 
+    private void QuitGame()
+    {
+        UI.instance.confirmationDialogue.onConfirm -= QuitGame;
+        StartCoroutine(GoToMainMenu());
+    }
+
     private IEnumerator GoToMainMenu()
     {
+        UI.instance.fadeScreen.FadeIn();
+        AudioManager.instance.StopBGM();
+
         yield return new WaitForSecondsRealtime(1.5f);
 
         SaveManager.instance.SaveGame();

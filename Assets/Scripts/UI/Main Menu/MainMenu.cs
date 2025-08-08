@@ -38,6 +38,17 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1;
 
+        if (Application.isEditor)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
         screens[3].GetComponent<VideoSettings>().SetResolution();
 
         foreach (var screen in screens)

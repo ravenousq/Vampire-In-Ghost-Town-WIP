@@ -86,13 +86,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 8200
   groundCheck: {fileID: 5662454704947680475}
   groundCheckDistance: 0.06
   wallCheck: {fileID: 7125997904733446749}
   wallCheckDistance: 0
   knockbackMultiplayer: 0
   mark: {fileID: 5534801607744581053}
+  isAMiniBoss: 0
   movementSpeed: 0
   idleTime: 2
   aggroTime: 5
@@ -109,6 +110,10 @@ MonoBehaviour:
   itemPrefab: {fileID: 4235565483072219220, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
   drop: {fileID: 0}
   itemDropPosition: {fileID: 3384131144116360337}
+  bloodFX: {fileID: 0}
+  stunFX: {fileID: 0}
+  attackFXIndex: 0
+  ambientRange: 0
 --- !u!114 &2627833884206202763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +148,7 @@ MonoBehaviour:
   stunTime: 4
   poiseTracker: 0
   debugDamage: 0
+  currencyToDrop: 0000000000000000
   level: 1
   percentageModifier: 0.4
   bulletsToRecover: 0

@@ -42,17 +42,18 @@ public class Crosshair : MonoBehaviour
         player = PlayerManager.instance.player;
 
         initialPosition = transform.position;
-        
+
         player.stats.OnDamaged += StopAiming;
 
         Camera cam = Camera.main;
 
         Vector3 screenCenter = cam.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         Vector3 screenTopRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-;
+        ;
 
-        bounds = new Vector2(screenTopRight.x - screenCenter.x,screenTopRight.y - screenCenter.y);
+        bounds = new Vector2(screenTopRight.x - screenCenter.x, screenTopRight.y - screenCenter.y);
         this.cinemachine.Follow = gameObject.transform;
+        reward = defaultReward;
     }
 
     private void Update()
@@ -89,7 +90,7 @@ public class Crosshair : MonoBehaviour
 
             enemy.stats.TakeDamage(Mathf.RoundToInt(physicalDamage/finalTargets));
             enemy.stats.LosePoise(poiseDamage);
-            enemy.Knockback(new Vector2(2, 2), enemy.gameObject.transform.position.x + (Random.Range(1, 10) > 5 ? -1 : 1), 2);
+            //enemy.Knockback(new Vector2(2, 2), enemy.gameObject.transform.position.x + (Random.Range(1, 10) > 5 ? -1 : 1), 2);
             enemy.mark.SetActive(false);
             enemy.stats.OnDie -= IncreaseRewards;
             targets.Remove(enemy);
@@ -104,7 +105,7 @@ public class Crosshair : MonoBehaviour
             StartCoroutine(DamageTargets());
         else
         {
-            AddCurrency();
+            PlayerManager.instance.AddCurrency(reward);
             player.stats.OnDamaged -= StopAiming;
             Destroy(gameObject);
         }
@@ -120,12 +121,6 @@ public class Crosshair : MonoBehaviour
         }
         reward += Mathf.RoundToInt(reward * rewardMultiplier);
         rewardMultiplier += .5f;
-    }
-
-    public void AddCurrency()
-    {
-        PlayerManager.instance.AddCurrency(reward);
-        UI.instance.ModifySouls(reward);
     }
 
     private void GatherTargets()

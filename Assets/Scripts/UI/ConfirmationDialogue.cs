@@ -12,7 +12,7 @@ public class ConfirmationDialogue : MonoBehaviour
     [SerializeField] private float defaultFontSize;
     public System.Action onConfirm;
     public System.Action onDecline;
-    private bool highlightedOption;
+    [SerializeField] private bool highlightedOption;
     private GameObject wakeUp;
 
     void Start()
@@ -32,11 +32,11 @@ public class ConfirmationDialogue : MonoBehaviour
                 onConfirm?.Invoke();
             else
                 onDecline?.Invoke();
-
+            
             onConfirm = null;
             onDecline = null;
 
-            if (wakeUp)
+            if (wakeUp != null)
                 wakeUp.SetActive(true);
 
             gameObject.SetActive(false);

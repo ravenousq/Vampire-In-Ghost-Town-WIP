@@ -34,6 +34,8 @@ public class Hillbilly : Enemy
     {
         base.Start();
 
+        stats.OnDamaged += BecomeAggresive;
+
         stateMachine.Initialize(idle);
     }
 
@@ -41,12 +43,17 @@ public class Hillbilly : Enemy
     {
         base.Update();
 
+        if (debug)
+            Debug.Log("Current State: " + stateMachine.current.GetType().Name + " - " + stateMachine.current.animBoolName);
+
         stateMachine.current.Update();
     }
 
     public override void Die()
     {
         base.Die();
+
+        stats.OnDamaged -= BecomeAggresive;
 
         stateMachine.ChangeState(death);
     }
@@ -59,7 +66,9 @@ public class Hillbilly : Enemy
 
     public override void BecomeAggresive()
     {
-        if (stateMachine.current == combo || stateMachine.current == stun)
+        Debug.Log(gameObject.name + " is aggresive");
+
+        if (stateMachine.current != idle && stateMachine.current != move)
             return;
 
         float playerPosX = PlayerManager.instance.player.transform.position.x;
@@ -77,6 +86,16 @@ public class Hillbilly : Enemy
 
         if (stateMachine.current == stun)
             stateMachine.ChangeState(idle);
+    }
+
+    public override void Stun()
+    {
+        if (stats.HP <= 0)
+            return;
+
+        base.Stun();
+
+        stateMachine.ChangeState(stun);
     }
 
     public override void GetExecuted()

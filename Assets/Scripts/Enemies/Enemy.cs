@@ -41,6 +41,7 @@ public class Enemy : Entity
     public int attackFXIndex;
     private bool isBeingDestroyed;
     public float ambientRange;
+    protected bool cdIsTrigger;
 
     Player player;
 
@@ -51,6 +52,7 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
+        cdIsTrigger = cd.isTrigger;
     }
 
     protected override void Start()
@@ -119,6 +121,9 @@ public class Enemy : Entity
     {
         base.Die();
 
+        cd.isTrigger = true;
+        rb.bodyType = RigidbodyType2D.Static;
+
         stats.OnDamaged -= BloodFX;
 
         if(drop)
@@ -147,7 +152,10 @@ public class Enemy : Entity
 
     public virtual void Recover()
     {
-        cd.isTrigger = false;
+        if (stats.HP <= 0)
+            return;
+
+        cd.isTrigger = cdIsTrigger;
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 

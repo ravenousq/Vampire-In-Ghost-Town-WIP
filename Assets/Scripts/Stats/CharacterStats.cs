@@ -54,8 +54,8 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void Die()
     {
-        if(debugDamage)
-            Debug.Log(gameObject.name + " is dead fr.");
+        if (debugDamage)
+                Debug.Log(gameObject.name + " is dead fr.");
 
         if(OnDie != null)
             OnDie();
@@ -159,7 +159,7 @@ public class CharacterStats : MonoBehaviour
     
     public virtual void TakeDamage(int damage)
     {
-        if(!canBeDamaged)
+        if(!canBeDamaged || HP <= 0)
             return;
 
         if(debugDamage)

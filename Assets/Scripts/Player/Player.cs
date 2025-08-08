@@ -1,17 +1,11 @@
-
 using System.Collections;
 using UnityEngine;
 
-//TODO: save settings on changing scene;
-//TODO: fix wanted dead;
-//TODO: player freezes after doing an execution(dog only)(nwm);
-//TODO: add confirmation dialogue on quiting;
-//TODO: fix hillbilly's death state;
-//TODO: reset cursor position at npc shop; //DONE
-//TODO: picking up cross after fragment doesn't unlock skill in the menu; //DONE
-//TODO: give player item from enemy if it wasn't picked up; //DONE
-//TODO: add reset to default on video settings; //DONE
-//TODO: add a tooltip to credits; //DONE
+//TODO: fix wanted dead; //DONE
+//TODO: player freezes after doing an execution(dog only)(nwm); //DONE
+//TODO: add confirmation dialogue on quiting; //DONE
+//TODO: fix hillbilly's death state; //DONE
+//TODO: save settings on changing scene;//DONE
 
 [SelectionBase]
 public class Player : Entity
@@ -356,10 +350,11 @@ public class Player : Entity
     #region Collisions
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<EnemyStats>()?.HP >= 0)
+        if (other.gameObject.GetComponent<EnemyStats>()?.HP > 0)
         {
             if (!isKnocked && stateMachine.current != dive)
             {
+                Debug.Log(other.gameObject.GetComponent<EnemyStats>()?.HP);
                 stats.SwitchInvincibility(true);
                 stats.TakeDamage(5);
                 stats.LosePoise(10);

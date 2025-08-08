@@ -79,17 +79,6 @@ public class UI : MonoBehaviour
         confirmationDialogue.gameObject.SetActive(false);
 
         pauseMenu.gameObject.SetActive(false);
-        
-        if (!Application.isEditor)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
     }
 
     private void Update()

@@ -12,7 +12,6 @@ public class HillbillyIdleState : HillbillyGroundedState
         base.Enter();
 
         stateTimer = enemy.idleTime;
-        enemy.stats.OnDamaged += enemy.BecomeAggresive;
     }
 
     public override void Update()
