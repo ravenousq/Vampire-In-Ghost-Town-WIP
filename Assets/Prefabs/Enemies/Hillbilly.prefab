@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450063785538067569}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8656724370460275185}
   - component: {fileID: 3135277017797397706}
   - component: {fileID: 1729050020699772913}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Hillbilly
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   wallCheck: {fileID: 1764377225815265495}
   wallCheckDistance: 1.58
   knockbackMultiplayer: 1
+  debug: 0
   mark: {fileID: 6360046238730448348}
   isAMiniBoss: 0
   movementSpeed: 1
@@ -348,7 +349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764377225815265495}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Wall Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6265684706792004123}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7194294730277315859}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Item Drop Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +445,7 @@ GameObject:
   - component: {fileID: 7813200188892291255}
   - component: {fileID: 4755576213777265878}
   - component: {fileID: 5804631969669563835}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5155960474367110522, guid: 9c7b9bb17434b10438ac36635e2845be, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5155960474367110522, guid: 9c7b9bb17434b10438ac36635e2845be, type: 3}
       propertyPath: m_IsActive
@@ -644,7 +645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8134305537603648754, guid: 4c09f62d231e2a645abb65b72f2e77e1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8134305537603648754, guid: 4c09f62d231e2a645abb65b72f2e77e1, type: 3}
       propertyPath: m_IsActive

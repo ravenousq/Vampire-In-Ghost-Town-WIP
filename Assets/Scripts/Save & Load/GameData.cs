@@ -13,6 +13,7 @@ public class GameData
     public SerializableDictionary<int, string> levels;
     public SerializableDictionary<string, int> npcs;
     public SerializableDictionary<string, string> npcShops;
+    public List<string> maps;
     public int bloodstainCurrency;
     public int bloodstainScene;
     public float[] bloodstainPosition;
@@ -32,5 +33,6 @@ public class GameData
         levels = new SerializableDictionary<int, string>();
         npcs = new SerializableDictionary<string, int>();
         npcShops = new SerializableDictionary<string, string>();
+        maps = new List<string>();
     }
 }

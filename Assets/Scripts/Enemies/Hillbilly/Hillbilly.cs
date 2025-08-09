@@ -66,8 +66,6 @@ public class Hillbilly : Enemy
 
     public override void BecomeAggresive()
     {
-        Debug.Log(gameObject.name + " is aggresive");
-
         if (stateMachine.current != idle && stateMachine.current != move)
             return;
 

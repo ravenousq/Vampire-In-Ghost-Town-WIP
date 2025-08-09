@@ -131,7 +131,7 @@ public class BlessingsUI : MonoBehaviour
         {
             if (skill.IsSecret() && skill.GetName(false) == name)
             {
-                skill.Purchase();
+                skill.Purchase(true);
 
                 UpdateAll();
 

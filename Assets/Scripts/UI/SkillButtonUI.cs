@@ -127,6 +127,7 @@ public class SkillButtonUI : MonoBehaviour, ISaveManager
     {
         if (!hasNoPrice && !forFree)
         {
+            Debug.Log(skillName);
             PlayerManager.instance.RemoveCurrency(price);
             boss.RemoveSouls(price);
         }

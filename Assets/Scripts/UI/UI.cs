@@ -47,6 +47,7 @@ public class UI : MonoBehaviour
     [Space]
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private SoulsUI inGameSoulsUI;
+    [SerializeField] private GameObject miniMap;
     public bool canTurnOnGameMenu { get; private set; } = true;
     public bool canTurnOnPauseMenu { get; private set; } = true;
 
@@ -100,8 +101,17 @@ public class UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && canTurnOnPauseMenu)
             pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
 
+        if (!gameMenu.activeSelf && !pauseMenu.gameObject.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse2))
+                miniMap.SetActive(true);
+            else if (Input.GetKeyUp(KeyCode.Mouse2))
+                miniMap.SetActive(false);
+
+        }
+
         if (gameMenu.activeSelf)
-            NavigateTabs();
+                NavigateTabs();
     }
 
     public void SwitchShop(NPC npc, int index)

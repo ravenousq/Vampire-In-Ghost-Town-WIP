@@ -48,7 +48,6 @@ public class PlayerPrimaryAttackState : PlayerState
                 rb.linearVelocityX = skills.shoot.attackMovement[comboCounter] * attackDir;
         }
 
-
         if(player.attackTrigger)
         {
             shotTriggered = true;
@@ -57,7 +56,10 @@ public class PlayerPrimaryAttackState : PlayerState
             player.attackTrigger = false;
         }
 
-        if(trigger)
+        if (player.isKnocked)
+            stateMachine.ChangeState(player.airborne);
+
+        if (trigger)
             stateMachine.ChangeState(player.idle);
         
     }

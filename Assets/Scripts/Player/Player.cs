@@ -354,7 +354,6 @@ public class Player : Entity
         {
             if (!isKnocked && stateMachine.current != dive)
             {
-                Debug.Log(other.gameObject.GetComponent<EnemyStats>()?.HP);
                 stats.SwitchInvincibility(true);
                 stats.TakeDamage(5);
                 stats.LosePoise(10);
