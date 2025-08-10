@@ -93,6 +93,7 @@ public class Hillbilly : Enemy
 
         base.Stun();
 
+        anim.SetBool("stun", true);
         stateMachine.ChangeState(stun);
     }
 

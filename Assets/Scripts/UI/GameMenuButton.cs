@@ -17,11 +17,9 @@ public class GameMenuButton : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().color = selected ? selectionColor : defaultColor;
 
         if (selected)
-        {
+        
             menuToTurnOn.SetActive(true);
-            menuToTurnOn.GetComponent<ItemsUI>()?.SwitchTo();
-            menuToTurnOn.GetComponent<BlessingsUI>()?.TabSwitch();
-        }
+        
         else
             menuToTurnOn.SetActive(false);
     }

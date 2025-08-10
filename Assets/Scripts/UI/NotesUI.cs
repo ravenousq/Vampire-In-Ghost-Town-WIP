@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TODO: manage snippets;
 public class NotesUI : ItemsUI
 {
     [SerializeField] private Image fadeImage;
@@ -40,11 +41,11 @@ public class NotesUI : ItemsUI
 
     private IEnumerator ResetScrollBar()
     {
-        yield return null; 
+        yield return null;
         scroll.value = 1;
     }
-    
-    public void Reset()
+
+    private void OnEnable()
     {
         if (focused)
         {
@@ -53,4 +54,5 @@ public class NotesUI : ItemsUI
             noteContentDisplay.SetActive(focused);
         }
     }
+
 }

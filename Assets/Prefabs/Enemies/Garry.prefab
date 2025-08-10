@@ -67,6 +67,7 @@ MonoBehaviour:
   wallCheck: {fileID: 1273608519000908600}
   wallCheckDistance: 1
   knockbackMultiplayer: 2
+  debug: 0
   mark: {fileID: 1462670565729340223}
   isAMiniBoss: 0
   movementSpeed: 1.5
@@ -80,7 +81,7 @@ MonoBehaviour:
   poiseDamage: 20
   attackDistance: 3.3
   attackCooldown: 3
-  attackKnockback: {x: 15, y: 5}
+  attackKnockback: {x: 15, y: 7}
   attackPoint: {fileID: 1804581516638287214}
   itemPrefab: {fileID: 4235565483072219220, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
   drop: {fileID: 11400000, guid: ec66847c0bfc6544b870b03a6351442f, type: 2}

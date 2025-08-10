@@ -186,7 +186,7 @@ public class CharmsUI : MonoBehaviour
         return -1;
     }
 
-    public void TabSwitch()
+    private void OnEnable()
     {
         SwitchToCharm(0);
         charmIndex = 0;

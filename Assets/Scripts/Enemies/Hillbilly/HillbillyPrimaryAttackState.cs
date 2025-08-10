@@ -17,8 +17,6 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
     {
         base.Enter();
 
-        enemy.stats.OnDamaged -= enemy.BecomeAggresive;
-
         if(clipToPlay == -1)
             clipToPlay = Random.Range(2, 7);
 

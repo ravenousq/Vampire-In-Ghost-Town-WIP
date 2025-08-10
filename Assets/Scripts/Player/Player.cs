@@ -51,6 +51,7 @@ public class Player : Entity
     public float dashDuration;
     public float quickstepSpeed;
     public float diveSpeed;
+    private float defaultMovementSpeed;
     
     [Header("Collision")]
     [SerializeField] public Transform edgeCheck;
@@ -87,6 +88,7 @@ public class Player : Entity
     public GameObject shootFX;
     public GameObject landFX;
     public GameObject jumpFX;
+    [SerializeField] private GameObject mapIcon;
  
     #region Flags
     [HideInInspector] public bool playStartAnim = true;
@@ -153,10 +155,9 @@ public class Player : Entity
 
         stateMachine.Initialize(idle);
 
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Confined;
-
         skills.shoot.Reload();
+
+        defaultMovementSpeed = movementSpeed;
     }
 
     protected override void Update()
@@ -166,11 +167,11 @@ public class Player : Entity
 
         stateMachine.current.Update();
 
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
             Instantiate(enemyToSpawn, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
 
 
-        if(!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)
+        if (!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)
         {
             Time.timeScale += Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
@@ -325,6 +326,13 @@ public class Player : Entity
         stateMachine.ChangeState(dialogue);
     }
 
+    public override void Flip()
+    {
+        base.Flip();
+
+        mapIcon.transform.Rotate(new Vector3(0, 180, 0));
+    }
+
     public void DialogueEnded()
     {
         dialoguePoint = null;
@@ -361,6 +369,15 @@ public class Player : Entity
                 stats.SwitchInvincibility(false);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Marker")
+        {
+            Debug.Log("Collision");
+            UI.instance.PlayerMarkerCollision(other.gameObject);  
+        }  
     }
 
     public override bool IsGroundDetected()

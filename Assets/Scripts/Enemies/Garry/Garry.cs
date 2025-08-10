@@ -78,7 +78,7 @@ public class Garry : Enemy
 
     public override void BecomeAggresive()
     {
-        if (IsAggresive() || stateMachine.current == stun)
+        if (IsAggresive() || stateMachine.current == stun || stateMachine.current == death)
             return;
 
         stateMachine.ChangeState(aggro);

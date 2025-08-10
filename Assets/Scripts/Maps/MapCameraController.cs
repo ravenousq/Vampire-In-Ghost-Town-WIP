@@ -3,7 +3,6 @@ using UnityEngine;
 public class MapCameraController : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D bounds;
-    private Vector3 offset = Vector3.back * 10;
     private float halfHeight;
     private float halfWidth;
     private Player player;

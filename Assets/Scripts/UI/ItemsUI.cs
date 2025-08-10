@@ -8,11 +8,11 @@ public class ItemsUI : MonoBehaviour
     protected int selectedIndex = 0;
     protected ItemData currentData = null;
 
-    protected virtual void Awake() 
+    protected virtual void Awake()
     {
     }
 
-    protected virtual void Start() 
+    protected virtual void Start()
     {
         items = GetComponentsInChildren<ItemSlotUI>();
         items[selectedIndex].Select(true);
@@ -20,23 +20,23 @@ public class ItemsUI : MonoBehaviour
         display.SetUp(currentData);
     }
 
-    protected virtual void Update() 
+    protected virtual void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
             SwitchTo(selectedIndex - 7 < 0 ? selectedIndex + 21 : selectedIndex - 7);
 
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
             SwitchTo(selectedIndex % 7 == 0 ? selectedIndex + 6 : selectedIndex - 1);
 
-        if(Input.GetKeyDown(KeyCode.S))
-        SwitchTo(selectedIndex + 7 > items.Length - 1 ? selectedIndex - 21 : selectedIndex + 7); 
+        if (Input.GetKeyDown(KeyCode.S))
+            SwitchTo(selectedIndex + 7 > items.Length - 1 ? selectedIndex - 21 : selectedIndex + 7);
 
-        if(Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
             SwitchTo((selectedIndex + 1) % 7 == 0 ? selectedIndex - 6 : selectedIndex + 1);
     }
 
-    public void SwitchTo(int index = 0, bool price = false)
+    protected void SwitchTo(int index = 0, bool price = false)
     {
         Start();
 
@@ -48,8 +48,8 @@ public class ItemsUI : MonoBehaviour
         items[selectedIndex].Select(true);
 
         currentData = items[selectedIndex]?.item?.itemData;
-        
-        if(!price)
+
+        if (!price)
             display.SetUp(currentData);
         else
             display.SetUp(
@@ -57,6 +57,11 @@ public class ItemsUI : MonoBehaviour
             currentData?.itemDescription,
             currentData?.price.ToString()
         );
+    }
+    
+    private void OnEnable()
+    {
+        SwitchTo(0);
     }
 
 }

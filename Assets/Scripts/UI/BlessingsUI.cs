@@ -110,8 +110,7 @@ public class BlessingsUI : MonoBehaviour
         return skills[index].row;
     }
 
-    public void TabSwitch()
-    {
+    private void OnEnable() {
         Start();
         UI.instance.ModifySouls(0);
         skills[currentIndex].Select(false);

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UI : MonoBehaviour
 {
     public static UI instance;
@@ -37,7 +38,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject gameMenu;
     [SerializeField] private GameMenuButton[] menuButtons;
     [SerializeField] private ItemsUI itemsTab;
-    [SerializeField] private GameObject mapTab;
+    [SerializeField] private MapUI mapTab;
     [SerializeField] private CharmsUI charmsTab;
     [SerializeField] private BlessingsUI blessingsTab;
     [SerializeField] private NotesUI notesTab;
@@ -57,8 +58,6 @@ public class UI : MonoBehaviour
     [Space]
     public ConcoctionUI concoctionUI;
 
-
-
     [Header("Debug")]
     [SerializeField] private NPC amelia;
     private int selectedIndex;
@@ -67,7 +66,6 @@ public class UI : MonoBehaviour
     {
         gameMenu.SetActive(true);
 
-        blessingsTab.TabSwitch();
 
         for (int i = 0; i < menuButtons.Length; i++)
         {
@@ -111,7 +109,7 @@ public class UI : MonoBehaviour
         }
 
         if (gameMenu.activeSelf)
-                NavigateTabs();
+            NavigateTabs();
     }
 
     public void SwitchShop(NPC npc, int index)
@@ -125,37 +123,18 @@ public class UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (selectedIndex == 4)
-                notesTab.Reset();
-            else if (selectedIndex == 2)
-                charmsTab.TabSwitch();
-
             menuButtons[selectedIndex].Select(false);
-            selectedIndex--;
 
-            if (selectedIndex < 0)
-                selectedIndex = menuButtons.Length - 1;
-
-            if (selectedIndex == 3)
-                blessingsTab.TabSwitch();
+            selectedIndex = (selectedIndex - 1 + menuButtons.Length) % menuButtons.Length;
 
             menuButtons[selectedIndex].Select(true);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (selectedIndex == 4)
-                notesTab.Reset();
-            else if (selectedIndex == 2)
-                charmsTab.TabSwitch();
-            else if (selectedIndex + 1 == 3)
-                blessingsTab.TabSwitch();
-
             menuButtons[selectedIndex].Select(false);
-            selectedIndex = (selectedIndex + 1) % menuButtons.Length;
 
-            if (selectedIndex == 3)
-                blessingsTab.TabSwitch();
+            selectedIndex = (selectedIndex + 1) % menuButtons.Length;
 
             menuButtons[selectedIndex].Select(true);
         }
@@ -184,17 +163,11 @@ public class UI : MonoBehaviour
         if (!enable)
         {
             Time.timeScale = 0;
-
             Inventory.instance.UpdateSlotUI();
-            itemsTab.SwitchTo();
         }
         else
-        {
-            notesTab.Reset();
-            blessingsTab.TabSwitch();
-            charmsTab.TabSwitch();
             Time.timeScale = 1;
-        }
+
     }
 
     public void UnlockSecretSkill(string name) => blessingsTab.UnlockSecretSkill(name);
@@ -218,4 +191,6 @@ public class UI : MonoBehaviour
     public void LockPauseMenu() => canTurnOnPauseMenu = !canTurnOnPauseMenu;
     public GameObject GetGameMenu() => gameMenu;
     public GameObject GetInGameUI() => InGameUI;
+    
+    public void PlayerMarkerCollision(GameObject marker) => mapTab.PlayerMarkerCollision(marker);
 }

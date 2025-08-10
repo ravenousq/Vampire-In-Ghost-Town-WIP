@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +19,8 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public Player player;
     [SerializeField] private float multiplier = 1;
     [SerializeField] private Bloodstain bloodstainPrefab;
+    [SerializeField] private GameObject bloodstainIconPrefab;
+    [SerializeField] private Transform maps;
     public int currency { get; private set; } = 10000;
     public int lastSceneName { get; private set; }
     private bool playerIsDead;
@@ -25,12 +29,6 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     private bool usedDoor;
 
     private void Start() => AudioManager.instance.PlayBGM(10);
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-            Debug.Log(currency);
-    }
 
     public void AddCurrency(int currencyToAdd)
     {
@@ -60,8 +58,13 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         UI.instance.ModifySouls();
         bloodstainExists = data.bloodstainExists;
 
-        if (data.bloodstainExists && SceneManager.GetActiveScene().buildIndex == data.bloodstainScene)
+        if (data.bloodstainExists)
+        {
+            Instantiate(bloodstainIconPrefab, new Vector3(maps.transform.position.x + data.bloodstainIcon[0], maps.transform.position.y + data.bloodstainIcon[1]), Quaternion.identity);
+
+            if (SceneManager.GetActiveScene().buildIndex == data.bloodstainScene)
                 Instantiate(bloodstainPrefab).SetUpBloodstain(new Vector3(data.bloodstainPosition[0], data.bloodstainPosition[1], 0), data.bloodstainCurrency);
+        }
     }
 
     public void SaveData(ref GameData data)
@@ -78,10 +81,13 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
         else
         {
+            Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+            Vector2 mapsPos = new Vector2(maps.transform.position.x, maps.transform.position.y);
             data.currency = 0;
             data.bloodstainCurrency = currency;
             data.bloodstainScene = SceneManager.GetActiveScene().buildIndex;
-            data.bloodstainPosition = new float[] { player.transform.position.x, player.transform.position.y };
+            data.bloodstainPosition = new float[] { playerPos.x, playerPos.y };
+            data.bloodstainIcon = new float[] { playerPos.x - mapsPos.x, playerPos.y - mapsPos.y };
         }
     }
 

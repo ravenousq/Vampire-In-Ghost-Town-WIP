@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bounds
+  - Marker
   layers:
   - Default
   - TransparentFX
