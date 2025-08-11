@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     private bool bloodstainExists;
     private int doorIndexToSave = -1;
     private bool usedDoor;
+    private GameObject bloodstainIcon;
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
@@ -60,7 +61,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
         if (data.bloodstainExists)
         {
-            Instantiate(bloodstainIconPrefab, new Vector3(maps.transform.position.x + data.bloodstainIcon[0], maps.transform.position.y + data.bloodstainIcon[1]), Quaternion.identity);
+            bloodstainIcon = Instantiate(bloodstainIconPrefab, new Vector3(maps.transform.position.x + data.bloodstainIcon[0], maps.transform.position.y + data.bloodstainIcon[1]), Quaternion.identity);
 
             if (SceneManager.GetActiveScene().buildIndex == data.bloodstainScene)
                 Instantiate(bloodstainPrefab).SetUpBloodstain(new Vector3(data.bloodstainPosition[0], data.bloodstainPosition[1], 0), data.bloodstainCurrency);
@@ -104,6 +105,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         AudioManager.instance.PlaySFX(32);
         AddCurrency(soulsToRecoever);
         bloodstainExists = false;
+        Destroy(bloodstainIcon);
     }
 
     public void ExitLevel(Transform objective, string targetScene, int targetIndex)

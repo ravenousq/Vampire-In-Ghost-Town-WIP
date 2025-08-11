@@ -19,6 +19,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float knockbackMultiplayer = 1;
 
     #region Flags
+    [SerializeField] private bool faceLeft;
     public bool isBusy{ get; protected set; }
     public bool isKnocked { get; protected set; }
     public bool canBeKnocked { get; protected set; } = true;
@@ -41,6 +42,11 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        if (faceLeft)
+        {
+            Flip();
+            GetComponentInChildren<HealthbarUI>()?.transform.Rotate(0, 180, 0);
+        }
 
     }
 
@@ -176,8 +182,6 @@ public class Entity : MonoBehaviour
             Flip();
     }
 
-
-    [ContextMenu("Flip")]
     public virtual void Flip()
     {
         facingDir *= -1;
@@ -187,7 +191,7 @@ public class Entity : MonoBehaviour
         if(OnFlipped != null)
             OnFlipped();
     }
-    #endregion 
+    #endregion
 
     #region Collision
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);

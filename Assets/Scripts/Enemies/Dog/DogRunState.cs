@@ -27,9 +27,9 @@ public class DogRunState : DogGroundedState
     public override void Update()
     {
         base.Update();
-        runChecker -= Time.deltaTime;
-
-        //Debug.Log(runChecker);
+        
+        if (rb.linearVelocity != Vector2.zero)
+            runChecker -= Time.deltaTime;
 
         if (!enemy.IsGroundDetected() || stateTimer < 0 || enemy.IsWallDetected())
             stateMachine.ChangeState(enemy.idle);

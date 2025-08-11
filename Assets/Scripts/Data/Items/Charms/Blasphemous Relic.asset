@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5c05333c89d684ebbeea7fc11a4577, type: 3}
+  m_Name: Blasphemous Relic
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemName: Blasphemous Relic
+  price: 10000
+  icon: {fileID: -2982394859548478844, guid: 66aaf45c245d3bf4d9329afb4435e8c7, type: 3}
+  itemDescription: "An amulet containing a lock of hair inside green jewel. The Evangelists
+    have excommunicated many once sacred relics and not without a reason. Some unholy
+    presence emanates from within its core.\L\nReveals moments of your foes fragility."
+  noteContent: 
+  itemID: f7bacb201dd7a8b4eb86a28f93e9eb93
+  equipEffects:
+  - {fileID: 11400000, guid: f060c49cd230eda448f307fdfdaa9d73, type: 2}

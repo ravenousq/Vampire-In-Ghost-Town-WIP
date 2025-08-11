@@ -26,11 +26,11 @@ AnimationClip:
       value: {fileID: -2037056828, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.4
       value: {fileID: -1184031498, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
-    - time: 0.5
-      value: {fileID: -2098959408, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.6
-      value: {fileID: -1142983637, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+      value: {fileID: -2098959408, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     - time: 0.7
+      value: {fileID: -1142983637, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
+    - time: 0.8
       value: {fileID: 2055261999, guid: e7d553d737719714b8ff7667eb02ccfe, type: 3}
     attribute: m_Sprite
     path: 
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 0.90000004
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -85,28 +85,21 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.3
+  - time: 0.2
     functionName: PlayAttackSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.3
     functionName: OpenParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: DoDamage
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
+  - time: 0.6
     functionName: CloseParryWindow
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -114,6 +107,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.7
+    functionName: DoDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

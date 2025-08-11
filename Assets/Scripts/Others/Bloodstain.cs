@@ -53,7 +53,7 @@ public class Bloodstain : MonoBehaviour
 
         if (allowPickUp && Input.GetKeyDown(KeyCode.C) && Time.timeScale == 1)
             PickUpSouls();
-
+        
         if (Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position) < ambientRange)
         {
             SetLowPassFrequency(Mathf.Lerp(100f, 5000f, Mathf.InverseLerp(0, ambientRange, Vector2.Distance(transform.position, PlayerManager.instance.player.transform.position))));
@@ -74,9 +74,9 @@ public class Bloodstain : MonoBehaviour
 
     private void PickUpSouls()
     {
+        SetLowPassFrequency(defaultLowPass);
         isPickedUp = true;
         inputImage.gameObject.SetActive(false);
-        SetLowPassFrequency(defaultLowPass);
         PlayerManager.instance.RecoveredSouls(soulsToRecover);
     }
 

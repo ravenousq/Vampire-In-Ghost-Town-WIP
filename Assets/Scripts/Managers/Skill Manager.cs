@@ -11,7 +11,8 @@ public class SkillManager : MonoBehaviour
     public HaloController halo { get; private set; }
     public ConcoctionController concoction { get; private set;}
     public ShootController shoot { get; private set; }
-    public bool showParryIndicator { get; private set; } = true;
+    public bool showParryIndicator { get; private set; }
+    public bool showHealthbars { get; private set; }
     public bool debugging;
 
     private void Awake()
@@ -74,7 +75,9 @@ public class SkillManager : MonoBehaviour
 
     public void AddChimingToItems(bool value = true) => chimingItems = value;
 
-    public bool ShowParryIndicator(bool show) => showParryIndicator = show;
+    public void ShowParryIndicator(bool show) => showParryIndicator = show;
+
+    public void ShowHealthbars(bool show) => showHealthbars = show;
     
     public void ChangeLockOnAllSkills(bool block)
     {

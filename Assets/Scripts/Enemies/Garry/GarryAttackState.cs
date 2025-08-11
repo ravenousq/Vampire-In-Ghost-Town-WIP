@@ -9,6 +9,8 @@ public class GarryAttackState : GarryGroundedState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.CreateParryIndicator();
     }
 
     public override void Update()

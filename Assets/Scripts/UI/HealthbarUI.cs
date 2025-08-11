@@ -5,24 +5,35 @@ using UnityEngine.UI;
 enum BarType { Health, Poise}
 public class HealthbarUI : MonoBehaviour
 {
+    RectTransform myTransform;
+    private Slider slider;
+    private void Awake()
+    {
+        slider = GetComponentInChildren<Slider>();
+        myTransform = GetComponent<RectTransform>();
+    }
+
     [SerializeField] BarType barType;
     [SerializeField] private Entity entity;
     [SerializeField] private CharacterStats stats;
-    RectTransform myTransform;
+    [SerializeField] private Image[] images;
+    private float currentAlpha;
+    private bool enemyStats;
 
-    private Slider slider;
-
-    private void Start() 
+    private void Start()
     {
-        //entity = GetComponentInParent<Entity>();
+        if (!entity)
+            entity = GetComponentInParent<Entity>();
 
-        //entity.OnFlipped += FlipUI;
+        if (!stats)
+            stats = GetComponentInParent<CharacterStats>();
 
-        myTransform = GetComponent<RectTransform>();
-        slider = GetComponent<Slider>();
-        //stats = GetComponentInParent<CharacterStats>();
+        if (!GetComponentInParent<UI>())
+            entity.OnFlipped += FlipUI;
 
-        if(barType == BarType.Health)
+        enemyStats = stats.GetComponent<EnemyStats>();
+
+        if (barType == BarType.Health)
         {
             stats.OnDamaged += UpdateHealthUI;
             stats.OnHealed += UpdateHealthUI;
@@ -33,6 +44,18 @@ public class HealthbarUI : MonoBehaviour
             stats.OnPoiseChanged += UpdatePoiseUI;
             UpdatePoiseUI();
         }
+    }
+
+    private void Update()
+    {
+        currentAlpha = images[0].color.a;
+
+        if ((!SkillManager.instance.showHealthbars && enemyStats && currentAlpha == 1) || stats.HP <= 0)
+            foreach (Image image in images)
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        else if (SkillManager.instance.showHealthbars && enemyStats && currentAlpha == 0)
+            foreach (Image image in images)
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
     }
 
     private void UpdateHealthUI()
@@ -49,8 +72,11 @@ public class HealthbarUI : MonoBehaviour
 
     private void FlipUI() => myTransform.Rotate(0, 180, 0);
 
-    void OnDisable() 
+    public void OnDisable() 
     {
+        if (!entity)
+            return;
+
         entity.OnFlipped -= FlipUI;
         stats.OnDamaged -= barType == BarType.Health ? UpdateHealthUI : null;
         stats.OnHealed -= barType == BarType.Health ? UpdateHealthUI : null;

@@ -12,6 +12,8 @@ public class DogAttackState : DogGroundedState
     public override void Enter()
     {
         base.Enter();
+        
+        enemy.CreateParryIndicator();
 
         defaultVelocity = rb.linearVelocity;
     }

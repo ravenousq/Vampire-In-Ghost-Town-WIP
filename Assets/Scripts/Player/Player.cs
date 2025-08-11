@@ -1,12 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: Fix the dog attacking frame one;
-//TODO: Fix bloodstain ambient cancle;
-//TODO: Remove marker after picking up bloodstain;
-//TODO: Add charm to show healthbars;
-//TODO: Add charm to show parry timing;
-//TODO: No continue button?; //DONE
 
 [SelectionBase]
 public class Player : Entity
@@ -67,14 +61,14 @@ public class Player : Entity
 
 
     [Header("Abilities & Stats")]
-    public SkillManager skills;
-    public PlayerStats stats;
+    public SkillManager skills { get; private set; }
+    public PlayerStats stats { get; private set; }
     public Crosshair crosshair { get; private set; }
     public ReapersHalo halo { get; private set; }
-    public Enemy enemyToExecute;
+    public bool slowMotion { get; private set; }
     public int executionDamage;
     public bool canSlowTime;
-    public bool slowMotion { get; private set; }
+    [HideInInspector]public Enemy enemyToExecute;
 
     [Header("Prefabs")]
     [SerializeField] private AfterImage afterImage;
@@ -102,10 +96,10 @@ public class Player : Entity
     [HideInInspector] public bool thirdAttack;
     [HideInInspector] public bool noGroundDetection;
     private bool creatingAfterImage;
+    private float haloTimer;
 
     [Header("Debug")]
     [SerializeField] private Enemy enemyToSpawn;
-    private float haloTimer;
     #endregion
 
     public BoxCollider2D ladderToClimb { get; private set; }

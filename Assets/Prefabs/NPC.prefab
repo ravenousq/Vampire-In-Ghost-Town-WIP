@@ -1,0 +1,399 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &735445486057228899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2421434100128532575}
+  m_Layer: 0
+  m_Name: Dialogue Point
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2421434100128532575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735445486057228899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.47, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5796781577001706779}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2960706373333487773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5796781577001706779}
+  - component: {fileID: 3200627176177358749}
+  - component: {fileID: 4918496123742939204}
+  - component: {fileID: 4003420701161457465}
+  m_Layer: 0
+  m_Name: NPC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5796781577001706779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960706373333487773}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -29.09, y: 37.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6310811354279105017}
+  - {fileID: 2421434100128532575}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3200627176177358749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960706373333487773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7052e69724901b84d8e1d688049a4e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: NPC
+  dialoguePoint: {fileID: 2421434100128532575}
+  requiredFacingDir: 1
+  stock: []
+--- !u!114 &4918496123742939204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960706373333487773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfa092efa898c343a082196a0ef2bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTree:
+  - dialogueText: "God Bless you stranger\u2026 Are you here to bestow your prayers\u2026?
+      Forgive me, but if you're seeking absolution, our pastor has gone missing.
+      I-I'm sorry, you will have to remain forbearing\u2026"
+    nextIndex: 1
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "Ah, forgive my poor manners\u2026 My name is Amelia and I'm a
+      nun, but also a candidate to become a vicar of our parish\u2026 As He wills,
+      so I rejoice."
+    nextIndex: 2
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "Wait\u2026 Could it be that\u2026 You are a Mercenary perhaps\u2026?
+      O-Oh acquit my discourtesy, but your posture stands\u2026  Menacing and\u2026
+      I would imagine those armaments of yours to be not just mere trinkets, but
+      tools of trade\u2026"
+    nextIndex: -1
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect:
+    - {fileID: 11400000, guid: 9afeb72b23c12d144a9191090189dee0, type: 2}
+    itemsToGive: []
+  - dialogueText: "Oh sacred be the heavens\u2026 Please, find Father Williams\u2026.
+      I beg of thee\u2026 He hasn't returned from his pilgrimage yet, I'm so worried\u2026
+      What if some horrible things have happened to him\u2026"
+    nextIndex: 4
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I do not own much, nor does our parish, but I'm sure that the
+      faithful will aid us and gather an appropriate amount of money to compensate
+      for your labor\u2026 Just please\u2026 Find him\u2026"
+    nextIndex: -1
+    newFirstLine: 4
+    clip: {fileID: 0}
+    effect:
+    - {fileID: 11400000, guid: 5ec2e7a571ee62c47a6b1612259efb58, type: 2}
+    itemsToGive: []
+  - dialogueText: "I see\u2026 Oh Lord\u2026 What has this world become?\u2026 I
+      fret so much about Father Williams\u2026 He\u2019s always ignorant about his
+      own well being\u2026 And now it's been three days since he's gone\u2026"
+    nextIndex: 6
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I-I don't ask much of you, I know it's not your burden to bear,
+      but\u2026 Please\u2026 if you see him, tell him to come back to the Chapel\u2026
+      It would mean the world to me\u2026"
+    nextIndex: -1
+    newFirstLine: 6
+    clip: {fileID: 0}
+    effect:
+    - {fileID: 11400000, guid: 5ec2e7a571ee62c47a6b1612259efb58, type: 2}
+    itemsToGive: []
+  - dialogueText: Oh... No... This cross... It belonged to Father Williams... Is
+      he... Dead...?
+    nextIndex: 8
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: ...
+    nextIndex: 9
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: He was a good man... The one to uncover holy scrolls before my
+      eyes and edify me into becoming who I am now. May his soul now rest among the
+      saints.
+    nextIndex: 10
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I knew that there's something grotesque happening in the Town,
+      even The Evangelists had departed to investigate, but\u2026 I would never expect
+      things to become so\u2026 convoluted\u2026 Monstrous beasts\u2026? That sounds
+      like a horrible nightmare\u2026"
+    nextIndex: -1
+    newFirstLine: 11
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "Great heavens\u2026 Your face\u2026 Could that be?\u2026"
+    nextIndex: 12
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "You are not a mercenary, nor a faithful willing to seek purpose\u2026
+      You are The Gunman\u2026 The victim of The Black Parade, aren\u2019t you\u2026?
+      Came back in the name of retribution?"
+    nextIndex: 13
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I am in great sorrow thinking of what you went through, the pain
+      seems unimaginable for me, but you must trust me\u2026 The Evangelists ended
+      the reign of those unholy cultists years ago\u2026 There are no souls for you
+      to take anymore\u2026"
+    nextIndex: 14
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "Besides\u2026 If what you speak of is indeed the truth\u2026 The
+      Town now must be overrun with vermin\u2026 It is better for you to stay here
+      on the holy ground, where those evil forces hold no power."
+    nextIndex: 15
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: ...
+    nextIndex: 16
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I see\u2026 It was never my purpose to convince you to stay\u2026
+      Was it\u2026?"
+    nextIndex: -1
+    newFirstLine: 17
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: The cross...? No, no, keep it, stranger. Those wretched beasts
+      must fear what's sacred. If your intention is to face them, it will surely
+      aid you on your journey.
+    nextIndex: 18
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: "I am no fighter, best I can aid you in is prayer, but\u2026 If
+      you find any survivors in Town, tell them to come here. I promise I will take
+      care of them the best I can."
+    nextIndex: 19
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect: []
+    itemsToGive: []
+  - dialogueText: Also, whenever you need to rest and have your wound sewed, please
+      return to the chapel. I will prepare ointments and herbal concoctions in order
+      to ease your pain. For now take this. It might appear useful.
+    nextIndex: 20
+    newFirstLine: 0
+    clip: {fileID: 0}
+    effect:
+    - {fileID: 11400000, guid: 7836ac919ec312542a48f5a5119f23b5, type: 2}
+    itemsToGive:
+    - {fileID: 11400000, guid: c2c6fadbadcacd448a50a8404a409f01, type: 2}
+  - dialogueText: But please... Remain vigilant... Don't let hubris be the end of
+      you...
+    nextIndex: -1
+    newFirstLine: 20
+    clip: {fileID: 0}
+    effect:
+    - {fileID: 11400000, guid: dcdd5054c6197204bab2421b5e9d75c6, type: 2}
+    itemsToGive: []
+--- !u!61 &4003420701161457465
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960706373333487773}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.32672024, y: 0.31056595}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.3694935, y: 3.696556}
+  m_EdgeRadius: 0
+--- !u!1 &9163579650052150221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6310811354279105017}
+  - component: {fileID: 4278353022357617402}
+  m_Layer: 0
+  m_Name: Animator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6310811354279105017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163579650052150221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5796781577001706779}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!212 &4278353022357617402
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163579650052150221}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 715952231
+  m_SortingLayer: 4
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 90a1f1b21bacabe4f95129b07d9a2b8e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

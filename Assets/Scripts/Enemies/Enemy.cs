@@ -40,6 +40,7 @@ public class Enemy : Entity
     [SerializeField] protected GameObject bloodFX;
     [SerializeField] protected GameObject stunFX;
     [SerializeField] protected ParryIndicator parryFX;
+    [SerializeField] private Transform parryPoint;
     protected ParryIndicator parryIndicator;
     public int attackFXIndex;
     public float ambientRange;
@@ -185,8 +186,8 @@ public class Enemy : Entity
         if (!SkillManager.instance.showParryIndicator)
             return;
 
-        Debug.Log("Creating FX");
-        parryIndicator = Instantiate(parryFX, stunFX.transform.position, Quaternion.identity);
+        parryIndicator = Instantiate(parryFX, parryPoint.transform.position, Quaternion.identity);
+        parryIndicator.transform.SetParent(parryPoint.transform);
     }
 
     public void CloseParryWindow()
