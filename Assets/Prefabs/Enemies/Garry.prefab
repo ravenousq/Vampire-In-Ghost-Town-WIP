@@ -88,6 +88,7 @@ MonoBehaviour:
   itemDropPosition: {fileID: 2080757399622271911}
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   stunFX: {fileID: 2421406540628494114}
+  parryFX: {fileID: 3876816648933424359, guid: c1dbac92a310b0d42b6b1078672eb83c, type: 3}
   attackFXIndex: 24
   ambientRange: 20
   audioPoint: {fileID: 1793610800114000187}

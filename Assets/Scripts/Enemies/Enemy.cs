@@ -29,6 +29,7 @@ public class Enemy : Entity
     public Transform attackPoint;
     public bool canBeStunned { get; private set; }
     public bool canBeExecuted { get; private set; }
+    public bool showParryIndicator { get; protected set; }
 
     [Header("Drop")]
     [SerializeField] private ItemObject itemPrefab;
@@ -38,14 +39,14 @@ public class Enemy : Entity
     [Header("FX")]
     [SerializeField] protected GameObject bloodFX;
     [SerializeField] protected GameObject stunFX;
+    [SerializeField] protected ParryIndicator parryFX;
+    protected ParryIndicator parryIndicator;
     public int attackFXIndex;
-    private bool isBeingDestroyed;
     public float ambientRange;
     protected bool cdIsTrigger;
+    private bool isBeingDestroyed;
 
     Player player;
-
-    public System.Action onDamaged;
 
     protected override void Awake()
     {
@@ -169,11 +170,32 @@ public class Enemy : Entity
     }
 
     #region Parry
-    public void OpenParryWindow() => canBeStunned = true;
+    public void OpenParryWindow()
+    {
+        canBeStunned = true;
+
+        if (parryIndicator != null)
+            parryIndicator.StartParry();
+    }
 
     public virtual void Parried() => CloseParryWindow();
 
-    public void CloseParryWindow() => canBeStunned = false;
+    public void CreateParryIndicator()
+    {
+        if (!SkillManager.instance.showParryIndicator)
+            return;
+
+        Debug.Log("Creating FX");
+        parryIndicator = Instantiate(parryFX, stunFX.transform.position, Quaternion.identity);
+    }
+
+    public void CloseParryWindow()
+    {
+        canBeStunned = false;
+
+        if (parryIndicator != null)
+            parryIndicator.StopParry();
+    }
     #endregion
 
     #region Execution
@@ -274,7 +296,6 @@ public class Enemy : Entity
     {
         isBeingDestroyed = true;
     }
-        
 
     protected override void OnDrawGizmos()
     {

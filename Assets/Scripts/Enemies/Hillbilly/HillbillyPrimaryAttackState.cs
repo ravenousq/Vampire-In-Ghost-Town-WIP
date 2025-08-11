@@ -17,7 +17,9 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
     {
         base.Enter();
 
-        if(clipToPlay == -1)
+        enemy.CreateParryIndicator();
+
+        if (clipToPlay == -1)
             clipToPlay = Random.Range(2, 7);
 
         while (clipToPlay == lastClip)
@@ -25,7 +27,6 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
 
         lastClip = clipToPlay;
 
-        //if (firstAttack)
         enemy.PlayClip(clipToPlay);
     }
 

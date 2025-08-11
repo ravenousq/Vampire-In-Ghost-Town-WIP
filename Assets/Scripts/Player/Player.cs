@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: fix wanted dead; //DONE
-//TODO: player freezes after doing an execution(dog only)(nwm); //DONE
-//TODO: add confirmation dialogue on quiting; //DONE
-//TODO: fix hillbilly's death state; //DONE
-//TODO: save settings on changing scene;//DONE
+//TODO: Fix the dog attacking frame one;
+//TODO: Fix bloodstain ambient cancle;
+//TODO: Remove marker after picking up bloodstain;
+//TODO: Add charm to show healthbars;
+//TODO: Add charm to show parry timing;
+//TODO: No continue button?; //DONE
 
 [SelectionBase]
 public class Player : Entity

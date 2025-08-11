@@ -116,6 +116,7 @@ MonoBehaviour:
   itemDropPosition: {fileID: 7194294730277315859}
   bloodFX: {fileID: 6396697000753152540, guid: d3d3863bf7b8bc74f871f02e218f2ae7, type: 3}
   stunFX: {fileID: 7231425726482371352}
+  parryFX: {fileID: 3876816648933424359, guid: c1dbac92a310b0d42b6b1078672eb83c, type: 3}
   attackFXIndex: 37
   ambientRange: 0
   clips:

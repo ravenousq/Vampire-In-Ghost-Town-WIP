@@ -11,6 +11,8 @@ public class HillbillyComboState : HillbillyGroundedState
     {
         base.Enter();
 
+        enemy.CreateParryIndicator();
+
         enemy.stats.damage.AddModifier(3, enemy.stats);
     }
 

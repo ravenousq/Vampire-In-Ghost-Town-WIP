@@ -11,7 +11,7 @@ public class SkillManager : MonoBehaviour
     public HaloController halo { get; private set; }
     public ConcoctionController concoction { get; private set;}
     public ShootController shoot { get; private set; }
-
+    public bool showParryIndicator { get; private set; } = true;
     public bool debugging;
 
     private void Awake()
@@ -28,7 +28,6 @@ public class SkillManager : MonoBehaviour
         concoction = GetComponent<ConcoctionController>();
         shoot = GetComponent<ShootController>();
         skills = unlockableSkills.ToDictionary();
-        
     }
 
     [SerializeField] private string skillToSwitch = "";
@@ -38,6 +37,7 @@ public class SkillManager : MonoBehaviour
 
     private void Start()
     {
+        
     }
 
     public bool isSkillUnlocked(string skill)
@@ -74,6 +74,8 @@ public class SkillManager : MonoBehaviour
 
     public void AddChimingToItems(bool value = true) => chimingItems = value;
 
+    public bool ShowParryIndicator(bool show) => showParryIndicator = show;
+    
     public void ChangeLockOnAllSkills(bool block)
     {
         parry.SwitchBlockade(block);

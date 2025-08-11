@@ -17,7 +17,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
     public void AnimationTrigger() => enemy.stateMachine.current.CallTrigger();
 
     public void OpenParryWindow() => enemy.OpenParryWindow();
-
+    
     public void CloseParryWindow() => enemy.CloseParryWindow();
 
     public void PlayAttackSound() => AudioManager.instance.PlaySFX(enemy.attackFXIndex);
@@ -26,7 +26,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
     {
         au.pitch = Random.Range(.9f, 1.1f);
 
-        float ambientRange = enemy.gameObject.GetComponent<Enemy>().ambientRange;
+        float ambientRange = enemy.ambientRange;
 
         AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, ambientRange);
 
