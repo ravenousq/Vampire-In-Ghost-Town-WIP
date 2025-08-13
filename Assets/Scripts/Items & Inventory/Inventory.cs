@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     }
 
     public List<ItemData> startingEquipment;
+    public bool addStartingEquipment = true;
 
     public List<InventoryItem> notes;
     public Dictionary<ItemData, InventoryItem> noteDictionary;
@@ -82,7 +83,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         for (int i = 0; i < loadedCharms.Count; i++)
             EquipCharm(loadedCharms[i], i);
 
-        if(!SaveManager.instance.HasSavedData())
+        if(!SaveManager.instance.HasSavedData() && addStartingEquipment)
             for (int i = 0; i < startingEquipment.Count; i++)
                 AddItemMute(startingEquipment[i]);
     }

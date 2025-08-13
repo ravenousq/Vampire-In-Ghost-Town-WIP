@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-
+//TODO: Remove Cinemachine Camera;
+//TODO: Fix marker detection;
 [SelectionBase]
 public class Player : Entity
 {

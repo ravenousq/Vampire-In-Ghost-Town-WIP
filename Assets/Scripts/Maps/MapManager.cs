@@ -36,7 +36,12 @@ public class MapManager : MonoBehaviour, ISaveManager
 
     public void SaveData(ref GameData data)
     {
-        if (!data.maps.Contains(currentMap.gameObject.name))
-            data.maps.Append(currentMap.gameObject.name);
+        foreach (string map in data.maps)
+        {
+            if (currentMap.name == map)
+                return;
+        }
+
+        data.maps.Add(currentMap.gameObject.name);
     }
 }

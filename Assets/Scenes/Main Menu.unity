@@ -2836,7 +2836,7 @@ MonoBehaviour:
   sliders: []
   highlightedColor: {r: 0.5660378, g: 0.4850174, b: 0.44855824, a: 1}
   highlightedFontSize: 85
-  newGameSceneName: SampleScene
+  newGameSceneName: Area 1
 --- !u!1 &358368943
 GameObject:
   m_ObjectHideFlags: 0

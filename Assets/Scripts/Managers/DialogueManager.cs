@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private GameObject dialogueUI;
     [SerializeField] private GameObject talkUI;
-    [SerializeField] private GameObject choiceUI;
+    [SerializeField] private GameObject dialogueOptions;
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private List<Dialogue> dialogues;
@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogues = new List<Dialogue>();
         dialogueUI.gameObject.SetActive(false);
-        choiceUI.gameObject.SetActive(false);
+        dialogueOptions.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -94,16 +94,16 @@ public class DialogueManager : MonoBehaviour
 
     public void EnableChoiceUI(bool enable)
     {
-        if (choiceUI != null)
-            choiceUI.SetActive(enable);
+        if (dialogueOptions != null)
+            dialogueOptions.SetActive(enable);
     }
 
     public void SetUpNPC(NPC npc) => myNPC = npc;
     public void SetUpChoices(Dictionary<string, int> choices, bool shop, ItemData requiredItem = null)
     {
         if (myNPC)
-            choiceUI.GetComponent<DialogueOptionsUI>().SetUpNPC(myNPC);
-        choiceUI.GetComponent<DialogueOptionsUI>().SetUpChoices(choices, requiredItem, shop);
+            dialogueOptions.GetComponent<DialogueOptionsUI>().SetUpNPC(myNPC);
+        dialogueOptions.GetComponent<DialogueOptionsUI>().SetUpChoices(choices, requiredItem, shop);
     }
 
     public void InvokeNextLine() => NextLine();
