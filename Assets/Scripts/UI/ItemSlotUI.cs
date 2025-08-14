@@ -18,8 +18,8 @@ public class ItemSlotUI : MonoBehaviour
     {
         itemDescription = UI.instance.itemDescription;
 
-        if (gameObject.name.Contains("Equipped Charm Slot"))
-            frame.color = Color.white;
+        if (gameObject.name.Contains("Equipped Charm Slot") && item == null)
+            CleanUpSlot();
     }
 
     public void UpdateSlot(InventoryItem item)
@@ -30,8 +30,8 @@ public class ItemSlotUI : MonoBehaviour
         this.item = item;
         itemImage.color = Color.white;
 
-        if (gameObject.name.Contains("Equipped Charm Slot") || item != null)
-            frame.color = Color.white;
+        //if (gameObject.name.Contains("Equipped Charm Slot") || item != null)
+        //    frame.color = Color.white;
 
         if (item != null && item.itemData != null)
         {

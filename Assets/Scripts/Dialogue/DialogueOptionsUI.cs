@@ -12,7 +12,7 @@ public class DialogueOptionsUI : MonoBehaviour
     private Dictionary<string, int> possibleChoices;
     [SerializeField] private ChoiceButtonUI buttonPrefab;
     private List<ChoiceButtonUI> buttons;
-    private int highlightedButton = 0;
+    [SerializeField] private int highlightedButton = 0;
     private bool shop = false;
     private NPC npc;
     
@@ -45,35 +45,34 @@ public class DialogueOptionsUI : MonoBehaviour
 
     private void NavigateOptions()
     {
+
+        int helper = highlightedButton;
         int nextButton;
         if (Input.GetKeyDown(KeyCode.S))
-        {   
-            nextButton = highlightedButton - 1 < 0 ? buttons.Count - 1 : highlightedButton - 1;
-            
-            if(!buttons[nextButton].canBeSelected)
-                return;
-
-            buttons[highlightedButton].Highlight();
-
-            highlightedButton = nextButton;
-
-            buttons[highlightedButton].Highlight();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.W))
         {
-            nextButton = (highlightedButton + 1) % buttons.Count;
-            
-            if(!buttons[nextButton].canBeSelected)
-                return;
-
-            buttons[highlightedButton].Highlight();
-
-            highlightedButton = nextButton;
-
-            buttons[highlightedButton].Highlight();
+            do
+            {
+                helper++;
+                nextButton = helper % buttons.Count;
+            }
+            while (!buttons[nextButton].canBeSelected && nextButton != highlightedButton);
         }
-    }
+        else if (Input.GetKeyDown(KeyCode.W))
+            do
+            {
+                helper--;
+                nextButton = helper < 0 ? buttons.Count - 1 : helper;
+            }
+            while (!buttons[nextButton].canBeSelected && nextButton != highlightedButton);
+        else
+            return;
+
+        buttons[highlightedButton].Highlight();
+
+        highlightedButton = nextButton;
+
+        buttons[highlightedButton].Highlight();
+}
 
     public void SetUpNPC(NPC npc) => this.npc = npc;
     public void SetUpChoices(Dictionary<string, int> choices, ItemData requiredItem, bool shop)
@@ -87,7 +86,7 @@ public class DialogueOptionsUI : MonoBehaviour
         if(requiredItem == null)
             DoSimpleChoice();
         else
-            GiveItemChoice(requiredItem);
+            NeedItemChoice(requiredItem);
     }
 
 
@@ -112,7 +111,7 @@ public class DialogueOptionsUI : MonoBehaviour
         }
     }
 
-    private void GiveItemChoice(ItemData requiredItem)
+    private void NeedItemChoice(ItemData requiredItem)
     {
         List<string> keys = new List<string>(possibleChoices.Keys);
         

@@ -11,7 +11,8 @@ public class ConcoctionController : SkillController, ISaveManager
     {
         base.Start();
 
-        currentConcoctionStacks = maxConcoctionStacks;
+        if(!SaveManager.instance.HasSavedData())
+            currentConcoctionStacks = maxConcoctionStacks;
     }
 
     public override bool CanUseSkill()
@@ -30,10 +31,11 @@ public class ConcoctionController : SkillController, ISaveManager
 
     public int GetHeal() => Mathf.RoundToInt(player.stats.health.GetValue() * percentage);
     public void ModifyPercentage(float percentage) => this.percentage += percentage;
-    public void AddStack()
+    public void AddStack(bool refill = true)
     {
         maxConcoctionStacks++;
-        currentConcoctionStacks = maxConcoctionStacks;
+        if(refill)
+            currentConcoctionStacks = maxConcoctionStacks;
 
         if(UI.instance.concoctionUI.gameObject.activeSelf)
             UI.instance.concoctionUI.UpdateConcoctionStacks();
@@ -41,12 +43,18 @@ public class ConcoctionController : SkillController, ISaveManager
 
     public void LoadData(GameData data)
     {
+        if (!data.usedDoor)
+            currentConcoctionStacks = maxConcoctionStacks;
+        else
+            currentConcoctionStacks = data.currentConcoctionStacks;
+
         for (int i = 0; i < data.concoctionStacks - maxConcoctionStacks; i++)
-            AddStack();
+                AddStack(false);
     }
 
     public void SaveData(ref GameData data)
     {
         data.concoctionStacks = maxConcoctionStacks;
+        data.currentConcoctionStacks = currentConcoctionStacks;
     }
 }

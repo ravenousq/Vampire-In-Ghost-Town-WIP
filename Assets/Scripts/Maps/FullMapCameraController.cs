@@ -10,13 +10,7 @@ public class FullMapCameraController : MonoBehaviour
     }
 
     [SerializeField] private float zoomSpeed;
-    [SerializeField] private float maxZoom, minZoom;
-    private float startZoom;
-
-    private void Start()
-    {
-        startZoom = cam.orthographicSize;
-    }
+    [SerializeField] private float maxZoom, minZoom;                                                               
 
     private void OnEnable()
     {

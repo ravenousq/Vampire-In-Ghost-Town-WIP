@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: Fix marker detection;
+//TODO: Fix marker not saving properly; //DONE
+//TODO: Fix charms on empty save; //DONE
 [SelectionBase]
 public class Player : Entity
 {

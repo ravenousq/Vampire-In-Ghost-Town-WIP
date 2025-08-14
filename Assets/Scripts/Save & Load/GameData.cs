@@ -21,6 +21,7 @@ public class GameData
     public int doorIndex;
     public bool usedDoor;
     public int concoctionStacks = 3;
+    public int currentConcoctionStacks;
     public float[] bloodstainIcon;
     public float[] markers;
 

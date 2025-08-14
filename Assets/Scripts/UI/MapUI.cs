@@ -101,8 +101,10 @@ public class MapUI : MonoBehaviour, ISaveManager
 
     private bool isMarkerDetected(out KeyValuePair<GameObject, Vector2> position)
     {
+        Vector2 mapPos = new Vector2(maps.transform.position.x, maps.transform.position.y);
+
         foreach (KeyValuePair<GameObject, Vector2> markerPos in markers)
-            if (Vector2.Distance(new Vector2(MC.transform.position.x, MC.transform.position.y), markerPos.Value) < 5)
+            if (Vector2.Distance(new Vector2(MC.transform.position.x, MC.transform.position.y), markerPos.Value + mapPos) < 5)
             {
                 position = markerPos;
                 return true;
@@ -145,8 +147,11 @@ public class MapUI : MonoBehaviour, ISaveManager
 
     public void SaveData(ref GameData data)
     {
-        if(markers.Count == 0)
+        if (markers.Count == 0)
+        {
+            data.markers = new float[] { };
             return;
+        }
 
         data.markers = new float[markers.Count * 2];
 
