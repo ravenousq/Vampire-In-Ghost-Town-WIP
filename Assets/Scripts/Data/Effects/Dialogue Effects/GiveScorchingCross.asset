@@ -15,7 +15,7 @@ MonoBehaviour:
   possibleChoices:
     items:
     - key: Give Scorching Cross
-      value: 7
+      value: 9
     - key: Say nothing
       value: -1
   requiredItem: {fileID: 11400000, guid: dc399b55294f126498a399447273ba35, type: 2}

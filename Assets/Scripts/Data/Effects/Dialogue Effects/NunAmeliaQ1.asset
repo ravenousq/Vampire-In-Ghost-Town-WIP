@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleChoices:
     items:
-    - key: Yes, I'm a mercenary.
-      value: 3
-    - key: No, I keep them to stay safe.
+    - key: I will find him.
+      value: 4
+    - key: Got better things to do.
       value: 5

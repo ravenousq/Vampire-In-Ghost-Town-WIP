@@ -94,6 +94,14 @@ public class PlayerPrimaryAttackState : PlayerState
 
         foreach (var hit in hits)
             {
+                if (hit.collider.gameObject.tag == "Illusory Wall")
+                {
+                    Debug.Log(hit.collider.gameObject.name + " hit by primary attack");
+                    hit.collider.gameObject.GetComponent<IllusoryWall>().Activate();
+                    player.InvokeName("PlayMiss", .5f);
+                    break;
+                }
+
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     player.InvokeName("PlayMiss", .5f);

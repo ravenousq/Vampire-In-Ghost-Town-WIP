@@ -124,7 +124,7 @@ public class DialogueOptionsUI : MonoBehaviour
             if(i == 0)
                 newButton.SetUp(key, requiredItem);
             else
-                newButton.SetUp(key);
+                newButton.SetUp(key, null, i == 1 && shop);
             buttons.Add(newButton);
 
             if (i == keys.Count - 1)

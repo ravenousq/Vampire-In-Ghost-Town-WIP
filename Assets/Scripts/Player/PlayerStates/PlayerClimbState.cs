@@ -35,6 +35,13 @@ public class PlayerClimbState : PlayerState
             return;
         }
 
+        if (xInput != 0 && stateTimer < 0)
+        {
+            stateMachine.ChangeState(player.airborne);
+            return;
+        }
+         
+
         player.ResetVelocity();
 
         player.anim.speed = yInput == 0 ? 0 : 1;

@@ -4,26 +4,22 @@ using UnityEngine.Tilemaps;
 public class IllusoryWall : MonoBehaviour
 {
     private Tilemap tr;
+    private Collider2D wall;
+    private TilemapCollider2D tilemapCollider;
 
     private void Awake()
     {
         tr = GetComponent<Tilemap>();
+        wall = GetComponent<Collider2D>();
+        tilemapCollider = GetComponent<TilemapCollider2D>();
     }
 
-    [SerializeField] private int requiredFacingDir;
     [SerializeField] private float fadeSpeed;
-    [SerializeField] private BoxCollider2D wall;
-    private Player player;
+    private bool failSafe;
 
-    private void Update() 
+    private void Update()
     {
-        if (player && player.attack.shotTriggered && player.facingDir == requiredFacingDir && Time.timeScale != 0 && player.IsGroundDetected() && wall.enabled)
-        {
-            wall.enabled = false;
-            AudioManager.instance.PlaySFX(13, false);
-        }
-
-        if(!wall.enabled)
+        if (!wall.enabled || failSafe)
             tr.color = new Color(tr.color.r, tr.color.g, tr.color.b, Mathf.MoveTowards(tr.color.a, 0, fadeSpeed * Time.deltaTime));
 
         if (tr.color.a == 0)
@@ -33,15 +29,15 @@ public class IllusoryWall : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    public void Activate()
     {
-        if(other.GetComponent<Player>())
-            player  = other.GetComponent<Player>();
-    }
+        if (tilemapCollider != null)
+        {
+            tilemapCollider.enabled = false;
+            failSafe = true;
+        }
 
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        if(other.GetComponent<Player>())
-            player = null;
+        wall.enabled = false;
+        AudioManager.instance.PlaySFX(13, false);
     }
 }

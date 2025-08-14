@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: Remove Cinemachine Camera;
 //TODO: Fix marker detection;
 [SelectionBase]
 public class Player : Entity
@@ -371,7 +370,7 @@ public class Player : Entity
     {
         if (other.gameObject.tag == "Marker")
         {
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             UI.instance.PlayerMarkerCollision(other.gameObject);  
         }  
     }
