@@ -4,11 +4,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class DeathScreen : MonoBehaviour
+public class DeathScreen : MonoBehaviour, ISaveManager
 {
     [SerializeField] private Image deathScreen;
     [SerializeField] private TextMeshProUGUI deathText;
     [SerializeField] private float fadeOutSpeed;
+    private int sceneToReload;
     private bool isFading;
 
 
@@ -45,8 +46,17 @@ public class DeathScreen : MonoBehaviour
     private void ResetGame()
     {
         SaveManager.instance.SaveGame();
-        SaveManager.instance.SaveSettings();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SaveManager.instance.SaveSettings(); 
+        SceneManager.LoadScene(sceneToReload);
     }
 
+    public void LoadData(GameData data)
+    {
+        sceneToReload = data.lastCampfireScene != 0 ? data.lastCampfireScene : 1;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        //throw new System.NotImplementedException();
+    }
 }

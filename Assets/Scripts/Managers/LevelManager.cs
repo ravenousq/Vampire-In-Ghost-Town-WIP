@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,10 @@ public class LevelManager : MonoBehaviour, ISaveManager
         .OrderBy(item => item.gameObject.name)
         .ToArray();
 
+        oneSideDoors = FindObjectsByType<OneSideDoor>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
+        .OrderBy(item => item.gameObject.name)
+        .ToArray();
+
         doors = FindObjectsByType<LevelExit>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToArray();
 
         cam = GameObject.Find("CinemachineCamera").GetComponent<CinemachineFollow>();
@@ -44,18 +49,23 @@ public class LevelManager : MonoBehaviour, ISaveManager
             levelIllusoryWalls.Add(false);
 
         for (int i = 0; i < miniBosses.Length; i++)
-            levleMiniBosses.Add(false);
+            levelMiniBosses.Add(false);
+
+        for (int i = 0; i < oneSideDoors.Length; i++)
+            levelOneSideDoors.Add(false);
     }
 
     [SerializeField] private ItemObject[] items;
     [SerializeField] private IllusoryWall[] illusoryWalls;
     [SerializeField] private Enemy[] miniBosses;
     [SerializeField] private LevelExit[] doors;
+    [SerializeField] private OneSideDoor[] oneSideDoors;
     [Space]
     [SerializeField] private CinemachineFollow cam;
     private List<bool> levelItems = new List<bool>();
     private List<bool> levelIllusoryWalls = new List<bool>();
-    private List<bool> levleMiniBosses = new List<bool>();
+    private List<bool> levelMiniBosses = new List<bool>();
+    private List<bool> levelOneSideDoors = new List<bool>();
 
     private void Start()
     {
@@ -80,7 +90,14 @@ public class LevelManager : MonoBehaviour, ISaveManager
     {
         for (int i = 0; i < miniBosses.Length; i++)
             if (miniBosses[i] != null && miniBosses[i] == miniBoss)
-                levleMiniBosses[i] = true;
+                levelMiniBosses[i] = true;
+    }
+
+    public void OneSideDoorOpened(OneSideDoor oneSideDoor)
+    {
+        for (int i = 0; i < oneSideDoors.Length; i++)
+            if (oneSideDoors[i] != null && oneSideDoors[i] == oneSideDoor)
+                levelOneSideDoors[i] = true;
     }
 
     private void CleanUp()
@@ -94,8 +111,12 @@ public class LevelManager : MonoBehaviour, ISaveManager
                 Destroy(illusoryWalls[i].gameObject);
 
         for (int i = 0; i < miniBosses.Length; i++)
-            if (levleMiniBosses[i] && miniBosses[i] != null)
+            if (levelMiniBosses[i] && miniBosses[i] != null)
                 Destroy(miniBosses[i].gameObject);
+
+        for (int i = 0; i < oneSideDoors.Length; i++)
+            if (levelOneSideDoors[i] && oneSideDoors[i] != null)
+                oneSideDoors[i].Open();
     }
 
     public void LoadData(GameData data)
@@ -120,18 +141,21 @@ public class LevelManager : MonoBehaviour, ISaveManager
         
             
         if (data.levels.TryGetValue(SceneManager.GetActiveScene().buildIndex, out string value))
-                {
-                    for (int i = 0; i < levelItems.Count; i++)
-                        levelItems[i] = value[i] == 'T';
+        {
+            for (int i = 0; i < levelItems.Count; i++)
+                levelItems[i] = value[i] == 'T';
 
-                    for (int i = 0; i < levelIllusoryWalls.Count; i++)
-                        levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
+            for (int i = 0; i < levelIllusoryWalls.Count; i++)
+                levelIllusoryWalls[i] = value[i + levelItems.Count] == 'T';
 
-                    for (int i = 0; i < levleMiniBosses.Count; i++)
-                        levleMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
+            for (int i = 0; i < levelMiniBosses.Count; i++)
+                levelMiniBosses[i] = value[i + levelItems.Count + levelIllusoryWalls.Count] == 'T';
 
-                    CleanUp();
-                }
+            for (int i = 0; i < levelOneSideDoors.Count; i++)
+                levelOneSideDoors[i] = value[i + levelItems.Count + levelIllusoryWalls.Count + levelMiniBosses.Count] == 'T';
+
+            CleanUp();
+        }
 
         #region Old Testing
         // foreach (var keyValuePair in data.levels)
@@ -179,11 +203,14 @@ public class LevelManager : MonoBehaviour, ISaveManager
         foreach (bool boolean in levelIllusoryWalls)
             helper += boolean ? 'T' : 'F';
 
-        foreach (bool boolean in levleMiniBosses)
+        foreach (bool boolean in levelMiniBosses)
+            helper += boolean ? 'T' : 'F';
+
+        foreach (bool boolean in levelOneSideDoors)
             helper += boolean ? 'T' : 'F';
 
         foreach (KeyValuePair<int, string> keyValuePair in temporaryDictionary)
-            data.levels.Add(keyValuePair.Key, keyValuePair.Value);
+                data.levels.Add(keyValuePair.Key, keyValuePair.Value);
 
         data.levels.Add(SceneManager.GetActiveScene().buildIndex, helper);
 

@@ -6,6 +6,7 @@ public class GameData
 {
     public int currency;
     public int lastScene;
+    public int lastCampfireScene;
     public float[] spawnPosition;
     public SerializableDictionary<string, bool> skillTree;
     public SerializableDictionary<string, int> inventory;

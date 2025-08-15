@@ -372,8 +372,11 @@ public class Player : Entity
         if (other.gameObject.tag == "Marker")
         {
             //Debug.Log("Collision");
-            UI.instance.PlayerMarkerCollision(other.gameObject);  
-        }  
+            UI.instance.PlayerMarkerCollision(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Instant Death")
+            Die();
     }
 
     public override bool IsGroundDetected()

@@ -1,6 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +26,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     private int doorIndexToSave = -1;
     private bool usedDoor;
     private GameObject bloodstainIcon;
+    private int campfireIndex;
 
     private void Start() => AudioManager.instance.PlayBGM(10);
 
@@ -56,6 +55,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     {
         currency = data.currency;
         lastSceneName = data.lastScene;
+        campfireIndex = data.lastCampfireScene;
         UI.instance.ModifySouls();
         bloodstainExists = data.bloodstainExists;
 
@@ -71,6 +71,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public void SaveData(ref GameData data)
     {
         data.lastScene = SceneManager.GetActiveScene().buildIndex;
+        data.lastCampfireScene = campfireIndex;
 
         data.doorIndex = doorIndexToSave == -1 ? data.doorIndex : doorIndexToSave;
         data.usedDoor = usedDoor;
@@ -128,4 +129,6 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
         SceneManager.LoadScene(targetScene);
     }
+
+    public void SetCampfireIndex(int index) => campfireIndex = index;
 }

@@ -6865,6 +6865,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 510998306758025208, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
   m_PrefabInstance: {fileID: 682604280627905889}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &682604280627905891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7186582979596565718, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
+  m_PrefabInstance: {fileID: 682604280627905889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &682604280627905892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4618521559279367638, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
+  m_PrefabInstance: {fileID: 682604280627905889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &683900829663168611
 GameObject:
   m_ObjectHideFlags: 0
@@ -31828,6 +31838,8 @@ MonoBehaviour:
   - {fileID: 2111293388}
   - {fileID: 536100907}
   - {fileID: 682604280627905890}
+  - {fileID: 682604280627905891}
+  - {fileID: 682604280627905892}
 --- !u!224 &3445240022216036516
 RectTransform:
   m_ObjectHideFlags: 0
