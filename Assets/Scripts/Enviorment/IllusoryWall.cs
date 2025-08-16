@@ -15,6 +15,7 @@ public class IllusoryWall : MonoBehaviour
     }
 
     [SerializeField] private float fadeSpeed;
+    [SerializeField] private IllusoryWall twinWall;
     private bool failSafe;
 
     private void Update()
@@ -29,7 +30,7 @@ public class IllusoryWall : MonoBehaviour
         }
     }
 
-    public void Activate()
+    public void Activate(bool manual = true)
     {
         if (tilemapCollider != null)
         {
@@ -38,6 +39,12 @@ public class IllusoryWall : MonoBehaviour
         }
 
         wall.enabled = false;
-        AudioManager.instance.PlaySFX(13, false);
+        if (manual)
+        {
+            AudioManager.instance.PlaySFX(13, false);
+
+            if (twinWall != null)
+                twinWall.Activate(false);
+        }
     }
 }

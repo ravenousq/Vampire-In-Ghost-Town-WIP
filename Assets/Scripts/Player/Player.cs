@@ -376,7 +376,10 @@ public class Player : Entity
         }
 
         if (other.gameObject.tag == "Instant Death")
-            Die();
+        {
+            stats.Die();
+            //Die();
+        }
     }
 
     public override bool IsGroundDetected()

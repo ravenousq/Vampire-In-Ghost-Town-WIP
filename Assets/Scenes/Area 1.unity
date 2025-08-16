@@ -6875,6 +6875,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4618521559279367638, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
   m_PrefabInstance: {fileID: 682604280627905889}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &682604280627905893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1335757025523916400, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
+  m_PrefabInstance: {fileID: 682604280627905889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &683900829663168611
 GameObject:
   m_ObjectHideFlags: 0
@@ -11164,6 +11169,7 @@ MonoBehaviour:
   illusoryWalls: []
   miniBosses: []
   doors: []
+  oneSideDoors: []
   cam: {fileID: 0}
 --- !u!222 &1136406825785019342
 CanvasRenderer:
@@ -31840,6 +31846,7 @@ MonoBehaviour:
   - {fileID: 682604280627905890}
   - {fileID: 682604280627905891}
   - {fileID: 682604280627905892}
+  - {fileID: 682604280627905893}
 --- !u!224 &3445240022216036516
 RectTransform:
   m_ObjectHideFlags: 0

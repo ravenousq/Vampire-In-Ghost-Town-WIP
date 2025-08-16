@@ -24,6 +24,10 @@ public class OneSideDoor : MonoBehaviour
     [SerializeField] private float fadeSpeed = 1;
     private bool inputBlocked = false;
 
+    private void Start()
+    {
+        openDistance += cd.bounds.size.x / 2;
+    }
 
     private void Update()
     {
