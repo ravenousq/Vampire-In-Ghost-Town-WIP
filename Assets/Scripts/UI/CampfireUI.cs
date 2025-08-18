@@ -160,7 +160,6 @@ public class CampfireUI : MonoBehaviour
 
     private void ResetGame()
     {
-        PlayerManager.instance.SetCampfireIndex(SceneManager.GetActiveScene().buildIndex);
         SaveManager.instance.SaveGame();
         SaveManager.instance.SaveSettings();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

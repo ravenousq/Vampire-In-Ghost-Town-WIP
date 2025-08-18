@@ -9,6 +9,7 @@ public class AmmoUI : MonoBehaviour
     [SerializeField] private Image ammoImage;
     [SerializeField] private Color textColor;
     private bool checker = true;
+    private bool setUp;
 
     private void Awake()
     {
@@ -17,24 +18,29 @@ public class AmmoUI : MonoBehaviour
 
     Player player;
 
-    private void Start() 
+    private void Start()
     {
         player = PlayerManager.instance.player;
-
-        player.skills.shoot.OnAmmoChange += UpdateAmmo;
     }
 
     private void Update() 
     {
-        if(checker)
+
+        if (checker)
         {
-            if(SkillManager.instance.isSkillUnlocked("Constellation of Tears"))
+            if (SkillManager.instance.isSkillUnlocked("Constellation of Tears"))
             {
                 checker = false;
                 ammoImage.color = Color.white;
                 ammoText.color = textColor;
                 UpdateAmmo();
             }
+        }
+
+        if (!setUp && player?.skills?.shoot != null)
+        {
+            setUp = true;
+            player.skills.shoot.OnAmmoChange += UpdateAmmo;
         }
     }
 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139cf8841d4405d439a6cf712cef2b15, type: 3}
+  m_Name: Abnadoned Journal Page 2
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Abandoned Journal Page 2
+  price: 0
+  icon: {fileID: -2940633430742166124, guid: 06a66895e2a19f943a0c37ac870e4069, type: 3}
+  itemDescription: A singular page torn off a notebook seemingly in haste. The handwriting
+    seems quite sophisticated heeding the sorry state of this crumpled piece of paper.
+  noteContent: \tI think we might be lost in the forest. Our Reverend says outherwise,
+    yet my faith remains frail. I trust The Maker to guide us, yet there is something
+    strange about Deadwood. An eerie energy fills the space and there is a constant
+    metalic taste floating in the air.\n\tI should stop thinking about what I am
+    not supposed to, yet last events that occured in town troublesmy soul. Moods
+    amongst my comerades also appear to be questionable, but they will not admit
+    the truth, nor will I.\n'tOnly Sister Amelia appears to ramain optimistic in
+    these dark times. It is strange as we are supposed to serve the lower hierarchy
+    of The Church, yet today she is the one preaching at the campfire. I hope that
+    she is not mesmerising us, so that we do not notice her true intentions.
+  itemID: d09a1451610923b4fa2abe1e59f89fe4

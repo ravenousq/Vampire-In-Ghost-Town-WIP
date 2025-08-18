@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: Fix marker not saving properly; //DONE
-//TODO: Fix charms on empty save; //DONE //NWM
+//TODO: Fix marker detection; //DONE
+//TODO: Dialogues UI;
+//TODO: Fix notes; //DONE
+//TODO: Fix spawn on death; //DONE
 [SelectionBase]
 public class Player : Entity
 {
@@ -372,14 +374,8 @@ public class Player : Entity
         if (other.gameObject.tag == "Marker")
         {
             //Debug.Log("Collision");
-            UI.instance.PlayerMarkerCollision(other.gameObject);
-        }
-
-        if (other.gameObject.tag == "Instant Death")
-        {
-            stats.Die();
-            //Die();
-        }
+            UI.instance.PlayerMarkerCollision(other.gameObject);  
+        }  
     }
 
     public override bool IsGroundDetected()

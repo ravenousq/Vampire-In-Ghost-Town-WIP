@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139cf8841d4405d439a6cf712cef2b15, type: 3}
+  m_Name: Abnadoned Journal Page 1
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Abandoned Journal Page 1
+  price: 0
+  icon: {fileID: -2940633430742166124, guid: 06a66895e2a19f943a0c37ac870e4069, type: 3}
+  itemDescription: A singular page torn off a notebook seemingly in haste. The handwriting
+    seems quite sophisticated heeding the sorry state of this crumpled piece of paper.
+  noteContent: \tToday we arrived at the spot where woods meet desert sands. Aside
+    from Sister Amelia's testimony we have no real track to follow, but I believe
+    her to be pious enough to not pervaricate, even in such a matter.\n\t I would
+    still rather her to not acompany us not only due to her safety, but also beacuse
+    she might want to save this beast's pathetic life. We will not allow it. Such
+    sort must witness absolution through perishing. Burn.\n\t Let us hope we will
+    have a good hunt tomorrow.
+  itemID: e10bc3e1a7c934e43b0cf19d9f6cc64a

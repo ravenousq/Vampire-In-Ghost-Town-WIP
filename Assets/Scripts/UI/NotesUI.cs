@@ -1,16 +1,16 @@
 using System.Collections;
-using System.Security;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO: manage snippets;
 public class NotesUI : ItemsUI
 {
     [SerializeField] private Image fadeImage;
     [SerializeField] private float defaultFade;
     [SerializeField] private GameObject noteContentDisplay;
     [SerializeField] private Scrollbar scroll;
+    [SerializeField] private TextMeshProUGUI noteContentText;
     private bool focused;
     protected override void Start()
     {
@@ -29,6 +29,7 @@ public class NotesUI : ItemsUI
         {
             focused = !focused;
             noteContentDisplay.SetActive(focused);
+            noteContentText.text = currentData.noteContent != null ? currentData.noteContent : "No content available.";
             StartCoroutine(ResetScrollBar());
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, focused ? defaultFade : 0);
         }
@@ -50,6 +51,7 @@ public class NotesUI : ItemsUI
         if (focused)
         {
             focused = !focused;
+            SwitchTo(0);
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, focused ? defaultFade : 0);
             noteContentDisplay.SetActive(focused);
         }

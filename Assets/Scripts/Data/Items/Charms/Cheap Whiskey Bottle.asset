@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemName: Cheap Whiskey Bottle
-  price: 0
+  price: 1000
   icon: {fileID: 7733368988372669016, guid: ce1effd423bfe4e4699655998311df10, type: 3}
   itemDescription: "A well-renowned bottle of whiskey in these parts. Sots and topers
     have sparked more than a few scrimmages over it\u2019s artificial yet oddly intoxicating

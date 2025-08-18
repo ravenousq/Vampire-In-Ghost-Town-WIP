@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Campfire : MonoBehaviour, ISaveManager
 {
@@ -81,6 +82,7 @@ public class Campfire : MonoBehaviour, ISaveManager
             return;
 
         data.spawnPosition = null;
-        data.spawnPosition = new float[] {spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z};
+        data.spawnPosition = new float[] { spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z };
+        data.lastCampfireScene = SceneManager.GetActiveScene().buildIndex;
     }
 }

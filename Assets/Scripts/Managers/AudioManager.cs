@@ -11,16 +11,16 @@ public class AudioManager : MonoBehaviour
         if (!instance && SceneManager.GetActiveScene().buildIndex != 0)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
+
+            if (playOnAwake)
+                InvokeRepeating(nameof(PlayMusicIfNeeded), 0, 2);
         }
         else
             Destroy(gameObject);
 
-        if (bgm.Length <= 0) return;
-
-        if (playOnAwake)
-            InvokeRepeating(nameof(PlayMusicIfNeeded), 0, 2);
     }
+
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource[] sfx;
@@ -77,5 +77,8 @@ public class AudioManager : MonoBehaviour
         if (cancelInvoke)
             CancelInvoke(nameof(PlayMusicIfNeeded));
     }
+
+    public bool isPlayingBGM(int index) => bgm[index].isPlaying;
+    
 
 }
