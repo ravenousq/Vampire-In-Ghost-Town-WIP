@@ -129,11 +129,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6163780585604864379, guid: ec40f86ada17fc24b806a15cd468aa98, type: 3}
   m_PrefabInstance: {fileID: 2880209746850076544}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &536100907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7741402151604338926, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
-  m_PrefabInstance: {fileID: 682604280627905889}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &797759659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4029253942398047904, guid: be11ae4a956208749a0d468fb246616f, type: 3}
@@ -414,11 +409,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5599505991731047057, guid: be11ae4a956208749a0d468fb246616f, type: 3}
   m_PrefabInstance: {fileID: 6162028550143401013}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2111293388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6288883849453404650, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
-  m_PrefabInstance: {fileID: 682604280627905889}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &6338472769638105
 RectTransform:
@@ -6612,17 +6602,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
 --- !u!1 &682604280627905890 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 510998306758025208, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
-  m_PrefabInstance: {fileID: 682604280627905889}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &682604280627905891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7186582979596565718, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
-  m_PrefabInstance: {fileID: 682604280627905889}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &682604280627905892 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1335757025523916400, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 437325573525422317, guid: 541c274a720c67745a168ca9670efb3f, type: 3}
   m_PrefabInstance: {fileID: 682604280627905889}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &683900829663168611
@@ -31538,14 +31518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bea8abeaf1f23c49a308983594dcee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maps: {fileID: 682604280627905890}
   currentMap: {fileID: 1007397185}
-  maps:
-  - {fileID: 2111293388}
-  - {fileID: 536100907}
-  - {fileID: 682604280627905890}
-  - {fileID: 682604280627905891}
-  - {fileID: 682604280627905892}
-  - {fileID: 1007397185}
 --- !u!224 &3445240022216036516
 RectTransform:
   m_ObjectHideFlags: 0

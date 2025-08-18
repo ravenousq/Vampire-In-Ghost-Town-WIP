@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TODO: Separate form the rest of the managers;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -10,7 +11,7 @@ public class AudioManager : MonoBehaviour
         if (!instance && SceneManager.GetActiveScene().buildIndex != 0)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
@@ -72,7 +73,7 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < bgm.Length; i++)
             bgm[i].Stop();
-        
+
         if (cancelInvoke)
             CancelInvoke(nameof(PlayMusicIfNeeded));
     }

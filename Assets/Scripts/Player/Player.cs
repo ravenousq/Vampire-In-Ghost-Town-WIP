@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 //TODO: Fix marker not saving properly; //DONE
-//TODO: Fix charms on empty save; //DONE
+//TODO: Fix charms on empty save; //DONE //NWM
 [SelectionBase]
 public class Player : Entity
 {
