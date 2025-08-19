@@ -25,7 +25,8 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (!player.isKnocked)
             player.SetVelocity(xInput * player.movementSpeed, rb.linearVelocityY, player.slowMotion);
-
+        else
+            stateMachine.ChangeState(player.airborne);
 
         if (xInput == 0)
             stateMachine.ChangeState(player.idle);

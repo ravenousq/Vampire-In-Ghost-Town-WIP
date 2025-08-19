@@ -85,6 +85,8 @@ public class PlayerGroundedState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        player.FlagPosition();
     }
 
     private bool CanExecuteEnemy()

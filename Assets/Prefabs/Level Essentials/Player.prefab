@@ -230,8 +230,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4029253942398047904}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -279,7 +279,7 @@ SpriteRenderer:
   m_SortingLayerID: 715952231
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6175439267509586087, guid: 3c7147b597f7f9848a083c75b6f457b7, type: 3}
+  m_Sprite: {fileID: 2429575359091950856, guid: 90dcda6e3ff435a4f85237f4186ce3a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -440,11 +440,9 @@ MonoBehaviour:
     m_Bits: 2112
   reloadTorso: {fileID: 3734239168862351746}
   healTorso: {fileID: 9055801899981965803}
-  skills: {fileID: 0}
-  stats: {fileID: 0}
-  enemyToExecute: {fileID: 0}
   executionDamage: 50
   canSlowTime: 0
+  enemyToExecute: {fileID: 0}
   afterImage: {fileID: 3484935133656287947, guid: 906d0012e9b713849b3b14e8e0b01375, type: 3}
   dashCheckerPrefab: {fileID: 7383158303482970207, guid: bb2e327c76cc13144a4e632b7a695979, type: 3}
   deathScreen: {fileID: 0}

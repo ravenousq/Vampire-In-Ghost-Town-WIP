@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-//TODO: Fix marker detection; //DONE
-//TODO: Dialogues UI;
-//TODO: Fix notes; //DONE
-//TODO: Fix spawn on death; //DONE
 [SelectionBase]
 public class Player : Entity
 {
@@ -100,6 +96,7 @@ public class Player : Entity
     [HideInInspector] public bool noGroundDetection;
     private bool creatingAfterImage;
     private float haloTimer;
+    private Vector3 lastGroundedPosition;
 
     [Header("Debug")]
     [SerializeField] private Enemy enemyToSpawn;
@@ -160,7 +157,7 @@ public class Player : Entity
 
     protected override void Update()
     {
-        if (stats.HP == 0)
+        if (stats.HP == 0 && !canMove)
             return;
 
         stateMachine.current.Update();
@@ -281,6 +278,8 @@ public class Player : Entity
 
     public void CancelAfterImage() => creatingAfterImage = false;
 
+    public void FlagPosition() => lastGroundedPosition = transform.position;
+
     public void ThirdAttack() => StartCoroutine(ThirdAttackRoutine());
 
     private IEnumerator ThirdAttackRoutine()
@@ -374,8 +373,26 @@ public class Player : Entity
         if (other.gameObject.tag == "Marker")
         {
             //Debug.Log("Collision");
-            UI.instance.PlayerMarkerCollision(other.gameObject);  
-        }  
+            UI.instance.PlayerMarkerCollision(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Instant Death" && canMove)
+        {
+            canMove = false;
+            Invoke(nameof(RespawnOnEdge), 1f);
+            stats.SwitchInvincibility(true);
+            stats.TakeDamage(Mathf.RoundToInt(stats.HP / 2));
+            Knockback(new Vector2(5, 5), transform.position.x + (rb.linearVelocityX / Mathf.Abs(rb.linearVelocityX)), .35f);
+            UI.instance.fadeScreen.FadeIn(3);
+        }
+    }
+
+    private void RespawnOnEdge()
+    {
+        transform.position = lastGroundedPosition;
+        UI.instance.fadeScreen.FadeOut(3);
+        stats.SwitchInvincibility(false);
+        canMove = true;
     }
 
     public override bool IsGroundDetected()

@@ -30661,7 +30661,7 @@ GameObject:
   - component: {fileID: 1896508142486194175}
   - component: {fileID: 5332783961604323340}
   - component: {fileID: 1630928247226837819}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: One Side Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
