@@ -73,6 +73,7 @@ public class Player : Entity
     [SerializeField] private AfterImage afterImage;
     [SerializeField] private PerfectDashChecker dashCheckerPrefab; 
     [SerializeField] private DeathScreen deathScreen;
+    [SerializeField] private Transform defaultSpawnPoint;
 
     [Header("FX")]
     public GameObject intoTheAbyssFX;
@@ -170,6 +171,14 @@ public class Player : Entity
         {
             Time.timeScale += Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (defaultSpawnPoint != null)
+                transform.position = defaultSpawnPoint.position;
+            else
+                transform.position = Vector3.zero;
         }
     }
 
