@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCShopUI : ItemsUI
@@ -11,8 +10,7 @@ public class NPCShopUI : ItemsUI
     [SerializeField] private float cameraZoom;
     [SerializeField] private float cameraOffset;
     [SerializeField] private float shiftSpeed;
-    private float defaultCameraZoom;
-    private CinemachineFollow cinemachineFollow;
+
     private List<ItemData> stock;
     private NPC currentNPC;
     private int exitIndex;
@@ -22,8 +20,6 @@ public class NPCShopUI : ItemsUI
         base.Awake();
 
         stock = new List<ItemData>();
-        cinemachineFollow = cinemachine.GetComponent<CinemachineFollow>();
-        defaultCameraZoom = cinemachine.Lens.OrthographicSize;
     }
 
     public void SetUp(NPC npc, int index)
@@ -64,6 +60,7 @@ public class NPCShopUI : ItemsUI
         if (UI.instance.canTurnOnGameMenu)
             UI.instance.LockGameMenu();
 
+        //cinemachine.GetComponent<CinemachineCamera>().Target.TrackingTarget = currentNPC.transform;
         SwitchTo(0, true);
     }
 
@@ -71,21 +68,18 @@ public class NPCShopUI : ItemsUI
     {
         if (!UI.instance.canTurnOnGameMenu)
             UI.instance.LockGameMenu();
+
+        //cinemachine.GetComponent<CinemachineCamera>().Target.TrackingTarget = PlayerManager.instance.player.transform;
     }
 
     protected override void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            cinemachine.Lens.OrthographicSize = defaultCameraZoom;
-            cinemachineFollow.FollowOffset.x = 0;
             DialogueManager.instance.NextLine(exitIndex);
             UI.instance.SwitchShop(currentNPC, exitIndex);
             return;
         }
-
-        cinemachine.Lens.OrthographicSize = Mathf.Clamp(Mathf.MoveTowards(cinemachine.Lens.OrthographicSize, cameraZoom, shiftSpeed * Time.unscaledDeltaTime), cameraZoom, defaultCameraZoom);
-        cinemachineFollow.FollowOffset.x = Mathf.Clamp(Mathf.MoveTowards(cinemachineFollow.FollowOffset.x, cameraOffset, shiftSpeed * Time.unscaledDeltaTime), 0, cameraOffset);
 
         if (Input.GetKeyDown(KeyCode.W))
             SwitchTo(selectedIndex - 5 < 0 ? selectedIndex + 5 : selectedIndex - 5, true);

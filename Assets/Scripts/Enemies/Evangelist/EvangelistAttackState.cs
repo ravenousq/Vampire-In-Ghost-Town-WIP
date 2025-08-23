@@ -1,7 +1,7 @@
 
-public class GarryAttackState : GarryGroundedState
+public class EvangelistAttackState : EvangelistGroundedState
 {
-    public GarryAttackState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Garry enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
+    public EvangelistAttackState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Evangelist enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
     }

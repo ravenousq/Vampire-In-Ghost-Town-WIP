@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public static UI instance;
-    public NPCShopUI npcShop { get; private set; }
+    public NPCShopUI npcShop; //{ get; private set; }
     public CampfireUI campfireUI { get; private set; }
     public FadeScreen fadeScreen { get; private set; }
     public PauseMenu pauseMenu { get; private set; }

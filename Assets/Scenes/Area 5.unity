@@ -1466,7 +1466,7 @@ MonoBehaviour:
     value: 2
     modifiers: 
   damage:
-    value: 10
+    value: 20
     modifiers: 
   agility:
     value: 16
@@ -1913,7 +1913,7 @@ GameObject:
   - component: {fileID: 1961824160}
   - component: {fileID: 1961824159}
   - component: {fileID: 1961824158}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Instant Death
   m_TagString: Instant Death
   m_Icon: {fileID: 0}
@@ -8196,7 +8196,7 @@ MonoBehaviour:
     value: 4
     modifiers: 
   damage:
-    value: 1
+    value: 15
     modifiers: 
   agility:
     value: 5
@@ -10401,7 +10401,7 @@ MonoBehaviour:
     value: 2
     modifiers: 
   damage:
-    value: 10
+    value: 20
     modifiers: 
   agility:
     value: 16
@@ -43402,7 +43402,7 @@ MonoBehaviour:
     value: 2
     modifiers: 
   damage:
-    value: 10
+    value: 20
     modifiers: 
   agility:
     value: 16
@@ -51491,7 +51491,7 @@ MonoBehaviour:
     value: 2
     modifiers: 
   damage:
-    value: 10
+    value: 20
     modifiers: 
   agility:
     value: 16
@@ -56988,7 +56988,7 @@ MonoBehaviour:
     value: 4
     modifiers: 
   damage:
-    value: 1
+    value: 15
     modifiers: 
   agility:
     value: 5

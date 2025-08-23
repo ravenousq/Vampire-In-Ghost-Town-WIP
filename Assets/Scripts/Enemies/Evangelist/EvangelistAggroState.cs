@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GarryAggroState : GarryGroundedState
+public class EvangelistAggroState : EvangelistGroundedState
 {
     private Player player;
     private bool playerGone;
@@ -8,7 +8,7 @@ public class GarryAggroState : GarryGroundedState
     private float aggroMultiplayer = 2;
     private float randomizedDistance;
 
-    public GarryAggroState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Garry enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
+    public EvangelistAggroState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Evangelist enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
     }

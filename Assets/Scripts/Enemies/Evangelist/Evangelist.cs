@@ -2,16 +2,16 @@ using UnityEditor;
 using UnityEngine;
 
 [SelectionBase]
-public class Garry : Enemy
+public class Evangelist : Enemy
 {
     #region States
-    public GarryIdleState idle { get; private set; }
-    public GarryMoveState move { get; private set; }
-    public GarryAggroState aggro { get; private set; }
-    public GarryAttackState attack { get; private set; }
-    public GarryStunnedState stun { get; private set; }
-    public GarryParriedState parried { get; private set; }
-    public GarryDeathState death { get; private set; }
+    public EvangelistIdleState idle { get; private set; }
+    public EvangelistMoveState move { get; private set; }
+    public EvangelistAggroState aggro { get; private set; }
+    public EvangelistAttackState attack { get; private set; }
+    public EvangelistStunnedState stun { get; private set; }
+    public EvangelistParriedState parried { get; private set; }
+    public EvangelistDeathState death { get; private set; }
     #endregion
 
     [Header("Lullaby")]
@@ -27,13 +27,13 @@ public class Garry : Enemy
     {
         base.Awake();
 
-        idle = new GarryIdleState(this, stateMachine, "idle", this);
-        move = new GarryMoveState(this, stateMachine, "move", this);
-        aggro = new GarryAggroState(this, stateMachine, "move", this);
-        attack = new GarryAttackState(this, stateMachine, "attack", this);
-        stun = new GarryStunnedState(this, stateMachine, "stun", this);
-        parried = new GarryParriedState(this, stateMachine, "parried", this);
-        death = new GarryDeathState(this, stateMachine, "death", this);
+        idle = new EvangelistIdleState(this, stateMachine, "idle", this);
+        move = new EvangelistMoveState(this, stateMachine, "move", this);
+        aggro = new EvangelistAggroState(this, stateMachine, "move", this);
+        attack = new EvangelistAttackState(this, stateMachine, "attack", this);
+        stun = new EvangelistStunnedState(this, stateMachine, "stun", this);
+        parried = new EvangelistParriedState(this, stateMachine, "parried", this);
+        death = new EvangelistDeathState(this, stateMachine, "death", this);
 
         au = GetComponent<AudioSource>();
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 //TODO: apply player specific stats;
-public class PlayerStats : CharacterStats
+public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
 
@@ -64,5 +64,18 @@ public class PlayerStats : CharacterStats
         base.Stun();
 
         Recover();
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.usedDoor)
+            HP = data.currentHealth;
+        else
+            HP = health.GetValue();
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentHealth = HP;
     }
 }

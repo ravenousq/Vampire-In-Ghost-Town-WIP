@@ -490,7 +490,7 @@ MonoBehaviour:
     value: 2
     modifiers: 
   damage:
-    value: 10
+    value: 20
     modifiers: 
   agility:
     value: 16

@@ -31,9 +31,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8107492138317071492}
   - {fileID: 890951515938100727}
   - {fileID: 413749641943328253}
+  - {fileID: 8107492138317071492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   selectedImage: {fileID: 2773473359208830028}
   itemText: {fileID: 6759210315825642401}
   equipedCharmFrame: {fileID: -468306068546887166, guid: b85da535219c5f5408f558f020482252, type: 3}
+  unequippedCharmFrame: {fileID: 0}
   item:
     itemData: {fileID: 0}
     stackSize: 0
@@ -318,15 +319,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5b6ea6878e90584a8af56b6ae7293de, type: 2}
-  m_sharedMaterial: {fileID: 3168177846902588913, guid: c5b6ea6878e90584a8af56b6ae7293de, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fbc07166d0d48aa44b1287ef29ced488, type: 2}
+  m_sharedMaterial: {fileID: 255786425675240141, guid: fbc07166d0d48aa44b1287ef29ced488, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285894056
+  m_fontColor: {r: 0.65882355, g: 0.5529412, b: 0.45882356, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

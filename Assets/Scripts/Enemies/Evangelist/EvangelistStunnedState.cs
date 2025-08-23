@@ -2,9 +2,9 @@
 
 using System.Diagnostics;
 
-public class GarryStunnedState : GarryGroundedState
+public class EvangelistStunnedState : EvangelistGroundedState
 {
-    public GarryStunnedState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Garry enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
+    public EvangelistStunnedState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Evangelist enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
     }

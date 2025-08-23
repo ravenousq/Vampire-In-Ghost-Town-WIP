@@ -11,8 +11,6 @@ public class ParallaxBackground : MonoBehaviour
     private float length;
     private float height;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cam = GameObject.Find("Main Camera");
@@ -22,7 +20,6 @@ public class ParallaxBackground : MonoBehaviour
         xPosition = transform.position.x;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distanceMoved = cam.transform.position.x * (1 - parallaxEffect);

@@ -8,6 +8,7 @@ public class GameData
     public int lastScene;
     public int lastCampfireScene;
     public float[] spawnPosition;
+    public int currentHealth;
     public SerializableDictionary<string, bool> skillTree;
     public SerializableDictionary<string, int> inventory;
     public List<string> charmsID = new List<string>();

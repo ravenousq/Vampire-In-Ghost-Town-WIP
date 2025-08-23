@@ -1,9 +1,9 @@
 
 using UnityEngine;
 
-public class GarryMoveState : GarryGroundedState
+public class EvangelistMoveState : EvangelistGroundedState
 {
-    public GarryMoveState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Garry enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
+    public EvangelistMoveState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Evangelist enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
     }
