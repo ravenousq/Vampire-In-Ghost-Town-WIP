@@ -6,7 +6,7 @@ using System.Linq;
 public class TutorialEnabler : MonoBehaviour
 {
     [SerializeField] private GameObject tutorial;
-    [SerializeField] private bool destoryAfterRead;
+    [SerializeField] private bool destoryAfterRead = true;
     [SerializeField] private ItemData[] requiredItems;
     private Image[] images;
     private TextMeshProUGUI[] texts;
@@ -29,33 +29,27 @@ public class TutorialEnabler : MonoBehaviour
 
     private void Update()
     {
-        //        Debug.Log(HasItems());
+        if (Input.GetKeyDown(KeyCode.C) && !asleep && requiredItems.Length == 0)
+            DestroyTutorial();
 
         foreach (Image image in images)
-            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, asleep ? 0 : 1, Time.unscaledDeltaTime));
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, !asleep && HasItems() ? 1 : 0, Time.unscaledDeltaTime));
 
         foreach (TextMeshProUGUI text in texts)
-            text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.MoveTowards(text.color.a, asleep ? 0 : 1, Time.unscaledDeltaTime));
+            text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.MoveTowards(text.color.a, !asleep && HasItems() ? 1 : 0, Time.unscaledDeltaTime));
+
+        if (images[0].color.a != 0 && !read)
+        {
+            read = true;
+            LevelManager.instance.TutorialRead(this);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (CanBeTriggered(other))
-        {
             asleep = false;
-            read = true;
-            LevelManager.instance.TutorialRead(this);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (CanBeTriggered(other) && asleep)
-        {
-            asleep = false;
-            read = true;
-            LevelManager.instance.TutorialRead(this);
-        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -64,7 +58,7 @@ public class TutorialEnabler : MonoBehaviour
             asleep = true;
     }
 
-    private bool CanBeTriggered(Collider2D other) => other.GetComponent<Player>() && HasItems() && LevelManager.instance.showTutorials && (destoryAfterRead ? !read : true);
+    private bool CanBeTriggered(Collider2D other) => other.GetComponent<Player>() && LevelManager.instance.showTutorials && (destoryAfterRead ? !read : true);
 
     private bool HasItems()
     {

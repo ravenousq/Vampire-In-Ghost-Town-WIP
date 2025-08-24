@@ -73,8 +73,8 @@ public class Hillbilly : Enemy
 
         if ((playerPosX > transform.position.x && !facingRight) || (playerPosX < transform.position.x && facingRight))
         {
-            stateMachine.ChangeState(idle);
             Flip();
+            stateMachine.ChangeState(idle);
         }
     }
 

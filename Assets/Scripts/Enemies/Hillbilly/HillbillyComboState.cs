@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HillbillyComboState : HillbillyGroundedState
 {
+    Player player;
     public HillbillyComboState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName, Hillbilly enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
 
@@ -14,6 +15,11 @@ public class HillbillyComboState : HillbillyGroundedState
         enemy.CreateParryIndicator();
 
         enemy.stats.damage.AddModifier(3, enemy.stats);
+
+        player = PlayerManager.instance.player;
+
+        if (PlayerOnRight() == -enemy.facingDir)
+            enemy.Flip();
     }
 
     public override void Update()
@@ -32,4 +38,6 @@ public class HillbillyComboState : HillbillyGroundedState
 
         enemy.stats.damage.RemoveModifier(3);
     }
+    
+    private int PlayerOnRight() => player.transform.position.x > enemy.transform.position.x ? 1 : -1;
 }

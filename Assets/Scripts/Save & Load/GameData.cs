@@ -13,6 +13,7 @@ public class GameData
     public SerializableDictionary<string, int> inventory;
     public List<string> charmsID = new List<string>();
     public SerializableDictionary<int, string> levels;
+    public SerializableDictionary<int, string> defeatedEnemies;
     public SerializableDictionary<string, int> npcs;
     public SerializableDictionary<string, string> npcShops;
     public List<string> maps;
@@ -36,6 +37,7 @@ public class GameData
         inventory = new SerializableDictionary<string, int>();
         charmsID = new List<string>();
         levels = new SerializableDictionary<int, string>();
+        defeatedEnemies = new SerializableDictionary<int, string>();
         npcs = new SerializableDictionary<string, int>();
         npcShops = new SerializableDictionary<string, string>();
         maps = new List<string>();

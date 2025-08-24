@@ -30,7 +30,7 @@ public class DeathScreen : MonoBehaviour, ISaveManager
         }
     }
 
-    public void ActivateDeathScreen() => isFading = true;
+    private void OnEnable() => isFading = true;
 
     private IEnumerator ResetGameRoutine()
     {

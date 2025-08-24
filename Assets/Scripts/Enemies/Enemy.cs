@@ -111,6 +111,9 @@ public class Enemy : Entity
 
                 Destroy(hit.gameObject);
 
+                if (!SkillManager.instance.isSkillUnlocked("Incense & Iron"))
+                    return;
+
                 int currentBullets = player.skills.shoot.currentAmmo;
 
                 int bulletsToRefill = Mathf.RoundToInt((12 - currentBullets)/ 2);
@@ -126,13 +129,15 @@ public class Enemy : Entity
         cd.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
 
+        if(parryIndicator != null && !parryIndicator.anim.GetCurrentAnimatorStateInfo(0).IsName("Parry_Stop_FX"))
+            parryIndicator.StopParry();
+
         stats.OnDamaged -= BloodFX;
 
         if(drop)
             Instantiate(itemPrefab, itemDropPosition.position, Quaternion.identity).SetUpItem(drop, true);
 
-        if (isAMiniBoss)
-            LevelManager.instance.MiniBossDefeated(this);
+        LevelManager.instance.EnemyDefeated(this);
     }
 
     public override void Flip()
@@ -145,6 +150,9 @@ public class Enemy : Entity
     public override void Stun()
     {
         base.Stun();
+
+        if(parryIndicator != null && !parryIndicator.anim.GetCurrentAnimatorStateInfo(0).IsName("Parry_Stop_FX"))
+            parryIndicator.StopParry();
 
         cd.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;

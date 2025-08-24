@@ -72,7 +72,6 @@ public class Player : Entity
     [Header("Prefabs")]
     [SerializeField] private AfterImage afterImage;
     [SerializeField] private PerfectDashChecker dashCheckerPrefab; 
-    [SerializeField] private DeathScreen deathScreen;
     [SerializeField] private Transform defaultSpawnPoint;
 
     [Header("FX")]
@@ -226,8 +225,7 @@ public class Player : Entity
                 AudioManager.instance.PlaySFX(11); 
                 creatingAfterImage = true;
                 InvokeRepeating(nameof(CreateAfterImage), 0, .01f);
-                if(SkillManager.instance.isSkillUnlocked("Incense & Iron"))
-                    Instantiate(dashCheckerPrefab, transform.position, Quaternion.identity);
+                Instantiate(dashCheckerPrefab, transform.position, Quaternion.identity);
             }
         }
     }
@@ -312,8 +310,7 @@ public class Player : Entity
     {
         skills.ChangeLockOnAllSkills(true);
 
-        deathScreen.gameObject.SetActive(true);
-        deathScreen.ActivateDeathScreen();
+        UI.instance.deathScreen.gameObject.SetActive(true);
 
         base.Die();
 

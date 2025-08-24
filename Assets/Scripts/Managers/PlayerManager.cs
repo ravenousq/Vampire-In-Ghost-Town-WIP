@@ -21,10 +21,10 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     [SerializeField] private Transform maps;
     public int currency { get; private set; } = 10000;
     public int lastSceneName { get; private set; }
+    public bool usedDoor { get; private set; }
     private bool playerIsDead;
     private bool bloodstainExists;
     private int doorIndexToSave = -1;
-    private bool usedDoor;
     private GameObject bloodstainIcon;
 
     private void Start()

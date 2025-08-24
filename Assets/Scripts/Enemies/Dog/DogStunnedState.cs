@@ -20,7 +20,7 @@ public class DogStunnedState : DogGroundedState
     {
         base.Update();
 
-        enemy.ResetVelocity();
+        enemy.SetVelocity(0, rb.linearVelocityY);
 
         if(stateTimer < 0)
             enemy.stats.Recover();

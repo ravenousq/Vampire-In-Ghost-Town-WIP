@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     public FadeScreen fadeScreen { get; private set; }
     public PauseMenu pauseMenu { get; private set; }
     public BloodstainText bloodstain { get; private set; }
+    public DeathScreen deathScreen { get; private set; }
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class UI : MonoBehaviour
         fadeScreen = GetComponentInChildren<FadeScreen>(true);
         pauseMenu = GetComponentInChildren<PauseMenu>(true);
         bloodstain = GetComponentInChildren<BloodstainText>(true);
+        deathScreen = GetComponentInChildren<DeathScreen>(true);
     }
 
     [Header("Inventory")]

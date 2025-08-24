@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ParryIndicator : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim { get; private set; }
     void Awake()
     {
         anim = GetComponent<Animator>();
