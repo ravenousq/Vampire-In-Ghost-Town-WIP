@@ -40,6 +40,12 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
     private void OnEnable()
     {
         UI.instance.fadeScreen.FadeOut();
+        UI.instance.LockPauseMenu();
+    }
+
+    private void OnDisable()
+    {
+        UI.instance.LockPauseMenu();
     }
 
 

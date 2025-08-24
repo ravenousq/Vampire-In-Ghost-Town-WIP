@@ -46,7 +46,7 @@ public class Bloodstain : MonoBehaviour
             inputImage.color.b,
             Mathf.MoveTowards(
                 inputImage.color.a,
-                allowPickUp ? 255 : 0,
+                allowPickUp ? 1 : 0,
                 fadeSpeed * Time.unscaledDeltaTime
             )
         );

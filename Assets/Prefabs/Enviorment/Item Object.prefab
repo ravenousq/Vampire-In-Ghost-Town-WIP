@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4235565483072219220}
   - component: {fileID: 3563631589019634088}
   m_Layer: 0
-  m_Name: Rotten Plank
+  m_Name: Cogitating Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af2ef99d2e054e42a7cc2e6797461a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 30713d832ba5fac44b3a59967197c927, type: 2}
+  item: {fileID: 11400000, guid: 40c0ed29194f93a4caabaac3544a25e0, type: 2}
   inputImage: {fileID: 7623253957872693265}
   audioPoint: {fileID: 1303672422746392174}
   fadeSpeed: 5
-  ambientRange: 5
+  ambientRange: 27.62
 --- !u!58 &3563631589019634088
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,9 +163,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1590824005
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: 715952231
+  m_SortingLayer: 4
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 806423ea8fccad141af317f347efbfe5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -49,7 +49,7 @@ public class OneSideDoor : MonoBehaviour
             inputImage.color.b,
             Mathf.MoveTowards(
                 inputImage.color.a,
-                InRange() ? 255 : 0,
+                InRange() ? 1 : 0,
                 fadeSpeed * Time.unscaledDeltaTime
             )
         );

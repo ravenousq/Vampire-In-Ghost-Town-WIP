@@ -1,12 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour, ISaveManager
+public class LevelManager : MonoBehaviour, ISaveManager, ISaveManagerSettings
 {
     public static LevelManager instance;
 
@@ -36,7 +38,7 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
         doors = FindObjectsByType<LevelExit>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToArray();
 
-        cam = GameObject.Find("CinemachineCamera").GetComponent<CinemachineFollow>();
+        tutorials = FindObjectsByType<TutorialEnabler>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID).ToArray();
 
         // npcs = FindObjectsByType<NPC>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
         // .OrderBy(npc => name)
@@ -53,6 +55,9 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
         for (int i = 0; i < oneSideDoors.Length; i++)
             levelOneSideDoors.Add(false);
+
+        for (int i = 0; i < tutorials.Length; i++)
+            levelTutorials.Add(false);
     }
 
     [SerializeField] private ItemObject[] items;
@@ -60,16 +65,37 @@ public class LevelManager : MonoBehaviour, ISaveManager
     [SerializeField] private Enemy[] miniBosses;
     [SerializeField] private LevelExit[] doors;
     [SerializeField] private OneSideDoor[] oneSideDoors;
-    [Space]
-    [SerializeField] private CinemachineFollow cam;
+    [SerializeField] private TutorialEnabler[] tutorials;
+    public CinemachineFollow cam { get; private set; }
     private List<bool> levelItems = new List<bool>();
     private List<bool> levelIllusoryWalls = new List<bool>();
     private List<bool> levelMiniBosses = new List<bool>();
     private List<bool> levelOneSideDoors = new List<bool>();
+    private List<bool> levelTutorials = new List<bool>();
+    public bool showTutorials { get; private set; }
+    public bool crouchOffset  { get; private set; }
 
     private void Start()
     {
-        //CleanUp();    
+        cam = GameObject.Find("CinemachineCamera").GetComponent<CinemachineFollow>();
+    }
+
+    private void Update()
+    {
+        cam.FollowOffset = new Vector3(0, Mathf.Lerp(cam.FollowOffset.y, crouchOffset ? -3 : 3, Time.unscaledDeltaTime * 10), -10);
+    }
+
+    private IEnumerator OffsetRoutine( bool value, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        crouchOffset = value;
+    }
+
+    public void CrouchOffset(bool value, float delay = 0)
+    {
+        StopAllCoroutines();
+        StartCoroutine(OffsetRoutine(value, delay));
     }
 
     public void ItemFound(ItemObject item)
@@ -100,6 +126,13 @@ public class LevelManager : MonoBehaviour, ISaveManager
                 levelOneSideDoors[i] = true;
     }
 
+    public void TutorialRead(TutorialEnabler tutorial)
+    {
+        for (int i = 0; i < tutorials.Length; i++)
+            if (tutorials[i] != null && tutorials[i] == tutorial)
+                levelTutorials[i] = true;
+    }
+
     private void CleanUp()
     {
         for (int i = 0; i < items.Length; i++)
@@ -117,6 +150,10 @@ public class LevelManager : MonoBehaviour, ISaveManager
         for (int i = 0; i < oneSideDoors.Length; i++)
             if (levelOneSideDoors[i] && oneSideDoors[i] != null)
                 oneSideDoors[i].Open();
+
+        for (int i = 0; i < tutorials.Length; i++)
+            if (levelTutorials[i] && tutorials[i] != null)
+                tutorials[i].DestroyTutorial();
     }
 
     public void LoadData(GameData data)
@@ -133,7 +170,7 @@ public class LevelManager : MonoBehaviour, ISaveManager
                     break;
                 }
         }
-        else if(data.spawnPosition != null && data.spawnPosition.Length == 3)
+        else if (data.spawnPosition != null && data.spawnPosition.Length == 3)
         {
             PlayerManager.instance.player.transform.position = new Vector3(data.spawnPosition[0], data.spawnPosition[1], data.spawnPosition[2]);
             cam.ForceCameraPosition(PlayerManager.instance.player.transform.position, quaternion.identity);
@@ -153,36 +190,12 @@ public class LevelManager : MonoBehaviour, ISaveManager
 
             for (int i = 0; i < levelOneSideDoors.Count; i++)
                 levelOneSideDoors[i] = value[i + levelItems.Count + levelIllusoryWalls.Count + levelMiniBosses.Count] == 'T';
+            
+            for(int i = 0; i < levelTutorials.Count; i++)
+                levelTutorials[i] = value[i + levelItems.Count + levelIllusoryWalls.Count + levelMiniBosses.Count + levelOneSideDoors.Count] == 'T';
 
             CleanUp();
         }
-
-        #region Old Testing
-        // foreach (var keyValuePair in data.levels)
-        // {
-        //     Debug.Log(keyValuePair.Key + ": ");
-        //     foreach (bool boolean in keyValuePair.Value)
-        //         Debug.Log(boolean);
-        // }
-        // foreach (var item in data.levels)
-        // {
-        //     if (item.Key == SceneManager.GetActiveScene().buildIndex)
-        //     {
-        //         List<bool> saveData = new List<bool>(item.Value);
-
-        //         for (int i = 0; i < levelItems.Count; i++)
-        //             levelItems[i] = saveData[i];
-
-        //         for (int i = 0; i < levelIllusoryWalls.Count; i++)
-        //             levelIllusoryWalls[i] = saveData[i + levelItems.Count];
-
-        //         for (int i = 0; i < levleMiniBosses.Count; i++)
-        //             levleMiniBosses[i] = saveData[i + levelItems.Count + levelIllusoryWalls.Count];
-
-        //         return;
-        //     }
-        // }
-        #endregion
     }
 
     public void SaveData(ref GameData data)
@@ -209,38 +222,22 @@ public class LevelManager : MonoBehaviour, ISaveManager
         foreach (bool boolean in levelOneSideDoors)
             helper += boolean ? 'T' : 'F';
 
+        foreach (bool boolean in levelTutorials)
+            helper += boolean ? 'T' : 'F';
+
         foreach (KeyValuePair<int, string> keyValuePair in temporaryDictionary)
                 data.levels.Add(keyValuePair.Key, keyValuePair.Value);
 
         data.levels.Add(SceneManager.GetActiveScene().buildIndex, helper);
+    }
 
-        #region OldTesting
-            // Dictionary<int, List<bool>> temporaryDictionary = new Dictionary<int, List<bool>>();
+    public void LoadData(SettingsData data)
+    {
+        showTutorials = data.showTutorials;
+    }
 
-        // foreach (KeyValuePair<int, List<bool>> keyValuePair in data.levels)
-        //     if (keyValuePair.Key != SceneManager.GetActiveScene().buildIndex)
-        //         temporaryDictionary.Add(keyValuePair.Key, keyValuePair.Value);
+    public void SaveData(ref SettingsData data)
+    {
 
-        // data.levels.Clear();
-
-        // List<bool> saveData = new List<bool>();
-
-        // saveData.AddRange(levelItems);
-        // saveData.AddRange(levelIllusoryWalls);
-        // saveData.AddRange(levleMiniBosses);
-
-        // data.levels.Add(SceneManager.GetActiveScene().buildIndex, saveData);
-
-        // foreach (var keyValuePair in data.levels)
-        // {
-        //     Debug.Log(keyValuePair.Key + ": ");
-        //     foreach (bool boolean in keyValuePair.Value)
-        //         Debug.Log(boolean);
-
-        // }
-
-        // foreach (KeyValuePair<int, List<bool>> keyValuePair in temporaryDictionary)
-        //         data.levels.Add(keyValuePair.Key, keyValuePair.Value);
-        #endregion
     }
 }

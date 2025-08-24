@@ -74,7 +74,7 @@ public class TitleScreen : MenuNavigation, ISaveManager
 
     public void LoadData(GameData data)
     {
-        lastScene = data.lastCampfireScene;
+        lastScene = data.lastCampfireScene == 0 ? 1 : data.lastCampfireScene;
     }
 
     public void SaveData(ref GameData data)

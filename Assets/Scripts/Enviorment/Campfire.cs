@@ -47,7 +47,7 @@ public class Campfire : MonoBehaviour, ISaveManager
             inputImage.color.b,
             Mathf.MoveTowards(
                 inputImage.color.a,
-                player && !menuActive ? 255 : 0,
+                player && !menuActive ? 1 : 0,
                 fadeSpeed * Time.unscaledDeltaTime
             )
         );

@@ -28,7 +28,7 @@ public class ItemObject : MonoBehaviour
             inputImage.color.b,
             Mathf.MoveTowards(
                 inputImage.color.a,
-                inRange ? 255 : 0,
+                inRange ? 1 : 0,
                 fadeSpeed * Time.unscaledDeltaTime
             )
         );
