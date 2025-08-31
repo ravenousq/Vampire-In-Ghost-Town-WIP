@@ -445,7 +445,7 @@ MonoBehaviour:
   enemyToExecute: {fileID: 0}
   afterImage: {fileID: 3484935133656287947, guid: 906d0012e9b713849b3b14e8e0b01375, type: 3}
   dashCheckerPrefab: {fileID: 7383158303482970207, guid: bb2e327c76cc13144a4e632b7a695979, type: 3}
-  deathScreen: {fileID: 0}
+  defaultSpawnPoint: {fileID: 0}
   intoTheAbyssFX: {fileID: 5666979931661752224, guid: 7cdd74d66a913744b874b60ff6ec11e3, type: 3}
   dashFX: {fileID: 4477549799459056883, guid: f7dff2c0e2ee8c14b90d6e31683c4cbf, type: 3}
   wallSlideFX: {fileID: 7401575838825168440, guid: bb232ed0238b55649a21e41cffe95277, type: 3}
@@ -659,7 +659,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 100
   m_Sprite: {fileID: 5034620379066167975, guid: 8b4a9560919754a4ab8a1824f3d4106b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
