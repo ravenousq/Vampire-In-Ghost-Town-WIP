@@ -1393,17 +1393,6 @@ PrefabInstance:
       addedObject: {fileID: 743614773}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f31b58c523cc3664e96709f21a515924, type: 3}
---- !u!114 &1024972867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1515667594794070389, guid: f31b58c523cc3664e96709f21a515924, type: 3}
-  m_PrefabInstance: {fileID: 1024972866}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3097ec8e4c86f84ca69931045d8acfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1024972868 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8978871069533529395, guid: f31b58c523cc3664e96709f21a515924, type: 3}
@@ -10387,8 +10376,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1590824005
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -95674,10 +95663,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3147581099551811578, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-      propertyPath: deathScreen
-      value: 
-      objectReference: {fileID: 1024972867}
     - target: {fileID: 4029253942398047904, guid: be11ae4a956208749a0d468fb246616f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -48.25

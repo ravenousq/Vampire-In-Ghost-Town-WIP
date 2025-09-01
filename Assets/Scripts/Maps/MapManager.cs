@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class MapManager : MonoBehaviour, ISaveManager
 {
@@ -21,15 +22,12 @@ public class MapManager : MonoBehaviour, ISaveManager
     }
 
     [SerializeField] private GameObject currentMap;
-    private int sceneNumber;
-    private Dictionary<int, MapCover[]> mapCovers = new Dictionary<int, MapCover[]>();
-    private Dictionary<int, List<bool>> saveMapCovers = new Dictionary<int, List<bool>>();
+    private MapCover[] mapCoversSimple;
+    private List<bool> saveMapCoversSimple = new List<bool>();
 
     private void Start()
     {
         currentMap.SetActive(true);
-
-        sceneNumber = int.Parse(currentMap.gameObject.name[^1].ToString());
     }
 
     private void FetchMaps()
@@ -39,42 +37,29 @@ public class MapManager : MonoBehaviour, ISaveManager
 
         for (int i = 0; i < maps.transform.childCount; i++)
             if (maps.transform.GetChild(i).gameObject.name.Contains("Area"))
-            {
                 areas.Add(maps.transform.GetChild(i).gameObject);
 
-                int areaNumber = int.Parse(maps.transform.GetChild(i).gameObject.name[^1].ToString());
+        mapCoversSimple = maps.GetComponentsInChildren<MapCover>(true).OrderBy(item => item.gameObject.name).ToArray();
 
-                MapCover[] areaCovers = maps.transform.GetChild(i)
-                .GetComponentsInChildren<MapCover>(true)
-                .OrderBy(item => item.gameObject.name).ToArray();
-
-                List<bool> saveData = new List<bool>();
-
-                for (int j = 0; j < areaCovers.Length; j++)
-                    saveData.Add(false);
-
-                mapCovers.Add(areaNumber, areaCovers);
-                saveMapCovers.Add(areaNumber, saveData);
-            }
+        for (int j = 0; j < mapCoversSimple.Length; j++)
+                    saveMapCoversSimple.Add(false);
     }
 
     public void CoverDispelled(MapCover dispelled)
     {
-
-        for (int i = 0; i < mapCovers[sceneNumber].Length; i++)
-            if (mapCovers[sceneNumber][i] == dispelled)
+        for (int i = 0; i < mapCoversSimple.Length; i++)
+            if (mapCoversSimple[i] == dispelled)
             {
-                saveMapCovers[sceneNumber][i] = true;
+                saveMapCoversSimple[i] = true;
                 Destroy(dispelled.gameObject);
             }
     }
 
     private void CleanUp()
     {
-        for (int i = 1; i <= saveMapCovers.Count; i++)
-            for (int j = 0; j < saveMapCovers[i].Count; j++)
-                if (saveMapCovers[i][j])
-                    mapCovers[i][j].Dispell();
+        for (int i = 0; i < saveMapCoversSimple.Count; i++)
+            if (saveMapCoversSimple[i])
+                mapCoversSimple[i].Dispell();
     }
 
     public void LoadData(GameData data)
@@ -91,30 +76,23 @@ public class MapManager : MonoBehaviour, ISaveManager
                 }
         }
 
-        if (data.mapCovers == null)
+        if (data.mapCoversSimple == null)
             return;
 
-        for (int i = 0; i < data.mapCovers.Length; i++)
-            if(data.mapCovers[i]  != string.Empty)
-            for (int j = 0; j < data.mapCovers[i].Length; j++)
-                saveMapCovers[i + 1][j] = data.mapCovers[i][j] == 'T';
+        for (int i = 0; i < data.mapCoversSimple.Length; i++)
+            saveMapCoversSimple[i] = data.mapCoversSimple[i] == 'T';
 
         CleanUp();
     }
 
     public void SaveData(ref GameData data)
     {
-        data.mapCovers = new string[saveMapCovers.Count];
+        string simpleHelper = string.Empty;
 
-        foreach (KeyValuePair<int, List<bool>> pair in saveMapCovers)
-        {
-            string helper = string.Empty;
+        foreach (bool boolean in saveMapCoversSimple)
+            simpleHelper += boolean ? 'T' : 'F';
 
-            foreach (bool boolean in pair.Value)
-                helper += boolean ? 'T' : 'F';
-
-            data.mapCovers[pair.Key - 1] = helper;
-        }
+        data.mapCoversSimple = simpleHelper;
 
         foreach (string map in data.maps)
             if (currentMap.name == map)

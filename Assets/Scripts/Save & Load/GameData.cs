@@ -18,6 +18,7 @@ public class GameData
     public SerializableDictionary<string, string> npcShops;
     public List<string> maps;
     public string[] mapCovers;
+    public string mapCoversSimple;
     public int bloodstainCurrency;
     public int bloodstainScene;
     public float[] bloodstainPosition;

@@ -6625,6 +6625,7 @@ MonoBehaviour:
   doors: []
   oneSideDoors: []
   tutorials: []
+  enemies: []
 --- !u!82 &1158621847315775514
 AudioSource:
   m_ObjectHideFlags: 0

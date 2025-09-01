@@ -8930,6 +8930,7 @@ MonoBehaviour:
   doors: []
   oneSideDoors: []
   tutorials: []
+  enemies: []
 --- !u!114 &1135740110459359593
 MonoBehaviour:
   m_ObjectHideFlags: 0
