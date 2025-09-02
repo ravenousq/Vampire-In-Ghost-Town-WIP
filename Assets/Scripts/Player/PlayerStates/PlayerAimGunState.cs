@@ -13,7 +13,7 @@ public class PlayerAimGunState : PlayerState
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         stateTimer = player.skills.wanted.GetMaxDuration();
-        player.skills.dash.SwitchBlockade(true);
+        player.skills.ChangeLockOnAllSkills(true);
     }
 
     public override void Update()
@@ -35,7 +35,7 @@ public class PlayerAimGunState : PlayerState
 
         rb.bodyType = RigidbodyType2D.Dynamic;;
 
-        player.skills.dash.SwitchBlockade(false);
+        player.skills.ChangeLockOnAllSkills(false);
     }
 
     

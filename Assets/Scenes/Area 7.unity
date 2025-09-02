@@ -197,6 +197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8012809268079103087, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: cinemachine
+      value: 
+      objectReference: {fileID: 2561525408604745043}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

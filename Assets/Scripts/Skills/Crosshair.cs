@@ -49,7 +49,6 @@ public class Crosshair : MonoBehaviour
 
         Vector3 screenCenter = cam.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         Vector3 screenTopRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        ;
 
         bounds = new Vector2(screenTopRight.x - screenCenter.x, screenTopRight.y - screenCenter.y);
         this.cinemachine.Follow = gameObject.transform;

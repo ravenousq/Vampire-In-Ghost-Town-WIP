@@ -43,13 +43,13 @@ public class ConcoctionController : SkillController, ISaveManager
 
     public void LoadData(GameData data)
     {
+        for (int i = 0; i <= data.concoctionStacks - maxConcoctionStacks; i++)
+            AddStack(false);
+
         if (!data.usedDoor)
             currentConcoctionStacks = maxConcoctionStacks;
         else
             currentConcoctionStacks = data.currentConcoctionStacks;
-
-        for (int i = 0; i < data.concoctionStacks - maxConcoctionStacks; i++)
-                AddStack(false);
     }
 
     public void SaveData(ref GameData data)
