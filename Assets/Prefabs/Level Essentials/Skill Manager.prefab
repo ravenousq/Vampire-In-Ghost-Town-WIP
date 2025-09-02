@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3423619047883462604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5602223751009426215}
+  - component: {fileID: 6990407489732457928}
+  - component: {fileID: 682114053987359860}
+  - component: {fileID: 5339016343224260204}
+  - component: {fileID: 1765137984642464930}
+  - component: {fileID: 8012809268079103087}
+  - component: {fileID: 4391689682135092719}
+  - component: {fileID: 2130238627416892439}
+  m_Layer: 0
+  m_Name: Skill Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5602223751009426215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 34.647205, y: -34.250244, z: -0.49587572}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6990407489732457928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee5027037e4ba3498ef00f8b7546efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugging: 0
+  skillToSwitch: 
+  unlockableSkills:
+    items:
+    - key: Wanted Dead
+      value: 0
+    - key: Ashen Rain
+      value: 0
+    - key: Heretic Hunter
+      value: 0
+    - key: Amen & Attack
+      value: 0
+    - key: Sermon of Rifles
+      value: 0
+    - key: Welcome To Hell
+      value: 0
+    - key: Into The Abyss
+      value: 0
+    - key: Closer To The Sun
+      value: 0
+    - key: Sanctus Dominus
+      value: 0
+    - key: Anima Mundi
+      value: 0
+    - key: Sweet Vendetta
+      value: 0
+    - key: Faster Than The Flame
+      value: 0
+    - key: Incense & Iron
+      value: 0
+    - key: Dance Macabre
+      value: 0
+    - key: Vokul Fen Mah
+      value: 0
+    - key: Die By The Blade
+      value: 0
+    - key: Legend Of Steel
+      value: 0
+    - key: Spill Blood On Fire
+      value: 0
+    - key: Bless 'em With The Blade
+      value: 0
+    - key: Astral Elixir
+      value: 0
+    - key: Constellation of Tears
+      value: 0
+    - key: Paradise Of The Architect
+      value: 0
+--- !u!114 &682114053987359860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be71c560a459f648bef98618101693c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  primarySkillName: Constellation of Tears
+  poiseDamage: 5
+  attackMovement: 00000000fbfffffff6ffffff
+  effectiveAttackRange: 7.5
+  attackWindow: 2
+  maxAmmo: 12
+  currentAmmo: 0
+  reloadMovementSpeed: 1
+--- !u!114 &5339016343224260204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5207c9f9b5793d743938014216925e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1.5
+  primarySkillName: Sanctus Dominus
+  parryPoiseDamage: 40
+  parryWindow: 0.05
+--- !u!114 &1765137984642464930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8d12acbd8a8774d803dd9c36294db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  primarySkillName: Faster Than The Flame
+--- !u!114 &8012809268079103087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cefeadc4ed217b48b79743fef63a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  primarySkillName: Wanted Dead
+  maxAimDuration: 2
+  ashenRainDuration: 6
+  crosshairSpeed: 50
+  crosshairResistance: 6
+  physicalDamage: 50
+  poiseDamage: 30
+  defaultReward: 500
+  crosshairPrefab: {fileID: 1704740849798088128, guid: a4305e49737f95e4597490f03261bcf7, type: 3}
+  cinemachine: {fileID: 0}
+--- !u!114 &4391689682135092719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f385b72d59a1e8c47b5e4761026002ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  primarySkillName: Die By The Blade
+  haloPrefab: {fileID: -5722508893618971935, guid: a04c030dff587e04384704022d854b2f, type: 3}
+  launchForce: {x: 25, y: 25}
+  returnSpeed: 25
+  numberOfBounces: 8
+  spinDuration: 3
+  spinSpeed: 0.5
+  spinDamageWindow: 0.2
+  orbitingSpeed: 30
+  numberOfTurns: 10
+  orbitDistance: 5
+  numberOfDots: 50
+  spaceBetweenDots: 1
+  dotPrefab: {fileID: 1106962061785280380, guid: adf91f18715f6424fb4016dc8a97c965, type: 3}
+  dotParent: {fileID: 0}
+--- !u!114 &2130238627416892439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423619047883462604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768f2c37f3fa2d3459ef5a5b2a9d02b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  primarySkillName: Astral Elixir
+  maxConcoctionStacks: 3
+  currentConcoctionStacks: 0
+  percentage: 0.6

@@ -145,6 +145,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &523496885
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1103905386052335045}
+    m_Modifications:
+    - target: {fileID: 3423619047883462604, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_Name
+      value: Skill Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.647205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -34.250244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.49587572
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+--- !u!4 &523496886 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+  m_PrefabInstance: {fileID: 523496885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &635266665 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4348318657977151614, guid: f31b58c523cc3664e96709f21a515924, type: 3}
@@ -441,11 +503,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2335607213366198382, guid: f31b58c523cc3664e96709f21a515924, type: 3}
   m_PrefabInstance: {fileID: 2025706229}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1960461373 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5599505991731047057, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-  m_PrefabInstance: {fileID: 6162028550143401013}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2025706229
 PrefabInstance:
@@ -2528,7 +2585,7 @@ Transform:
   m_Children:
   - {fileID: 7348117708581818190}
   - {fileID: 211872735}
-  - {fileID: 2865593851122990857}
+  - {fileID: 523496886}
   - {fileID: 9021645475651092297}
   - {fileID: 5588070803847361675}
   - {fileID: 4224087478643690984}
@@ -2757,46 +2814,6 @@ GameObject:
   - component: {fileID: 1004576573050996599}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1348787521371851074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768f2c37f3fa2d3459ef5a5b2a9d02b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  primarySkillName: Astral Elixir
-  maxConcoctionStacks: 3
-  currentConcoctionStacks: 0
-  percentage: 0.6
---- !u!1 &1376869291198067693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2865593851122990857}
-  - component: {fileID: 7260304697087617471}
-  - component: {fileID: 6377488345450358020}
-  - component: {fileID: 5978760257409613057}
-  - component: {fileID: 5370251116610251159}
-  - component: {fileID: 7034041631157688809}
-  - component: {fileID: 6948870935047672497}
-  - component: {fileID: 1348787521371851074}
-  m_Layer: 0
-  m_Name: Skill Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4532,21 +4549,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2732711090673249195}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2865593851122990857
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.647205, y: -34.250244, z: -0.49587572}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1103905386052335045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2880209746850076544
 PrefabInstance:
@@ -32498,20 +32500,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5370251116610251159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8d12acbd8a8774d803dd9c36294db0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1
-  primarySkillName: Faster Than The Flame
 --- !u!82 &5381551138178784083
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33494,22 +33482,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5978760257409613057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5207c9f9b5793d743938014216925e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1.5
-  primarySkillName: Sanctus Dominus
-  parryPoiseDamage: 40
-  parryWindow: 0.05
 --- !u!4 &6002322313569193360
 Transform:
   m_ObjectHideFlags: 0
@@ -33793,27 +33765,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6377488345450358020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be71c560a459f648bef98618101693c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  primarySkillName: Constellation of Tears
-  poiseDamage: 5
-  attackMovement: 000000000a000000f1ffffff
-  effectiveAttackRange: 7.5
-  attackWindow: 2
-  maxAmmo: 12
-  currentAmmo: 0
-  reloadMovementSpeed: 1
 --- !u!82 &6441309084471239053
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34201,34 +34152,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6948870935047672497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f385b72d59a1e8c47b5e4761026002ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1
-  primarySkillName: Die By The Blade
-  haloPrefab: {fileID: -5722508893618971935, guid: a04c030dff587e04384704022d854b2f, type: 3}
-  launchForce: {x: 25, y: 25}
-  returnSpeed: 25
-  numberOfBounces: 8
-  spinDuration: 3
-  spinSpeed: 0.5
-  spinDamageWindow: 0.2
-  orbitingSpeed: 30
-  numberOfTurns: 10
-  orbitDistance: 5
-  numberOfDots: 50
-  spaceBetweenDots: 1
-  dotPrefab: {fileID: 1106962061785280380, guid: adf91f18715f6424fb4016dc8a97c965, type: 3}
-  dotParent: {fileID: 1960461373}
 --- !u!4 &7005337624042586962
 Transform:
   m_ObjectHideFlags: 0
@@ -34244,29 +34167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2732711090673249195}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7034041631157688809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cefeadc4ed217b48b79743fef63a4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  primarySkillName: Wanted Dead
-  maxAimDuration: 2
-  ashenRainDuration: 6
-  crosshairSpeed: 50
-  crosshairResistance: 6
-  physicalDamage: 50
-  poiseDamage: 30
-  defaultReward: 500
-  crosshairPrefab: {fileID: 1704740849798088128, guid: a4305e49737f95e4597490f03261bcf7, type: 3}
-  cinemachine: {fileID: 2561525408604745043}
 --- !u!4 &7045607628389812240
 Transform:
   m_ObjectHideFlags: 0
@@ -34397,66 +34297,6 @@ Transform:
   - {fileID: 3589398055396813252}
   m_Father: {fileID: 5631794325324625754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7260304697087617471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376869291198067693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee5027037e4ba3498ef00f8b7546efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugging: 0
-  skillToSwitch: 
-  unlockableSkills:
-    items:
-    - key: Wanted Dead
-      value: 0
-    - key: Ashen Rain
-      value: 0
-    - key: Heretic Hunter
-      value: 0
-    - key: Amen & Attack
-      value: 0
-    - key: Sermon of Rifles
-      value: 0
-    - key: Welcome To Hell
-      value: 0
-    - key: Into The Abyss
-      value: 0
-    - key: Closer To The Sun
-      value: 0
-    - key: Sanctus Dominus
-      value: 0
-    - key: Anima Mundi
-      value: 0
-    - key: Sweet Vendetta
-      value: 0
-    - key: Faster Than The Flame
-      value: 0
-    - key: Incense & Iron
-      value: 0
-    - key: Dance Macabre
-      value: 0
-    - key: Vokul Fen Mah
-      value: 0
-    - key: Die By The Blade
-      value: 0
-    - key: Legend Of Steel
-      value: 0
-    - key: Spill Blood On Fire
-      value: 0
-    - key: Bless 'em With The Blade
-      value: 0
-    - key: Astral Elixir
-      value: 0
-    - key: Constellation of Tears
-      value: 0
-    - key: Paradise Of The Architect
-      value: 0
 --- !u!4 &7300121033602035372
 Transform:
   m_ObjectHideFlags: 0

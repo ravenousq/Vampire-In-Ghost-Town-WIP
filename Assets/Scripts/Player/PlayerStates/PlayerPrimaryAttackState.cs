@@ -80,56 +80,49 @@ public class PlayerPrimaryAttackState : PlayerState
     private void DamageTargets()
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(
-            new Vector2(player.transform.position.x + player.cd.size.x / 1.2f * player.facingDir, 
-                        player.transform.position.y + player.cd.size.y / 5), 
-            Vector2.right * player.facingDir, 
+            new Vector2(player.transform.position.x + player.cd.size.x / 1.2f * player.facingDir,
+                        player.transform.position.y + player.cd.size.y / 5),
+            Vector2.right * player.facingDir,
             skills.shoot.effectiveAttackRange
         );
 
         bool hitEnemy = false;
         float damageDecrease = 1;
 
-        if(hits.Length == 0)
-            player.InvokeName("PlayMiss", .5f);
-
         foreach (var hit in hits)
+        {
+            if (hit.collider.gameObject.tag == "Illusory Wall")
             {
-                if (hit.collider.gameObject.tag == "Illusory Wall")
-                {
-                    hit.collider.gameObject.GetComponent<IllusoryWall>().Activate();
-                    //player.InvokeName("PlayMiss", .5f);
-                    break;
-                }
+                hit.collider.gameObject.GetComponent<IllusoryWall>().Activate();
+                break;
+            }
 
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-                {
-                    player.InvokeName("PlayMiss", .5f);
-                    break;
-                }
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                break;
 
-                if (hit == hits[hits.Length - 1] && !hit.collider.gameObject.GetComponent<Enemy>() && !hitEnemy)
-                    player.InvokeName("PlayMiss", .5f);
 
-                if (hit.collider.gameObject.GetComponent<Enemy>())
-                {
-                    hitEnemy = true;
+            if (hit.collider.gameObject.GetComponent<Enemy>())
+            {
+                hitEnemy = true;
 
-                    float distance = Mathf.Clamp(Vector2.Distance(new Vector2(player.transform.position.x + player.cd.size.x / 1.2f * player.facingDir, player.transform.position.y + player.cd.size.y / 5), hit.point) - 1f, .1f, skills.shoot.effectiveAttackRange);
-                    float distanceModifier = Mathf.Lerp(1f, 0.3f, distance / skills.shoot.effectiveAttackRange);
+                float distance = Mathf.Clamp(Vector2.Distance(new Vector2(player.transform.position.x + player.cd.size.x / 1.2f * player.facingDir, player.transform.position.y + player.cd.size.y / 5), hit.point) - 1f, .1f, skills.shoot.effectiveAttackRange);
+                float distanceModifier = Mathf.Lerp(1f, 0.3f, distance / skills.shoot.effectiveAttackRange);
 
+                player.stats.DoDamage(hit.collider.gameObject.GetComponent<EnemyStats>(), Vector2.zero, 0, player.skills.shoot.poiseDamage, damageDecrease * distanceModifier);
+
+                if (comboCounter == 2)
                     player.stats.DoDamage(hit.collider.gameObject.GetComponent<EnemyStats>(), Vector2.zero, 0, player.skills.shoot.poiseDamage, damageDecrease * distanceModifier);
 
-                    if (comboCounter == 2)
-                        player.stats.DoDamage(hit.collider.gameObject.GetComponent<EnemyStats>(), Vector2.zero, 0, player.skills.shoot.poiseDamage, damageDecrease * distanceModifier);
-
-                    damageDecrease *= .7f;
-                }
-                else continue;
-
-                if (!player.skills.isSkillUnlocked("Vokul Fen Mah"))
-                    return;
-
+                damageDecrease *= .7f;
             }
+            else continue;
+
+            if (!player.skills.isSkillUnlocked("Vokul Fen Mah"))
+                break;
+        }
+        
+        if(!hitEnemy)
+            player.InvokeName("PlayMiss", .5f);
     }
 
 }

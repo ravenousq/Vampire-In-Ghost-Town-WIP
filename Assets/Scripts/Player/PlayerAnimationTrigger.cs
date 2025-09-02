@@ -19,9 +19,6 @@ public class PlayerAnimationTrigger : MonoBehaviour
     {
         player.attackTrigger = true;
         AudioManager.instance.PlaySFX(Random.Range(16, 18));
-        
-        if (PlayerManager.instance.player.thirdAttack)
-            AudioManager.instance.PlaySFX(Random.Range(16, 18));
     }
 
     public void EnableParry() => player.parry.canParry = true;
