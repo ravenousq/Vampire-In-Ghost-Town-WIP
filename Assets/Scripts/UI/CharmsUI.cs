@@ -34,24 +34,42 @@ public class CharmsUI : MonoBehaviour
         if (navigatingCharms)
         {
             if (Input.GetKeyDown(KeyCode.W))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToCharm(charmIndex - 7 < 0 ? charmIndex + 14 : charmIndex - 7);
+            }
 
             if (Input.GetKeyDown(KeyCode.A))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToCharm(charmIndex % 7 == 0 ? charmIndex + 6 : charmIndex - 1);
+            }
 
             if (Input.GetKeyDown(KeyCode.S))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToCharm(charmIndex + 7 > charms.Length - 1 ? charmIndex - 14 : charmIndex + 7);
+            }
 
             if (Input.GetKeyDown(KeyCode.D))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToCharm((charmIndex + 1) % 7 == 0 ? charmIndex - 6 : charmIndex + 1);
+            }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.A))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToSlot(slotIndex - 1 < 0 ? charmSlots.Length - 1 : slotIndex - 1);
+            }
 
             if (Input.GetKeyDown(KeyCode.D))
+            {
+                AudioManager.instance.PlaySFX(39, false);
                 SwitchToSlot(slotIndex + 1 == charmSlots.Length ? 0 : slotIndex + 1);
+            }
 
             if (Input.GetKeyDown(KeyCode.X))
             {
@@ -67,7 +85,8 @@ public class CharmsUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            //navigatingCharms = !navigatingCharms;
+            if(currentData != null)
+                AudioManager.instance.PlaySFX(40, false);
 
             if (!navigatingCharms)
             {
@@ -82,7 +101,7 @@ public class CharmsUI : MonoBehaviour
                 SwitchToSlot(-1);
 
                 returnSnippet.SetActive(false);
-                
+
                 navigatingCharms = !navigatingCharms;
             }
             else
@@ -93,15 +112,15 @@ public class CharmsUI : MonoBehaviour
                     return;
 
                 if (IsCharmEquipped(charms[charmIndex]?.item.itemData as CharmData) >= 0)
-                    {
-                        Inventory.instance.UnequipCharm(charms[charmIndex]?.item.itemData as CharmData, IsCharmEquipped(charms[charmIndex]?.item.itemData as CharmData));
+                {
+                    Inventory.instance.UnequipCharm(charms[charmIndex]?.item.itemData as CharmData, IsCharmEquipped(charms[charmIndex]?.item.itemData as CharmData));
 
-                        foreach (ItemSlotUI slot in charmSlots)
-                            if (slot.item != null)
-                                Inventory.instance.EquipCharm(slot.item.itemData as CharmData, FirstFreeSlot());
+                    foreach (ItemSlotUI slot in charmSlots)
+                        if (slot.item != null)
+                            Inventory.instance.EquipCharm(slot.item.itemData as CharmData, FirstFreeSlot());
 
-                        return;
-                    }
+                    return;
+                }
 
                 if (slotToEquip >= 0)
                     Inventory.instance.EquipCharm(charms[charmIndex].item.itemData as CharmData, slotToEquip);

@@ -119,7 +119,7 @@ public class Player : Entity
         wallSlide = new PlayerWallSlideState(this, stateMachine, "wallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "jump");
         climb = new PlayerClimbState(this, stateMachine, "climb");
-        dash = new PlayerDashState(this, stateMachine, "move");
+        dash = new PlayerDashState(this, stateMachine, "dash");
         attack = new PlayerPrimaryAttackState(this, stateMachine, "attack");
         reload = new PlayerReloadState(this, stateMachine, "reload");
         quickstep = new PlayerQuickstepState(this, stateMachine, "quickstep");

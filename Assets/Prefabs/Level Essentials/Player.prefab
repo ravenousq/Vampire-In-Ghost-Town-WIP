@@ -279,15 +279,15 @@ SpriteRenderer:
   m_SortingLayerID: 715952231
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2429575359091950856, guid: 90dcda6e3ff435a4f85237f4186ce3a9, type: 3}
+  m_Sprite: {fileID: -1938089546023354089, guid: 581576f23b1a4a74a927e34218150b82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.2, y: 3.2}
+  m_Size: {x: 6, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7110470152788918023
@@ -429,8 +429,8 @@ MonoBehaviour:
   wallSlideTime: 3
   wallSlideSpeed: -3
   climbSpeed: 5
-  dashSpeed: 40
-  dashDuration: 0.13
+  dashSpeed: 30
+  dashDuration: 0.25
   quickstepSpeed: 20
   diveSpeed: 50
   edgeCheck: {fileID: 3980507785516768299}

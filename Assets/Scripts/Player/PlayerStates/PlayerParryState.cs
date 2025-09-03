@@ -16,6 +16,7 @@ public class PlayerParryState : PlayerState
 
         stateTimer = player.skills.parry.parryWindow;
         player.stats.OnDamaged += InterruptParry;
+        AudioManager.instance.PlaySFX(38);
     }
 
     public override void Update()

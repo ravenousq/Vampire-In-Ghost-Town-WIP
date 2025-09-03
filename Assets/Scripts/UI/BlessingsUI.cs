@@ -49,16 +49,28 @@ public class BlessingsUI : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             NavigateTo(KeyCode.W);
+        }
 
         if (Input.GetKeyDown(KeyCode.A))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             NavigateTo(KeyCode.A);
+        }
 
         if (Input.GetKeyDown(KeyCode.S))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             NavigateTo(KeyCode.S);
+        }
 
         if (Input.GetKeyDown(KeyCode.D))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             NavigateTo(KeyCode.D);
+        }
 
         if (Input.GetKeyDown(KeyCode.C) && !triedToPurchase)
         {
@@ -66,6 +78,7 @@ public class BlessingsUI : MonoBehaviour
                 skills[currentIndex].SetPurchase(true);
             else
             {
+                AudioManager.instance.PlaySFX(41, false);
                 skills[currentIndex].NotEnoughCurrency();
                 triedToPurchase = true;
             }

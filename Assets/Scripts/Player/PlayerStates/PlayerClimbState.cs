@@ -29,6 +29,8 @@ public class PlayerClimbState : PlayerState
     {
         base.Update();
 
+        player.anim.SetFloat("yInput", yInput);
+
         if (!player.ladderToClimb)
         {
             stateMachine.ChangeState(player.airborne);
@@ -83,6 +85,7 @@ public class PlayerClimbState : PlayerState
         player.SetVelocity(3 * sideToExit, 3);
         player.BusyFor(.4f);
         player.anim.speed = 1;
+        player.anim.SetBool("ladderSlide", false);  
         player.stats.OnDamaged -= FallOfTheLadder;
         ladderCollider = null;
     }

@@ -1,0 +1,390 @@
+fileFormatVersion: 2
+guid: 9384c60fa2bfc83469bd2d2b9238ea58
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1114961064604624315
+    second: ravenous_q  - cowboy - attack 2_0
+  - first:
+      213: 8472936843058315904
+    second: ravenous_q  - cowboy - attack 2_1
+  - first:
+      213: 2357050274602055289
+    second: ravenous_q  - cowboy - attack 2_2
+  - first:
+      213: 1764501730901661899
+    second: ravenous_q  - cowboy - attack 2_3
+  - first:
+      213: 535434704678321744
+    second: ravenous_q  - cowboy - attack 2_4
+  - first:
+      213: -5684037677941906616
+    second: ravenous_q  - cowboy - attack 2_5
+  - first:
+      213: -7130507176246684108
+    second: ravenous_q  - cowboy - attack 2_6
+  - first:
+      213: 2062369124312769487
+    second: ravenous_q  - cowboy - attack 2_7
+  - first:
+      213: 166099064617980778
+    second: ravenous_q  - cowboy - attack 2_8
+  - first:
+      213: 8984982257794983027
+    second: ravenous_q  - cowboy - attack 2_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 7
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a99dda1dcd680f0800000000000000
+      internalID: -1114961064604624315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_1
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 7
+        width: 31
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0828fceca2be59570800000000000000
+      internalID: 8472936843058315904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_2
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 7
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976746f8cbce5b020800000000000000
+      internalID: 2357050274602055289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_3
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 7
+        width: 48
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc894fbb9f4cc7810800000000000000
+      internalID: 1764501730901661899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_4
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 7
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e74cce60f3e6700800000000000000
+      internalID: 535434704678321744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_5
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 7
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8432654e8dd3e11b0800000000000000
+      internalID: -5684037677941906616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_6
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 7
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436517390895b0d90800000000000000
+      internalID: -7130507176246684108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_7
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 7
+        width: 52
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc3656aaac10f9c10800000000000000
+      internalID: 2062369124312769487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_8
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 7
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a635410283a1e4200800000000000000
+      internalID: 166099064617980778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ravenous_q  - cowboy - attack 2_9
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 7
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374ae0d42c111bc70800000000000000
+      internalID: 8984982257794983027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ravenous_q  - cowboy - attack 2_0: -1114961064604624315
+      ravenous_q  - cowboy - attack 2_1: 8472936843058315904
+      ravenous_q  - cowboy - attack 2_2: 2357050274602055289
+      ravenous_q  - cowboy - attack 2_3: 1764501730901661899
+      ravenous_q  - cowboy - attack 2_4: 535434704678321744
+      ravenous_q  - cowboy - attack 2_5: -5684037677941906616
+      ravenous_q  - cowboy - attack 2_6: -7130507176246684108
+      ravenous_q  - cowboy - attack 2_7: 2062369124312769487
+      ravenous_q  - cowboy - attack 2_8: 166099064617980778
+      ravenous_q  - cowboy - attack 2_9: 8984982257794983027
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -24,16 +24,28 @@ public class ItemsUI : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.W))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             SwitchTo(selectedIndex - 7 < 0 ? selectedIndex + 21 : selectedIndex - 7);
+        }
 
         if (Input.GetKeyDown(KeyCode.A))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             SwitchTo(selectedIndex % 7 == 0 ? selectedIndex + 6 : selectedIndex - 1);
+        }
 
         if (Input.GetKeyDown(KeyCode.S))
+        {
+            AudioManager.instance.PlaySFX(39, false);
             SwitchTo(selectedIndex + 7 > items.Length - 1 ? selectedIndex - 21 : selectedIndex + 7);
+        }
 
         if (Input.GetKeyDown(KeyCode.D))
+        {
+            AudioManager.instance.PlaySFX(39, false);   
             SwitchTo((selectedIndex + 1) % 7 == 0 ? selectedIndex - 6 : selectedIndex + 1);
+        }
     }
 
     protected void SwitchTo(int index = 0, bool price = false)
