@@ -74,8 +74,11 @@ public class BlessingsUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C) && !triedToPurchase)
         {
-            if (campfireActive && PlayerManager.instance.CanAfford(skills[currentIndex].GetIntPrice()) && skills[currentIndex].canBePurchased)
+            if (campfireActive && PlayerManager.instance.CanAfford(skills[currentIndex].GetIntPrice()) && skills[currentIndex].canBePurchased && !skills[currentIndex].unlocked)
+            {
                 skills[currentIndex].SetPurchase(true);
+                AudioManager.instance.PlaySFX(42, false);
+            }
             else
             {
                 AudioManager.instance.PlaySFX(41, false);
@@ -85,7 +88,12 @@ public class BlessingsUI : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.C))
+        {
+            if(!skills[currentIndex].unlocked && skills[currentIndex].isPurchasing)
+                AudioManager.instance.StopSFX(42);
+
             skills[currentIndex].SetPurchase(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.X) && campfireActive)
         {

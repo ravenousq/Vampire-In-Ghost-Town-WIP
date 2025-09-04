@@ -462,7 +462,7 @@ MonoBehaviour:
   secretImage: {fileID: 2183055687867072042}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 50
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 0

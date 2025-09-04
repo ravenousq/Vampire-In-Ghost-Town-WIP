@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//TODO: Separate form the rest of the managers;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     private void Awake()
     {
-        if (!instance && SceneManager.GetActiveScene().buildIndex != 0)
+        if (!instance)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -28,6 +27,12 @@ public class AudioManager : MonoBehaviour
     [Space]
     [SerializeField] private bool playOnAwake = false;
     private int bgmIndex;
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            StopBGM();
+    }
 
     public void PlaySFX(int sfxToPlay, bool randomPitch = true)
     {
@@ -79,6 +84,8 @@ public class AudioManager : MonoBehaviour
     }
 
     public bool isPlayingBGM(int index) => bgm[index].isPlaying;
+
+    public bool isPlayingSFX(int index) => sfx[index].isPlaying;
     
 
 }

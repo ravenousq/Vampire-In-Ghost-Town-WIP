@@ -86,18 +86,50 @@ public class UI : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Tab) && canTurnOnGameMenu)
+            SwitchGameMenu();
+
+
+        if (canTurnOnGameMenu)
         {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                if(!gameMenu.activeSelf)
+                    SwitchGameMenu();
 
-            EnableUI(Time.timeScale == 0);
+                GoToTab(0);
+            }
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                if(!gameMenu.activeSelf)
+                    SwitchGameMenu();
 
-            gameMenu.SetActive(!gameMenu.activeSelf);
+                GoToTab(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                if(!gameMenu.activeSelf)
+                    SwitchGameMenu();
 
-            canTurnOnPauseMenu = !gameMenu.activeSelf;
+                GoToTab(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                if(!gameMenu.activeSelf)
+                    SwitchGameMenu();
 
-            if (gameMenu.activeSelf)
-                DefaultMenu();
+                GoToTab(3);
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                if(!gameMenu.activeSelf)
+                    SwitchGameMenu();
+
+                GoToTab(4);
+            }
+
+            
         }
-
+            
         if (Input.GetKeyDown(KeyCode.Escape) && canTurnOnPauseMenu)
             pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
 
@@ -107,11 +139,22 @@ public class UI : MonoBehaviour
                 miniMap.SetActive(true);
             else if (Input.GetKeyUp(KeyCode.Mouse2))
                 miniMap.SetActive(false);
-
         }
 
         if (gameMenu.activeSelf)
             NavigateTabs();
+    }
+
+    private void SwitchGameMenu()
+    {
+        EnableUI(Time.timeScale == 0);
+
+        gameMenu.SetActive(!gameMenu.activeSelf);
+
+        canTurnOnPauseMenu = !gameMenu.activeSelf;
+
+        if (gameMenu.activeSelf)
+            DefaultMenu();
     }
 
     public void SwitchShop(NPC npc, int index)
@@ -125,21 +168,24 @@ public class UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            menuButtons[selectedIndex].Select(false);
-
-            selectedIndex = (selectedIndex - 1 + menuButtons.Length) % menuButtons.Length;
-
-            menuButtons[selectedIndex].Select(true);
+            GoToTab((selectedIndex - 1 + menuButtons.Length) % menuButtons.Length);
+            AudioManager.instance.PlaySFX(45, false);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            menuButtons[selectedIndex].Select(false);
-
-            selectedIndex = (selectedIndex + 1) % menuButtons.Length;
-
-            menuButtons[selectedIndex].Select(true);
+            AudioManager.instance.PlaySFX(45, false);
+            GoToTab((selectedIndex + 1) % menuButtons.Length);
         }
+    }
+
+    private void GoToTab(int tab)
+    {
+        menuButtons[selectedIndex].Select(false);
+
+        selectedIndex = tab;
+
+        menuButtons[selectedIndex].Select(true);
     }
 
     public void EnableNPCShop(bool enable)

@@ -109,6 +109,8 @@ public class MenuNavigation : MonoBehaviour
         if (!CanNavigate() || buttons.Count == 0)
             return;
 
+        AudioManager.instance.PlaySFX(39, false);
+
         SwitchTo(currentButtonIndex == 0 ? buttons.Count - 1 : currentButtonIndex - 1);
     }
 
@@ -116,6 +118,8 @@ public class MenuNavigation : MonoBehaviour
     {
         if (!CanNavigate() || buttons.Count == 0)
             return;
+
+        AudioManager.instance.PlaySFX(39, false);
 
         SwitchTo((currentButtonIndex + 1) % buttons.Count);
     }
@@ -126,10 +130,16 @@ public class MenuNavigation : MonoBehaviour
             return;
 
         if (IsListActive())
+        {
             lists[currentButtonIndex].Retract();
+            AudioManager.instance.PlaySFX(39, false);
+        }
 
         if (IsSliderActive())
+        {
             sliders[currentButtonIndex].RemovePip();
+            AudioManager.instance.PlaySFX(39, false);
+        }
     }
 
     protected virtual void OnRightPressed()
@@ -138,10 +148,16 @@ public class MenuNavigation : MonoBehaviour
             return;
 
         if (IsListActive())
+        {
             lists[currentButtonIndex].Proceed();
+            AudioManager.instance.PlaySFX(39, false);
+        }
 
         if (IsSliderActive())
+        {
             sliders[currentButtonIndex].AddPip();
+            AudioManager.instance.PlaySFX(39, false);
+        }
     }
 
     protected virtual void OnConfirmation()
@@ -185,6 +201,7 @@ public class MenuNavigation : MonoBehaviour
 
         if (screenToSwitch != Screens.NullScreen)
         {
+            AudioManager.instance.PlaySFX(40, false);
             Invoke(nameof(ChangeScreen), 1.5f);
             MainMenu.instance.fadeScreen.FadeIn();
         }

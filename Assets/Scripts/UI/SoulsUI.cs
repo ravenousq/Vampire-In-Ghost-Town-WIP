@@ -30,10 +30,15 @@ public class SoulsUI : MonoBehaviour
     private void Update() 
     {
         if (currentSouls != souls && !canModifyUI && fadingText == null)
+        {
+            if(!AudioManager.instance.isPlayingSFX(44))
+                AudioManager.instance.PlaySFX(44, false);
+
             StartCoroutine(AddRoutine());
-        
-        if(Input.GetKeyDown(KeyCode.M))
-            Debug.Log(gameObject.name + ": currentSouls: " + currentSouls + ", souls: " + souls);
+        }
+
+       if ((currentSouls == souls || (currentSouls != souls && fadingText != null)) && AudioManager.instance.isPlayingSFX(44))
+            AudioManager.instance.StopSFX(44);
     }
 
     public void ModifySouls(int souls, bool wait = true) 
@@ -52,6 +57,7 @@ public class SoulsUI : MonoBehaviour
         fadingTexts.Add(newText);
         fadingText = newText;
         fadingText.SetUp((souls < 0 ? "" : "+") + souls.ToString(), textIdleSpeed, textSpeed, target, soulsText.alignment);
+        AudioManager.instance.PlaySFX(43, false);
     }
 
     private IEnumerator AddRoutine()
@@ -71,9 +77,11 @@ public class SoulsUI : MonoBehaviour
 
         currentSouls = Mathf.Clamp(currentSouls, Mathf.Min(souls, currentSouls), Mathf.Max(souls, currentSouls));
         soulsText.text = currentSouls.ToString();
+        
 
         yield return new WaitForSecondsRealtime(delay);
 
+        
         canModifyUI = false;
     }
     

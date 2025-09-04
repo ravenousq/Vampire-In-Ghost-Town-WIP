@@ -55,10 +55,12 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
         {
             case 6:
                 RestoreDefaultSettings();
+                AudioManager.instance.PlaySFX(40, false);
                 break;
             case 7:
                 StartCoroutine(GoBackToSettings());
                 UI.instance.fadeScreen.FadeIn();
+                AudioManager.instance.PlaySFX(40, false);
                 break;
         }
 
@@ -72,12 +74,14 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
 
         if (IsListActive())
         {
+            AudioManager.instance.PlaySFX(39, false);
             lists[currentButtonIndex - 4].Retract();
             ChangeOption(false);
         }
 
         if (IsSliderActive())
         {
+            AudioManager.instance.PlaySFX(39, false);
             sliders[currentButtonIndex].RemovePip();
             AdjustSettings();
         }
@@ -90,12 +94,14 @@ public class PauseMenuSettings : MenuNavigation, ISaveManagerSettings
 
         if (IsListActive())
         {
+            AudioManager.instance.PlaySFX(39, false);
             lists[currentButtonIndex - 4].Proceed();
             ChangeOption(true);
         }
 
         if (IsSliderActive())
         {
+            AudioManager.instance.PlaySFX(39, false);
             sliders[currentButtonIndex].AddPip();
             AdjustSettings();
         }

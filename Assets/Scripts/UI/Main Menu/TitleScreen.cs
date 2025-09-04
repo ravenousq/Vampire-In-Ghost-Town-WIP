@@ -37,9 +37,11 @@ public class TitleScreen : MenuNavigation, ISaveManager
             case 0:
                 MainMenu.instance.fadeScreen.FadeIn();
                 Invoke(nameof(ContinueGame), 1.5f);
+                AudioManager.instance.PlaySFX(40, false);
                 break;
             case 1:
                 MainMenu.instance.fadeScreen.FadeIn();
+                AudioManager.instance.PlaySFX(40, false);
                 Invoke(nameof(StartNewGame), 1.5f);
                 break;
             case 2:
@@ -49,6 +51,7 @@ public class TitleScreen : MenuNavigation, ISaveManager
                 screenToSwitch = Screens.CreditsScreen;
                 break;
             case 4:
+                AudioManager.instance.PlaySFX(40, false);
                 Application.Quit();
                 break;
             default:

@@ -35,13 +35,16 @@ public class PauseMenu : MenuNavigation
         switch (currentButtonIndex)
         {
             case 0:
+                AudioManager.instance.PlaySFX(40, false);
                 gameObject.SetActive(false);
                 break;
             case 1:
                 UI.instance.fadeScreen.FadeIn();
+                AudioManager.instance.PlaySFX(40, false);
                 StartCoroutine(GoToSettings());
                 break;
             case 2:
+                AudioManager.instance.PlaySFX(40, false);
                 UI.instance.SetUpConfirmationDialogue("Save and Quit?", null, "Yes", "No");
                 UI.instance.confirmationDialogue.onConfirm += QuitGame;
                 break;

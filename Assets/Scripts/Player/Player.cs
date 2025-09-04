@@ -162,8 +162,8 @@ public class Player : Entity
 
         stateMachine.current.Update();
 
-        if (Input.GetKeyDown(KeyCode.I))
-            Instantiate(enemyToSpawn, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
+        // if (Input.GetKeyDown(KeyCode.I))
+        //     Instantiate(enemyToSpawn, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
 
 
         if (!slowMotion && Time.timeScale < 1 && Time.timeScale != 0)

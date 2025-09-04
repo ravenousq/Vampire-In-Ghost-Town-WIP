@@ -2080,7 +2080,7 @@ MonoBehaviour:
   secretImage: {fileID: 5946517366788374728}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 1
@@ -5548,7 +5548,7 @@ MonoBehaviour:
   secretImage: {fileID: 457497257569238814}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 0
@@ -9507,7 +9507,7 @@ MonoBehaviour:
   secretImage: {fileID: 483597736443302568}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 1
@@ -11416,7 +11416,7 @@ MonoBehaviour:
   secretImage: {fileID: 2077128212758746139}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 3
@@ -11804,7 +11804,7 @@ MonoBehaviour:
   secretImage: {fileID: 336789845173576548}
   isSecret: 1
   hasNoPrice: 1
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 1
@@ -13656,7 +13656,7 @@ MonoBehaviour:
   secretImage: {fileID: 3577324536183217512}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2
@@ -17174,7 +17174,7 @@ MonoBehaviour:
   secretImage: {fileID: 7678451955226037928}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2
@@ -20824,7 +20824,7 @@ MonoBehaviour:
   secretImage: {fileID: 2274847598118070514}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2
@@ -23660,7 +23660,7 @@ MonoBehaviour:
   secretImage: {fileID: 7252806186306755376}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 0
@@ -29087,7 +29087,7 @@ MonoBehaviour:
   secretImage: {fileID: 569012074159674179}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 1
@@ -29444,7 +29444,7 @@ MonoBehaviour:
   secretImage: {fileID: 6899458272669307573}
   isSecret: 1
   hasNoPrice: 1
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2
@@ -31050,7 +31050,7 @@ MonoBehaviour:
   secretImage: {fileID: 81774810460908737}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 0
@@ -34361,7 +34361,7 @@ MonoBehaviour:
   secretImage: {fileID: 8957925805637489412}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 3
@@ -39875,7 +39875,7 @@ MonoBehaviour:
   secretImage: {fileID: 9181711560255590706}
   isSecret: 1
   hasNoPrice: 1
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 1
@@ -46066,7 +46066,7 @@ MonoBehaviour:
   secretImage: {fileID: 5728650539296169997}
   isSecret: 1
   hasNoPrice: 1
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 0
@@ -49181,7 +49181,7 @@ MonoBehaviour:
   secretImage: {fileID: 5240191020021019386}
   isSecret: 1
   hasNoPrice: 1
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 3
@@ -55229,7 +55229,7 @@ MonoBehaviour:
   secretImage: {fileID: 7181161082458120825}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 3
@@ -57270,7 +57270,7 @@ MonoBehaviour:
   secretImage: {fileID: 5529458846527770147}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2
@@ -61574,7 +61574,7 @@ MonoBehaviour:
   secretImage: {fileID: 1544760958477813639}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 3
@@ -61995,7 +61995,7 @@ MonoBehaviour:
   secretImage: {fileID: 5837871453597955663}
   isSecret: 0
   hasNoPrice: 0
-  purchaseSpeed: 100
+  purchaseSpeed: 65
   blockadeTime: 0.3
   shakeSpeed: 100
   row: 2

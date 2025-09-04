@@ -31,7 +31,7 @@ public class SkillButtonUI : MonoBehaviour, ISaveManager
     [SerializeField] private float shakeSpeed;
     public bool canBePurchased { get; private set; }
     public bool unlocked { get; private set; }
-    private bool isPurchasing;
+    public bool isPurchasing { get; private set; }
     private bool guard;
     private Vector3 defaultPosition;
 
