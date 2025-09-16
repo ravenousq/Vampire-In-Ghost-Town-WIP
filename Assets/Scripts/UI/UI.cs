@@ -84,10 +84,8 @@ public class UI : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Tab) && canTurnOnGameMenu)
             SwitchGameMenu();
-
 
         if (canTurnOnGameMenu)
         {
@@ -221,10 +219,10 @@ public class UI : MonoBehaviour
     public void UnlockSecretSkill(string name) => blessingsTab.UnlockSecretSkill(name);
 
 
-    public void ModifySouls(int souls = 0, bool wait = true)
+    public void ModifySouls(int souls = 0, bool wait = true, bool mute = false)
     {
         if (souls != 0)
-            inGameSoulsUI.ModifySouls(souls, wait);
+            inGameSoulsUI.ModifySouls(souls, wait, mute);
         else
             inGameSoulsUI.UpdateSouls();
     }

@@ -27,7 +27,8 @@ public class HillbillyPrimaryAttackState : HillbillyGroundedState
 
         lastClip = clipToPlay;
 
-        enemy.PlayClip(clipToPlay);
+        if(Random.Range(0, 10) < 5)
+            enemy.PlayClip(clipToPlay);
     }
 
     public override void Update()

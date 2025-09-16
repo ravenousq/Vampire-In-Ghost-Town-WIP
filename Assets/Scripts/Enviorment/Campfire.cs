@@ -27,18 +27,19 @@ public class Campfire : MonoBehaviour, ISaveManager
     private Player player;
     private bool menuActive;
     private bool used;
+    private bool restingStarted;
 
     private void Update()
     {
         if (player && Input.GetKeyDown(KeyCode.C) && !menuActive && Time.timeScale != 0)
-        {
-            used = true;
-            player.RestAtCampfire();
-            UI.instance.campfireUI.gameObject.SetActive(true);
-            UI.instance.campfireUI.SetUpCampfire(this);
-            menuActive = true;
-        }
+            AwakeResting();
 
+        if (restingStarted && !UI.instance.fadeScreen.isFadingIn)
+        {
+            restingStarted = false;
+            Invoke(nameof(StartResting), .2f);
+        }
+        
         AdjustDirectionalSound.Adjuster(au, PlayerManager.instance.player, 10);
 
         inputImage.color = new Color(
@@ -84,5 +85,21 @@ public class Campfire : MonoBehaviour, ISaveManager
         data.spawnPosition = null;
         data.spawnPosition = new float[] { spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z };
         data.lastCampfireScene = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    private void AwakeResting()
+    {
+        used = true;
+        UI.instance.fadeScreen.FadeIn();
+        restingStarted = true;
+    }
+
+    private void StartResting()
+    {
+        player.RestAtCampfire(spawnPoint, (transform.position.x - spawnPoint.position.x)/ Mathf.Abs(transform.position.x - spawnPoint.position.x));
+        UI.instance.fadeScreen.FadeOut();
+        UI.instance.campfireUI.gameObject.SetActive(true);
+        UI.instance.campfireUI.SetUpCampfire(this);
+        menuActive = true;
     }
 }

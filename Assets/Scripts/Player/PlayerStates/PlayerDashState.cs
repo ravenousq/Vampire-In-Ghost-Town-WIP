@@ -16,7 +16,7 @@ public class PlayerDashState : PlayerState
         base.Enter();
 
         stateTimer = player.dashDuration;
-            
+
         finalDirections = Vector2.zero;
         float xDirection, yDirection;
 
@@ -31,10 +31,10 @@ public class PlayerDashState : PlayerState
     {
         base.Update();
 
-        if(!player.isKnocked)
+        if (!player.isKnocked)
             player.SetVelocity(finalDirections, player.slowMotion);
 
-        if(stateTimer < 0)
+        if (stateTimer < 0)
             stateMachine.ChangeState(player.airborne);
     }
 
@@ -45,7 +45,7 @@ public class PlayerDashState : PlayerState
         player.InvokeName(nameof(player.CancelAfterImage), .05f);
         player.skills.dash.SwitchBlockade(true);
 
-        if(!player.isKnocked)
+        if (!player.isKnocked)
         {
             player.ResetVelocity();
             player.ZeroGravityFor(.1f);
@@ -54,18 +54,18 @@ public class PlayerDashState : PlayerState
         player.stats.SwitchInvincibility(true);
     }
 
-    
+
     private void GetDashInput(out float xDirection, out float yDirection)
     {
         xDirection = xInput;
         yDirection = yInput;
 
-        if(yInput <= 0)
+        if (yInput <= 0)
             yDirection = 0;
 
-        if(xInput == 0)
+        if (xInput == 0)
             xDirection = player.facingDir;
-        
+
         if (xInput == 0 && yInput == 1 && !player.IsWallDetected())
         {
             xDirection = 0;
@@ -75,5 +75,17 @@ public class PlayerDashState : PlayerState
 
         if (player.IsWallDetected() && !player.IsGroundDetected())
             xDirection *= -1;
+    }
+
+    protected override void AxisInput()
+    {
+        xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
+
+        if (!player.IsGroundDetected() && rb.linearVelocityY < 0)
+            player.anim.SetFloat("yVelocity", 0);
+        else
+            player.anim.SetFloat("yVelocity", rb.linearVelocityY);
+        player.anim.SetFloat("xVelocity", rb.linearVelocityX);
     }
 }

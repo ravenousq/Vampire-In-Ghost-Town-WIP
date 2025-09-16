@@ -18,6 +18,7 @@ public class CampfireUI : MonoBehaviour
     private Campfire campfire;
     public int index { get; private set; }
     private bool stoodUp = true;
+    private bool startedStandingUp;
 
     private void Awake()
     {
@@ -35,6 +36,20 @@ public class CampfireUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
             Remote();
+
+        if (!UI.instance.fadeScreen.isFadingIn && startedStandingUp)
+        {
+            Invoke(nameof(ExitCampfire), .2f);
+            startedStandingUp = false;
+        }
+        
+    }
+
+    private void ExitCampfire()
+    {
+        UI.instance.fadeScreen.FadeOut();
+        campfire.StandUp();
+        campfire = null;
     }
 
     private void SwitchTo(int newIndex)
@@ -72,7 +87,8 @@ public class CampfireUI : MonoBehaviour
 
     private void Rest()
     {
-        ResetGame();
+        UI.instance.fadeScreen.FadeIn();
+        Invoke(nameof(ResetGame), 1.5f);
     }
 
     private void Travel()
@@ -141,9 +157,9 @@ public class CampfireUI : MonoBehaviour
 
     private void StandUp()
     {
-        campfire.StandUp();
-        campfire = null;
+        UI.instance.fadeScreen.FadeIn();
         stoodUp = true;
+        startedStandingUp = true;
     }
 
     public void SetUpCampfire(Campfire campfire) => this.campfire = campfire;

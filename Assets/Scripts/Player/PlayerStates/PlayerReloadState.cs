@@ -11,8 +11,8 @@ public class PlayerReloadState : PlayerState
     {
         base.Enter();
 
-        player.anim.SetInteger("facingDir", player.facingDir);
-        player.reloadTorso.SetActive(true);
+        //player.anim.SetInteger("facingDir", player.facingDir);
+        //player.reloadTorso.SetActive(true);
 
         player.skills.dash.SwitchBlockade(true);
         player.skills.halo.SwitchBlockade(true);
@@ -22,12 +22,17 @@ public class PlayerReloadState : PlayerState
     {
         base.Update();
 
-        player.anim.SetInteger("facingDir", player.facingDir);
+        //player.anim.SetInteger("facingDir", player.facingDir);
 
-        if(!player.isKnocked)
-            rb.linearVelocity = new Vector2(xInput * skills.shoot.reloadMovementSpeed, 0);
+        // if(!player.isKnocked)
+        //     rb.linearVelocity = new Vector2(xInput * skills.shoot.reloadMovementSpeed, 0);
 
-        if(trigger)
+        player.ResetVelocity();
+
+        if (player.isKnocked)
+            stateMachine.ChangeState(player.airborne);
+
+        if (trigger)
             stateMachine.ChangeState(player.idle);
     }
 
@@ -35,11 +40,11 @@ public class PlayerReloadState : PlayerState
     {
         base.Exit();
 
-        player.anim.SetInteger("facingDir", player.facingDir);
+        //player.anim.SetInteger("facingDir", player.facingDir);
 
         skills.shoot.Reload();
-        player.reloadTorso.GetComponent<FX>().ResetSprite();
-        player.reloadTorso.SetActive(false);
+        //player.reloadTorso.GetComponent<FX>().ResetSprite();
+        //player.reloadTorso.SetActive(false);
 
         player.skills.dash.SwitchBlockade(false);
         player.skills.halo.SwitchBlockade(false);

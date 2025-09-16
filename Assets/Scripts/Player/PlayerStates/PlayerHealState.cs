@@ -14,38 +14,39 @@ public class PlayerHealState : PlayerState
 
         player.anim.SetInteger("facingDir", player.facingDir);
 
-        skills.dash.SwitchBlockade(true);
-        skills.halo.SwitchBlockade(true);
-        skills.parry.SwitchBlockade(true);
+        skills.ChangeLockOnAllSkills(true);
         
-        player.healTorso.SetActive(true);
-        stateTimer = 1.5f;
+        //player.healTorso.SetActive(true);
+        //stateTimer = 1.5f;
     }
 
     public override void Update()
     {
         base.Update();
 
-        player.anim.SetInteger("facingDir", player.facingDir);
+        //player.anim.SetInteger("facingDir", player.facingDir);
 
-        if(!player.isKnocked)
-            rb.linearVelocity = new Vector2(xInput * skills.shoot.reloadMovementSpeed, 0);
+        // if(!player.isKnocked)
+        //     rb.linearVelocity = new Vector2(xInput * skills.shoot.reloadMovementSpeed, 0);
 
-        if(trigger)
-            stateMachine.ChangeState(player.idle);
+        player.ResetVelocity();
+
+        if (player.isKnocked)
+            stateMachine.ChangeState(player.airborne);
+
+        if (trigger)
+                stateMachine.ChangeState(player.idle);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        player.anim.SetInteger("facingDir", player.facingDir);
-        player.healTorso.GetComponent<FX>().ResetSprite();
-        player.healTorso.SetActive(false);
+        // player.anim.SetInteger("facingDir", player.facingDir);
+        // player.healTorso.GetComponent<FX>().ResetSprite();
+        // player.healTorso.SetActive(false);
         player.stats.Heal(skills.concoction.GetHeal());
         
-        skills.dash.SwitchBlockade(false);
-        skills.halo.SwitchBlockade(false);
-        skills.parry.SwitchBlockade(false);
+        skills.ChangeLockOnAllSkills(false);
     }
 }

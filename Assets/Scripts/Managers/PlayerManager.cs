@@ -96,7 +96,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     public void Die()
     {
-        UI.instance.ModifySouls(-currency);
+        UI.instance.ModifySouls(-currency, true, true);
         bloodstainExists = true;
         playerIsDead = true;
     }

@@ -37,11 +37,11 @@ public class SoulsUI : MonoBehaviour
             StartCoroutine(AddRoutine());
         }
 
-       if ((currentSouls == souls || (currentSouls != souls && fadingText != null)) && AudioManager.instance.isPlayingSFX(44))
+       if ((currentSouls == souls || (currentSouls != souls && fadingText != null)) && AudioManager.instance.isPlayingSFX(44) && PlayerManager.instance.player.stats.HP > 0)
             AudioManager.instance.StopSFX(44);
     }
 
-    public void ModifySouls(int souls, bool wait = true) 
+    public void ModifySouls(int souls, bool wait = true, bool mute = false) 
     {
         fadingTexts.RemoveAll(text => text == null);
         this.souls += souls;
@@ -57,7 +57,9 @@ public class SoulsUI : MonoBehaviour
         fadingTexts.Add(newText);
         fadingText = newText;
         fadingText.SetUp((souls < 0 ? "" : "+") + souls.ToString(), textIdleSpeed, textSpeed, target, soulsText.alignment);
-        AudioManager.instance.PlaySFX(43, false);
+        
+        if (!mute)
+            AudioManager.instance.PlaySFX(43, false);
     }
 
     private IEnumerator AddRoutine()

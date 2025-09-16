@@ -4487,7 +4487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!222 &455275023146856679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4804,7 +4803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!1 &591712023448428028
 GameObject:
   m_ObjectHideFlags: 0
@@ -14217,7 +14215,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -74529,7 +74527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!212 &4738871843763262011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91459,22 +91456,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2701733281584922253, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-      propertyPath: m_Size.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2701733281584922253, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2701733281584922253, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1114961064604624315, guid: 4b3a387e2e6ddef4eabda06c025be696, type: 3}
-    - target: {fileID: 2701733281584922253, guid: be11ae4a956208749a0d468fb246616f, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4029253942398047904, guid: be11ae4a956208749a0d468fb246616f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -48.25
@@ -106785,7 +106766,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!4 &6765251995144237163
 Transform:
   m_ObjectHideFlags: 0
@@ -109112,7 +109092,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!222 &7271620361909041502
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -116019,7 +115998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!224 &7393237087625175376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -117012,7 +116990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!70 &8120103497310688041
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -119138,7 +119115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.1
   hitMaterial: {fileID: 2100000, guid: 325a656328dac7a4c808c5435398d186, type: 2}
-  reloadTorso: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

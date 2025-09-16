@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [SelectionBase]
@@ -30,6 +31,7 @@ public class Player : Entity
     public PlayerPickUpState pickup { get; private set; }
     public PlayerRestState rest { get; private set;  }
     public PlayerExitState exit { get; private set; }
+    public PlayerDeathState death { get; private set; }
     #endregion
 
     [Header("Movement")]
@@ -55,8 +57,6 @@ public class Player : Entity
 
     [Header("Combat")]
     public LayerMask whatIsEnemy;
-    public GameObject reloadTorso;
-    public GameObject healTorso;
 
 
     [Header("Abilities & Stats")]
@@ -128,13 +128,14 @@ public class Player : Entity
         aimGun = new PlayerAimGunState(this, stateMachine, "idle");
         parry = new PlayerParryState(this, stateMachine, "parry");
         execute = new PlayerExecutionState(this, stateMachine, "execution");
-        heal = new PlayerHealState(this, stateMachine, "reload");
+        heal = new PlayerHealState(this, stateMachine, "heal");
         dialogue = new PlayerDialogueState(this, stateMachine, "idle");
         impact = new PlayerImpactState(this, stateMachine, "impact");
         edge = new PlayerEdgeState(this, stateMachine, "edge");
         pickup = new PlayerPickUpState(this, stateMachine, "pickup");
         rest = new PlayerRestState(this, stateMachine, "rest");
         exit = new PlayerExitState(this, stateMachine, "move");
+        death = new PlayerDeathState(this, stateMachine, "death");
         #endregion
     }
 
@@ -157,10 +158,10 @@ public class Player : Entity
 
     protected override void Update()
     {
+        stateMachine.current.Update();
+
         if (stats.HP == 0 && !canMove)
             return;
-
-        stateMachine.current.Update();
 
         // if (Input.GetKeyDown(KeyCode.I))
         //     Instantiate(enemyToSpawn, transform.position + new Vector3(10f * facingDir, 0f, 0f), Quaternion.identity);
@@ -303,22 +304,24 @@ public class Player : Entity
 
     }
 
-    public void RestAtCampfire() => stateMachine.ChangeState(rest);
+    public void RestAtCampfire(Transform restingSpot, float facingDir)
+    {
+        transform.position = new Vector3(restingSpot.position.x, restingSpot.position.y, transform.position.z);
+
+        if (facingDir != this.facingDir)
+            Flip();
+
+        stateMachine.ChangeState(rest);
+    }
     
 
     public override void Die()
     {
-        skills.ChangeLockOnAllSkills(true);
-
-        UI.instance.deathScreen.gameObject.SetActive(true);
-
-        base.Die();
-
         canMove = false;
         canBeKnocked = false;
         stats.InvincibleFor(10f);
 
-        Time.timeScale = 0;
+        stateMachine.ChangeState(death);
     }
 
     public void DialogueStarted(Transform dialoguePoint, int dialogueFacingDir)

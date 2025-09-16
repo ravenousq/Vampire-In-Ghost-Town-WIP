@@ -30,7 +30,12 @@ public class DeathScreen : MonoBehaviour, ISaveManager
         }
     }
 
-    private void OnEnable() => isFading = true;
+    private void OnEnable()
+    {
+        deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, 0);
+        deathText.color = new Color(deathText.color.r, deathText.color.g, deathText.color.b, 0);
+        isFading = true;
+    }
 
     private IEnumerator ResetGameRoutine()
     {

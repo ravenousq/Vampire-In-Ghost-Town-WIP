@@ -21,13 +21,27 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 3251770932669099966, guid: 9051b306c2b98484facdfed12400020f, type: 3}
+      value: {fileID: 1051238669024506778, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.125
+      value: {fileID: -877273802193731282, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.25
+      value: {fileID: 6209284010429492384, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.375
+      value: {fileID: 6556771809907721909, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.5
+      value: {fileID: -1671086610097318563, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.625
+      value: {fileID: 3227045269760674689, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.75
+      value: {fileID: -1490261815354149132, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - time: 0.875
+      value: {fileID: 1943731042009456299, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 10
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -44,13 +58,20 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 3251770932669099966, guid: 9051b306c2b98484facdfed12400020f, type: 3}
+    - {fileID: 1051238669024506778, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: -877273802193731282, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: 6209284010429492384, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: 6556771809907721909, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: -1671086610097318563, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: 3227045269760674689, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: -1490261815354149132, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
+    - {fileID: 1943731042009456299, guid: 04f4187a87f757f48b2ba54e4635b91b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.1
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -69,4 +90,25 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: PlayCocking
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.375
+    functionName: PlayReload
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.875
+    functionName: AnimationTriggers
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
