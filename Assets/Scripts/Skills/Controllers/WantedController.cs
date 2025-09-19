@@ -18,7 +18,7 @@ public class WantedController : SkillController
     [SerializeField] private CinemachineCamera cinemachine;
     private int currentAmmo;
 
-    private Crosshair currentCrosshair = null;
+    public Crosshair currentCrosshair { get; private set; } = null;
 
     public float GetMaxDuration() 
     {

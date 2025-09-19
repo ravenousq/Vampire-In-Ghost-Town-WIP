@@ -13,7 +13,11 @@ public class PlayerAnimationTrigger : MonoBehaviour
         player = GetComponentInParent<Player>();
     }
 
-    public void AnimationTriggers() => player.stateMachine.current.CallTrigger();
+    public void AnimationTriggers()
+    {
+        //Debug.Log("Animation Trigger");
+        player.stateMachine.current.CallTrigger();
+    }
 
     public void DealDamage()
     {

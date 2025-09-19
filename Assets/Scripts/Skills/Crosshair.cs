@@ -23,6 +23,8 @@ public class Crosshair : MonoBehaviour
     private int finalTargets;
     private float rewardMultiplier = 1.5f;
     private bool canIncreaseRewards;
+    private bool giveReward;
+    private bool executing;
 
     private List<Enemy> enemiesToAdd = new List<Enemy>();
     private List<Enemy> targets = new List<Enemy>();
@@ -43,7 +45,7 @@ public class Crosshair : MonoBehaviour
 
         initialPosition = transform.position;
 
-        player.stats.OnDamaged += StopAiming;
+        player.stats.OnDamaged += InterruptAiming;
 
         Camera cam = Camera.main;
 
@@ -52,7 +54,6 @@ public class Crosshair : MonoBehaviour
 
         bounds = new Vector2(screenTopRight.x - screenCenter.x, screenTopRight.y - screenCenter.y);
         this.cinemachine.Follow = gameObject.transform;
-        reward = defaultReward;
     }
 
     private void Update()
@@ -69,50 +70,53 @@ public class Crosshair : MonoBehaviour
 
     private void Execute()
     {
+        if (executing)
+            return;
+
+        executing = true;
         cinemachine.Follow = PlayerManager.instance.player.transform;
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.enabled = false;
 
+        player.aimGun.Execute(targets.Count);
         finalTargets = targets.Count;
-        Debug.Log(finalTargets); 
-
-        StartCoroutine(DamageTargets());
     }
 
-    private IEnumerator DamageTargets()
+    public void DamageTarget()
     {
-        if(targets.Count > 0)
+        AudioManager.instance.PlaySFX(Random.Range(16, 18));
+        Enemy enemy = targets[Random.Range(0, targets.Count)];
+        enemy.stats.OnDie += IncreaseRewards;
+
+        enemy.stats.TakeDamage(Mathf.RoundToInt(physicalDamage / finalTargets));
+        enemy.stats.LosePoise(poiseDamage);
+        enemy.mark.SetActive(false);
+        enemy.stats.OnDie -= IncreaseRewards;
+        targets.Remove(enemy);
+
+        if (!SkillManager.instance.isSkillUnlocked("Amen & Attack"))
+            SkillManager.instance.shoot.ModifyBullets(-1);
+
+        CheckEnemies();
+    }
+
+    private void CheckEnemies()
+    {
+        if (targets.Count <= 0)
         {
-            Enemy enemy = targets[Random.Range(0, targets.Count)];
-            enemy.stats.OnDie += IncreaseRewards;
+            if (giveReward)
+                PlayerManager.instance.AddCurrency(reward);
 
-            enemy.stats.TakeDamage(Mathf.RoundToInt(physicalDamage/finalTargets));
-            enemy.stats.LosePoise(poiseDamage);
-            //enemy.Knockback(new Vector2(2, 2), enemy.gameObject.transform.position.x + (Random.Range(1, 10) > 5 ? -1 : 1), 2);
-            enemy.mark.SetActive(false);
-            enemy.stats.OnDie -= IncreaseRewards;
-            targets.Remove(enemy);
-
-            if(!SkillManager.instance.isSkillUnlocked("Amen & Attack"))
-                SkillManager.instance.shoot.ModifyBullets(-1);
-        }
-
-        yield return new WaitForSeconds(.2f);
-
-        if(targets.Count > 0)
-            StartCoroutine(DamageTargets());
-        else
-        {
-            PlayerManager.instance.AddCurrency(reward);
-            player.stats.OnDamaged -= StopAiming;
-            Destroy(gameObject);
+            StopAiming();
         }
     }
 
-    private void IncreaseRewards() 
+    private void IncreaseRewards()
     {
-        if(!canIncreaseRewards)
+        giveReward = true;
+
+        if (!canIncreaseRewards)
         {
             canIncreaseRewards = true;
             reward = defaultReward;
@@ -127,9 +131,9 @@ public class Crosshair : MonoBehaviour
 
         if (enemiesToAdd.Count > 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if(ammo == targets.Count && !SkillManager.instance.isSkillUnlocked("Amen & Attack"))
+            if (ammo == targets.Count && !SkillManager.instance.isSkillUnlocked("Amen & Attack"))
                 return;
-            
+
             targets.Add(enemiesToAdd[0]);
             enemiesToAdd[0].mark.SetActive(true);
 
@@ -147,7 +151,7 @@ public class Crosshair : MonoBehaviour
     {
         Vector2 mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        Vector2 distance = new Vector2(Mathf.Abs(initialPosition.x - transform.position.x) - 5, Mathf.Abs(initialPosition.y - transform.position.y) -5);
+        Vector2 distance = new Vector2(Mathf.Abs(initialPosition.x - transform.position.x) - 5, Mathf.Abs(initialPosition.y - transform.position.y) - 5);
 
         Vector2 clamped = new Vector2(Mathf.InverseLerp(0, bounds.x, distance.x), Mathf.InverseLerp(0, bounds.y, distance.y));
 
@@ -157,46 +161,58 @@ public class Crosshair : MonoBehaviour
 
         transform.Translate(mouseMovement * adjustedSpeed * Time.deltaTime);
 
-        if(mouseMovement == Vector2.zero)
+        if (mouseMovement == Vector2.zero)
             transform.position = Vector2.MoveTowards(transform.position, initialPosition, crosshairResistance * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        Enemy enemy; 
-
-        if (!other.GetComponent<Enemy>())
-            return;
-        else 
-            enemy = other.GetComponent<Enemy>();   
-        
-        if (!targets.Contains(enemy) && !enemiesToAdd.Contains(enemy))
-            enemiesToAdd.Add(enemy);
-    }
-    
-    private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy enemy;
-        
+
         if (!other.GetComponent<Enemy>())
             return;
         else
-            enemy = other.GetComponent<Enemy>();      
+            enemy = other.GetComponent<Enemy>();
 
-        if(enemiesToAdd.Contains(enemy))
+        if (!targets.Contains(enemy) && !enemiesToAdd.Contains(enemy))
+            enemiesToAdd.Add(enemy);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Enemy enemy;
+
+        if (!other.GetComponent<Enemy>())
+            return;
+        else
+            enemy = other.GetComponent<Enemy>();
+
+        if (enemiesToAdd.Contains(enemy))
             enemiesToAdd.Remove(enemy);
     }
 
-    private void OnDrawGizmos() 
+    private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);    
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
     }
 
     public void StopAiming()
     {
         player.AssignCrosshair(null);
+        player.aimGun.StopAiming();
         StopAllCoroutines();
         cinemachine.Follow = player.transform;
+        player.stats.OnDamaged -= InterruptAiming;
+        Destroy(gameObject);
+    }
+
+    private void InterruptAiming()
+    {
+        player.AssignCrosshair(null);
+        player.aimGun.StopAiming(true);
+        StopAllCoroutines();
+        cinemachine.Follow = player.transform;
+        player.stats.OnDamaged -= InterruptAiming;
         Destroy(gameObject);
     }
 }

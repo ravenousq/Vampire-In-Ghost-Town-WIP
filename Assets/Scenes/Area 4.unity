@@ -2386,6 +2386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4391689682135092719, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
+      propertyPath: dotParent
+      value: 
+      objectReference: {fileID: 1617684991}
     - target: {fileID: 5602223751009426215, guid: 366399ca87a70b844b3ae9e12ec06aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.647205
@@ -2476,6 +2480,11 @@ Transform:
   - {fileID: 1361959104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1617684991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5599505991731047057, guid: be11ae4a956208749a0d468fb246616f, type: 3}
+  m_PrefabInstance: {fileID: 6162028550143401013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1768813844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2794,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304359396956347940, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5304359396956347940, guid: b52d8e2e6cdfaf546baf7fddc1fd407c, type: 3}
       propertyPath: m_SortingOrder

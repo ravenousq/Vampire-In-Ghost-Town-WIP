@@ -108,6 +108,9 @@ public class Player : Entity
     {
         base.Awake();
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
         stats = GetComponent<PlayerStats>();
 
         #region States Initialization
@@ -125,7 +128,7 @@ public class Player : Entity
         quickstep = new PlayerQuickstepState(this, stateMachine, "quickstep");
         crouch = new PlayerCrouchState(this, stateMachine, "crouch");
         dive = new PlayerDiveState(this, stateMachine, "jump");
-        aimGun = new PlayerAimGunState(this, stateMachine, "idle");
+        aimGun = new PlayerAimGunState(this, stateMachine, "aim");
         parry = new PlayerParryState(this, stateMachine, "parry");
         execute = new PlayerExecutionState(this, stateMachine, "execution");
         heal = new PlayerHealState(this, stateMachine, "heal");
