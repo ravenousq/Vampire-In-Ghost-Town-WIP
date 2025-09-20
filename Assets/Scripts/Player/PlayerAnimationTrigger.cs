@@ -36,4 +36,6 @@ public class PlayerAnimationTrigger : MonoBehaviour
     public void PlayCocking() => AudioManager.instance.PlaySFX(15);
 
     public void PlayReload() => AudioManager.instance.PlaySFX(14);
+
+    public void PlayHealing() => AudioManager.instance.PlaySFX(46);
 }

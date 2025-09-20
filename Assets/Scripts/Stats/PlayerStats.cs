@@ -10,7 +10,8 @@ public class PlayerStats : CharacterStats, ISaveManager
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private LayerMask whatIsEnemy;
 
-    public float iFrames; 
+    private AudioSource audioSource;
+    public float iFrames;
 
     protected override void Start()
     {
@@ -19,11 +20,14 @@ public class PlayerStats : CharacterStats, ISaveManager
         player = GetComponent<Player>();
 
         OnDamaged += EnableIFrames;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    override protected void Update() 
+    override protected void Update()
     {
         base.Update();
+
+        audioSource.volume = (HP / health.GetValue()) < 0.3f ? 1f - (HP / (health.GetValue() * 0.3f)) : 0f;
     }
 
     private void EnableIFrames() => StartCoroutine(IFramesRoutine(iFrames));

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class ReapersHalo : MonoBehaviour
@@ -65,6 +66,8 @@ public class ReapersHalo : MonoBehaviour
 
     private void Update()
     {
+        AdjustDirectionalSound.Adjuster(GetComponent<AudioSource>(), player, 20);
+
         transform.right = rb.linearVelocity;
         CountDownTimers();
 
@@ -82,6 +85,7 @@ public class ReapersHalo : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.transform.position) < .3f && collisionTimer < 0)
             DestroyMe();
+
     }
 
     private void CountDownTimers()
