@@ -7,7 +7,6 @@ public class PlayerAimGunState : PlayerState
 
     }
 
-    private bool aiming;
     private bool shooting;
     private bool stopping;
     private int triggerCount;
@@ -18,11 +17,10 @@ public class PlayerAimGunState : PlayerState
         base.Enter();
 
         rb.bodyType = RigidbodyType2D.Kinematic;
-        aiming = true;
         shooting = false;
         stopping = false;
-        trigger = false;
         triggerCount = 0;
+        player.anim.SetBool("isGroundDetected", player.IsGroundDetected());
 
         player.skills.ChangeLockOnAllSkills(true);
     }
@@ -31,6 +29,7 @@ public class PlayerAimGunState : PlayerState
     {
         base.Update();
 
+        player.anim.SetBool("isGroundDetected", player.IsGroundDetected());
         player.anim.SetBool("shootWanted", shooting);
         player.anim.SetBool("stopWanted", stopping);
 
@@ -57,7 +56,7 @@ public class PlayerAimGunState : PlayerState
             }
             else if (stopping)
             {
-                if(player.anim.GetCurrentAnimatorStateInfo(0).IsName("Player_AimExit"))
+                if(player.anim.GetCurrentAnimatorStateInfo(0).IsName("Player_AimExit") || player.anim.GetCurrentAnimatorStateInfo(0).IsName("Player_WallSlideStopAim"))
                     stateMachine.ChangeState(player.idle); 
             }
         }
@@ -67,6 +66,7 @@ public class PlayerAimGunState : PlayerState
     {
         base.Exit();
 
+        player.anim.SetBool("isGroundDetected", player.IsGroundDetected());
         rb.bodyType = RigidbodyType2D.Dynamic;
 
         player.skills.ChangeLockOnAllSkills(false);
@@ -74,7 +74,6 @@ public class PlayerAimGunState : PlayerState
 
     public void StopAiming(bool interrupted = false)
     {
-        aiming = false;
         shooting = false;
 
         if (interrupted)
@@ -96,7 +95,6 @@ public class PlayerAimGunState : PlayerState
             return;
         }
 
-        aiming = false;
         shooting = true;
     }
 }

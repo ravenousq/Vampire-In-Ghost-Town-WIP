@@ -1,22 +1,34 @@
 fileFormatVersion: 2
-guid: 885e2fac91198c44789c828cd8eef167
+guid: 97693d7c834569249a23f9b4b9da5caf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1373448614646059974
-    second: door - foreground_0
+      213: 3174266207819078093
+    second: wallslide_shot_0
   - first:
-      213: -3324482705321003440
-    second: door - foreground_1
+      213: -6939318902912535749
+    second: wallslide_shot_1
   - first:
-      213: 5480554497677053203
-    second: door - foreground_2
+      213: -4748266025382311682
+    second: wallslide_shot_2
   - first:
-      213: 4719593966256982446
-    second: door - foreground_3
+      213: 3928130627675624817
+    second: wallslide_shot_3
   - first:
-      213: 3995639871588698802
-    second: door - foreground_4
+      213: 671833185410551069
+    second: wallslide_shot_4
+  - first:
+      213: -3163927647288087308
+    second: wallslide_shot_5
+  - first:
+      213: -8412201305767932583
+    second: wallslide_shot_6
+  - first:
+      213: 1707804153716207231
+    second: wallslide_shot_7
+  - first:
+      213: 4330653341983461854
+    second: wallslide_shot_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,13 +137,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door - foreground_0
+      name: wallslide_shot_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 176
+        width: 480
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a3ce4c603c780fce0800000000000000
-      internalID: -1373448614646059974
+      spriteID: dc9159b4c424d0c20800000000000000
+      internalID: 3174266207819078093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door - foreground_1
+      name: wallslide_shot_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 480
         y: 0
-        width: 80
-        height: 176
+        width: 480
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0567967e7901dd1d0800000000000000
-      internalID: -3324482705321003440
+      spriteID: b33beb0593692bf90800000000000000
+      internalID: -6939318902912535749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door - foreground_2
+      name: wallslide_shot_2
       rect:
         serializedVersion: 2
-        x: 160
+        x: 960
         y: 0
-        width: 80
-        height: 176
+        width: 480
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31dc5364747de0c40800000000000000
-      internalID: 5480554497677053203
+      spriteID: ef808021535ca1eb0800000000000000
+      internalID: -4748266025382311682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door - foreground_3
+      name: wallslide_shot_3
       rect:
         serializedVersion: 2
-        x: 240
+        x: 1440
         y: 0
-        width: 80
-        height: 176
+        width: 480
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ea903d2f4bd5f7140800000000000000
-      internalID: 4719593966256982446
+      spriteID: 17510f56ef5838630800000000000000
+      internalID: 3928130627675624817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door - foreground_4
+      name: wallslide_shot_4
       rect:
         serializedVersion: 2
-        x: 320
+        x: 1920
         y: 0
-        width: 80
-        height: 176
+        width: 480
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ba8e6c1b4d537730800000000000000
-      internalID: 3995639871588698802
+      spriteID: d1d07bcf8b4d25900800000000000000
+      internalID: 671833185410551069
       vertices: []
       indices: 
       edges: []
@@ -238,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ac3af9b7b0468e247822f9ea404cde99
+    spriteID: b2f368591f3e479438de8014be5d3af8
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +260,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      door - foreground_0: -1373448614646059974
-      door - foreground_1: -3324482705321003440
-      door - foreground_2: 5480554497677053203
-      door - foreground_3: 4719593966256982446
-      door - foreground_4: 3995639871588698802
+      wallslide_shot_0: 3174266207819078093
+      wallslide_shot_1: -6939318902912535749
+      wallslide_shot_2: -4748266025382311682
+      wallslide_shot_3: 3928130627675624817
+      wallslide_shot_4: 671833185410551069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
