@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ravenous_q  - cowboy - climb_0: -6288402600054983593
+      ravenous_q  - cowboy - climb_1: -8029581022049003093
+      ravenous_q  - cowboy - climb_2: -6329160687626879948
+      ravenous_q  - cowboy - climb_3: 3166098882208390217
+      ravenous_q  - cowboy - climb_4: -1018633213767066501
+      ravenous_q  - cowboy - climb_5: -7155840532867979467
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

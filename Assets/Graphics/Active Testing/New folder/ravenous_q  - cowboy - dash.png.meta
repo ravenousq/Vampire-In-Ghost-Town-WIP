@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ravenous_q  - cowboy - dash_0: 6660245984064646857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

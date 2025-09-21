@@ -1572,7 +1572,65 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ravenous_q  - cowboy - jump_0: 8487845068214372824
+      ravenous_q  - cowboy - jump_1: -6614065758057555090
+      ravenous_q  - cowboy - jump_10: 6003613582075495297
+      ravenous_q  - cowboy - jump_11: -1842697440946737473
+      ravenous_q  - cowboy - jump_12: -2773079841381741857
+      ravenous_q  - cowboy - jump_13: 827547875497563465
+      ravenous_q  - cowboy - jump_14: -5334388443640756726
+      ravenous_q  - cowboy - jump_15: -5727563769010077465
+      ravenous_q  - cowboy - jump_16: 5164515257564019408
+      ravenous_q  - cowboy - jump_17: 1736938614497870911
+      ravenous_q  - cowboy - jump_18: 4080135428390635304
+      ravenous_q  - cowboy - jump_19: 6943656280664624631
+      ravenous_q  - cowboy - jump_2: -7751393762017662616
+      ravenous_q  - cowboy - jump_20: 7249723675842974758
+      ravenous_q  - cowboy - jump_21: -6892719021834022893
+      ravenous_q  - cowboy - jump_22: -6290831551761528852
+      ravenous_q  - cowboy - jump_23: 8920287700157323791
+      ravenous_q  - cowboy - jump_24: -3304765417733266941
+      ravenous_q  - cowboy - jump_25: -7619793237365320332
+      ravenous_q  - cowboy - jump_26: -2104480497411247582
+      ravenous_q  - cowboy - jump_27: 4604195620345094375
+      ravenous_q  - cowboy - jump_28: -1146129596080080580
+      ravenous_q  - cowboy - jump_29: 8036754915052154974
+      ravenous_q  - cowboy - jump_3: -6983776436368679518
+      ravenous_q  - cowboy - jump_30: 5051341093784107684
+      ravenous_q  - cowboy - jump_31: -2289389332374855557
+      ravenous_q  - cowboy - jump_32: -3665763605863133416
+      ravenous_q  - cowboy - jump_33: 6573575129556766650
+      ravenous_q  - cowboy - jump_34: 7947831475308998557
+      ravenous_q  - cowboy - jump_35: 3716012647873564531
+      ravenous_q  - cowboy - jump_36: -9463187628111525
+      ravenous_q  - cowboy - jump_37: 6088592714129424699
+      ravenous_q  - cowboy - jump_38: -63024506589000925
+      ravenous_q  - cowboy - jump_39: 1760083197649291959
+      ravenous_q  - cowboy - jump_4: 557851923999095741
+      ravenous_q  - cowboy - jump_40: 4868217560167072689
+      ravenous_q  - cowboy - jump_41: -523926752065713279
+      ravenous_q  - cowboy - jump_42: -6035627475031912074
+      ravenous_q  - cowboy - jump_43: 6122986991880345744
+      ravenous_q  - cowboy - jump_44: -3191378696351091421
+      ravenous_q  - cowboy - jump_45: 1455780154429195361
+      ravenous_q  - cowboy - jump_46: 7295777668986853899
+      ravenous_q  - cowboy - jump_47: 1783069939073387102
+      ravenous_q  - cowboy - jump_48: -1629356419169781953
+      ravenous_q  - cowboy - jump_49: -7433549100896565014
+      ravenous_q  - cowboy - jump_5: 8905805497045983612
+      ravenous_q  - cowboy - jump_50: -7258635316000814077
+      ravenous_q  - cowboy - jump_51: -7474612053481263457
+      ravenous_q  - cowboy - jump_52: 158296573102038174
+      ravenous_q  - cowboy - jump_53: 3583252356992333400
+      ravenous_q  - cowboy - jump_54: -4416388390187486436
+      ravenous_q  - cowboy - jump_55: 6110454664346965519
+      ravenous_q  - cowboy - jump_56: -8018492519566956058
+      ravenous_q  - cowboy - jump_57: 7688358820909259465
+      ravenous_q  - cowboy - jump_6: 2017403667374128179
+      ravenous_q  - cowboy - jump_7: 1744489050994859443
+      ravenous_q  - cowboy - jump_8: 3783223432462908045
+      ravenous_q  - cowboy - jump_9: -992621015633445551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

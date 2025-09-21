@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ravenous_q - cowboy - preview - resting_0: -6090184825919040501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

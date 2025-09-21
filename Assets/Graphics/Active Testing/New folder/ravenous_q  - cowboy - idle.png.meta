@@ -322,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ravenous_q  - cowboy - idle_0: 2429575359091950856
+      ravenous_q  - cowboy - idle_1: -7761477315691508484
+      ravenous_q  - cowboy - idle_2: 746193555598398492
+      ravenous_q  - cowboy - idle_3: 9207439326758092666
+      ravenous_q  - cowboy - idle_4: -2932425193388232986
+      ravenous_q  - cowboy - idle_5: 1867405049332382785
+      ravenous_q  - cowboy - idle_6: -8391701689440869490
+      ravenous_q  - cowboy - idle_7: -8839040320036108217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
