@@ -56,7 +56,7 @@
         "Temp/": true,
         "UserSettings/": true
     },
-    "dotnet.defaultSolution": "Vampire-In-Ghost-Town-WIP.sln",
+    "dotnet.defaultSolution": "Vampire In Ghost Town WIP.sln",
     "github.copilot.inlineSuggest.enable": true,
     "git.ignoreLimitWarning": true
 }
